@@ -15,15 +15,13 @@ export const routes: Routes = [
   {
     path: 'vendor',
     loadComponent: () =>
-      import('./pages/vendor/vendor.component').then((c) => c.VendorComponent),
+      import('./pages/user/user.component').then((c) => c.UserComponent),
     canActivate: [authGuard],
   },
   {
     path: 'customer',
     loadComponent: () =>
-      import('./pages/customer/customer.component').then(
-        (c) => c.CustomerComponent
-      ),
+      import('./pages/user/user.component').then((c) => c.UserComponent),
     canActivate: [authGuard],
   },
   {
