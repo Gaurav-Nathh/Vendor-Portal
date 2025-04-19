@@ -1,0 +1,87 @@
+<section id="login-page">
+  <section class="d-flex justify-content-between w-100 py-2 px-3">
+    <h5 class="fw-bold" style="color: var(--primary-text)">Efacto</h5>
+    <app-theme-toggle></app-theme-toggle>
+  </section>
+  <section class="login-section">
+    <section id="login-main">
+      <section id="img-section">
+        <img src="/assets/images/vendor_loginpage_img.svg" alt="" />
+      </section>
+      <section id="login-section">
+        <div class="login-content">
+          <h2 class="fw-bold">Welcome to Portal</h2>
+          <small>Please enter your details</small>
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <div class="input-field">
+              <label for="email">Email</label><br />
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Enter your email"
+                [(ngModel)]="model.email"
+                #email="ngModel"
+                required
+                email
+              />
+              <div *ngIf="email.touched && email.invalid" class="error-text">
+                <div *ngIf="email.errors?.['required']">Email is required.</div>
+                <div *ngIf="email.errors?.['email']">
+                  Please enter a valid email.
+                </div>
+              </div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="input-field">
+              <label for="password">Password</label><br />
+              <div class="input-aria">
+                @if(hidepassword) {
+                <i class="bi bi-eye-fill" (click)="togglePassword()"></i>
+                } @else {
+                <i class="bi bi-eye-slash-fill" (click)="togglePassword()"></i>
+                }
+                <input
+                  [type]="hidepassword ? 'password' : 'text'"
+                  name="password"
+                  id="password"
+                  placeholder="Enter your passwords"
+                  [(ngModel)]="model.password"
+                  #password="ngModel"
+                  required
+                />
+              </div>
+              <div
+                *ngIf="password.touched && password.invalid"
+                class="error-text"
+              >
+                <div *ngIf="password.errors?.['required']">
+                  Password is required.
+                </div>
+              </div>
+            </div>
+
+            <!-- Forgot password -->
+            <div class="controls">
+              <small>Forgot password?</small>
+            </div>
+
+            <!-- Login Button -->
+            <button type="submit" id="login-btn" [disabled]="loginForm.invalid" (click)="onLogin()">
+              Login
+            </button>
+          </form>
+       
+          <div class="company-details">
+            <small>Simplified Retail & Distribution ERP Solution</small>
+            <h5 class="fw-semibold">© BNG Infotech Private Limited</h5>
+          </div>
+        </div>
+      </section>
+    </section>
+  </section>
+  <small class="my-3" style="color: var(--primary-text)"
+    >© 2025, BNG Pvt.Ltd. All Right Reserved.</small
+  >
+</section>

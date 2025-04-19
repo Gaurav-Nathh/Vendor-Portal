@@ -1,0 +1,150 @@
+#login-page {
+  background-color: var(--color-bg);
+  width: 100vw;
+  height: 100svh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  .login-section {
+    width: fit-content;
+  }
+}
+#login-main {
+  width: fit-content;
+  height: fit-content;
+  display: grid;
+  border-radius: 0.5rem;
+  border: 2px solid var(--border-color);
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--color-bg-secondry);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 30% full;
+  }
+}
+#img-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 80%;
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    img {
+      width: 16rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
+#login-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-content {
+  text-align: center;
+  justify-content: center;
+  padding: 3rem;
+  border-left: 2px solid var(--border-color);
+  color: var(--primary-text);
+  @media (max-width: 768px) {
+    padding: 1rem;
+    border: none;
+    border-top: 2px solid var(--color-card);
+  }
+}
+.input-field {
+  margin-top: 1.6rem;
+  text-align: left;
+  position: relative;
+
+  label {
+    margin-bottom: 0.3rem;
+  }
+
+  .input-aria {
+    position: relative;
+
+    i {
+      position: absolute;
+      right: 0;
+      margin-right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.6rem;
+      color: var(--border-grey);
+    }
+  }
+}
+input {
+  width: 25rem;
+  padding: 0.8rem;
+  border: 2px solid var(--border-grey);
+  border-radius: 0.3rem;
+  background-color: var(--color-bg-secondry);
+  transition: border-color 0.4s ease;
+  &:hover {
+    outline: none;
+    border-color: var(--color-blue);
+  }
+  &:focus {
+    outline: none;
+    border-color: var(--color-blue);
+  }
+  &:active {
+    border-color: var(--color-blue);
+  }
+  @media (max-width: 768px) {
+    width: 22rem;
+  }
+}
+
+.icons {
+  font-size: 2rem;
+  color: var(--color-grey);
+  position: absolute;
+  right: 0;
+}
+.controls {
+  margin-top: 1rem;
+  text-align: right;
+  cursor: pointer;
+  color: var(--primary-blue);
+}
+#login-btn {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.3rem;
+  margin-top: 2.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  background-color: var(--color-blue);
+  cursor: pointer;
+
+  &:hover {
+    background-color: #5063df;
+  }
+}
+.error-text {
+  margin-top: 0.4rem;
+  color: red;
+  font-size: 0.8rem;
+}
+.company-details {
+  margin-top: 1.5rem;
+}
+
+.bord {
+  border: 2px solid red;
+}

@@ -1,0 +1,204 @@
+<div
+  class="sidenav d-flex flex-column flex-shrink-0 p-3 bg-light"
+  [class.collapsed]="isCollapsed"
+  style="width: 280px; height: 100vh; transition: width 0.3s ease"
+>
+  <!-- Header and toggle button -->
+  <div class="bord d-flex justify-content-between align-items-center mb-3">
+    <a
+      href="/"
+      class="d-flex align-items-center link-dark text-decoration-none"
+    >
+      <span class="fs-4" *ngIf="!isCollapsed"></span>
+    </a>
+    <button class="btn p-0" (click)="toggleCollapse()">
+      <i
+        class="bi"
+        [class.bi-chevron-double-left]="!isCollapsed"
+        [class.bi-chevron-double-right]="isCollapsed"
+      ></i>
+    </button>
+  </div>
+
+  <!-- Menu Items -->
+  <ul class="nav nav-pills flex-column mb-auto">
+    <!-- Dashboard -->
+    <li
+      class="nav-item"
+      [ngbTooltip]="isCollapsed ? 'Dashboard' : null"
+      placement="right"
+    >
+      <a href="#" class="nav-link active" aria-current="page">
+        <i class="bi bi-house-door"></i>
+        <span class="ms-2" *ngIf="!isCollapsed">Dashboard</span>
+      </a>
+    </li>
+
+    <!-- Products -->
+    <li
+      class="nav-item"
+      [ngbTooltip]="isCollapsed ? 'Products' : null"
+      placement="right"
+    >
+      <a
+        class="nav-link link-dark d-flex justify-content-between"
+        (click)="toggleMenu('products')"
+      >
+        <div>
+          <i class="bi bi-box-seam"></i>
+          <span class="ms-3" *ngIf="!isCollapsed">Products</span>
+        </div>
+        <i
+          class=""
+          [class.bi-chevron-down]="!openMenus['products']"
+          [class.bi-chevron-up]="openMenus['products']"
+          *ngIf="!isCollapsed"
+        ></i>
+      </a>
+      <!-- Expanded view -->
+      <div class="bord submenu" *ngIf="!isCollapsed && openMenus['products']">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-3">
+          <li>
+            <a href="#" class="nav-link link-dark rounded">All Products</a>
+          </li>
+          <li><a href="#" class="nav-link link-dark rounded">Categories</a></li>
+          <li><a href="#" class="nav-link link-dark rounded">Inventory</a></li>
+        </ul>
+      </div>
+      <!-- Collapsed view -->
+      <div class="flyout-menu" *ngIf="isCollapsed && openMenus['products']">
+        <div class="flyout-content">
+          <a href="#" class="flyout-item">All Products</a>
+          <a href="#" class="flyout-item">Categories</a>
+          <a href="#" class="flyout-item">Inventory</a>
+        </div>
+      </div>
+    </li>
+
+    <!-- Sales -->
+    <li
+      class="nav-item"
+      [ngbTooltip]="isCollapsed ? 'Sales' : null"
+      placement="right"
+    >
+      <a class="nav-link link-dark" (click)="toggleMenu('sales')">
+        <i class="bi bi-graph-up"></i>
+        <span class="ms-2" *ngIf="!isCollapsed">Sales</span>
+        <i
+          class="bi float-end"
+          [class.bi-chevron-down]="!openMenus['sales']"
+          [class.bi-chevron-up]="openMenus['sales']"
+          *ngIf="!isCollapsed"
+        ></i>
+      </a>
+      <!-- Expanded view -->
+      <div class="submenu" *ngIf="!isCollapsed && openMenus['sales']">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-4">
+          <li><a href="#" class="nav-link link-dark rounded">Orders</a></li>
+          <li><a href="#" class="nav-link link-dark rounded">Customers</a></li>
+          <li>
+            <a
+              class="nav-link link-dark rounded"
+              (click)="toggleMenu('reports')"
+            >
+              Reports
+              <i
+                class="bi float-end"
+                [class.bi-chevron-down]="!openMenus['reports']"
+                [class.bi-chevron-up]="openMenus['reports']"
+              ></i>
+            </a>
+            <div class="submenu" *ngIf="openMenus['reports']">
+              <ul
+                class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-4"
+              >
+                <li>
+                  <a href="#" class="nav-link link-dark rounded">Daily</a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link link-dark rounded">Monthly</a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link link-dark rounded">Annual</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Collapsed view -->
+      <div class="flyout-menu" *ngIf="isCollapsed && openMenus['sales']">
+        <div class="flyout-content">
+          <a href="#" class="flyout-item">Orders</a>
+          <a href="#" class="flyout-item">Customers</a>
+          <a class="flyout-item" (click)="toggleMenu('reports')">
+            Reports
+            <i
+              class="bi"
+              [class.bi-chevron-down]="!openMenus['reports']"
+              [class.bi-chevron-up]="openMenus['reports']"
+            ></i>
+          </a>
+          <div class="nested-flyout" *ngIf="openMenus['reports']">
+            <a href="#" class="flyout-item">Daily</a>
+            <a href="#" class="flyout-item">Monthly</a>
+            <a href="#" class="flyout-item">Annual</a>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <!-- Users -->
+    <li
+      class="nav-item"
+      [ngbTooltip]="isCollapsed ? 'Users' : null"
+      placement="right"
+    >
+      <a href="#" class="nav-link link-dark">
+        <i class="bi bi-people"></i>
+        <span class="ms-2" *ngIf="!isCollapsed">Users</span>
+      </a>
+    </li>
+
+    <!-- Settings -->
+    <li
+      class="nav-item"
+      [ngbTooltip]="isCollapsed ? 'Settings' : null"
+      placement="right"
+    >
+      <a href="#" class="nav-link link-dark">
+        <i class="bi bi-gear"></i>
+        <span class="ms-2" *ngIf="!isCollapsed">Settings</span>
+      </a>
+    </li>
+  </ul>
+
+  <hr />
+
+  <!-- User dropdown -->
+  <div
+    class="dropdown"
+    [ngbTooltip]="isCollapsed ? 'User Menu' : null"
+    placement="right"
+  >
+    <a
+      href="#"
+      class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+      data-bs-toggle="dropdown"
+    >
+      <img
+        src="https://github.com/mdo.png"
+        alt=""
+        width="32"
+        height="32"
+        class="rounded-circle me-2"
+      />
+      <strong *ngIf="!isCollapsed">User</strong>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+      <li><a class="dropdown-item" href="#">Profile</a></li>
+      <li><a class="dropdown-item" href="#">Settings</a></li>
+      <li><a class="dropdown-item" href="#">Sign out</a></li>
+    </ul>
+  </div>
+</div>
