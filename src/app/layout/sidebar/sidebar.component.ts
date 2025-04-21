@@ -2,6 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+interface MenuItem {
+  text: string;
+  icon: string;
+  route: string;
+  submenu?: MenuItem[];
+  isSubmenuOpen?: boolean;
+}
 
 @Component({
   selector: 'app-sidebar',
@@ -11,35 +19,53 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  isCollapsed = false;
-  openMenus: { [key: string]: boolean } = {
-    products: false,
-    sales: false,
-    //  NgbModule,
-    // NgbTooltipModule,
-    reports: false,
-  };
+  isOpen = true;
 
-  toggleCollapse() {
-    this.isCollapsed = !this.isCollapsed;
-    // Close all menus when collapsing
-    if (this.isCollapsed) {
-      Object.keys(this.openMenus).forEach((key) => {
-        this.openMenus[key] = false;
-      });
+  menuItems: MenuItem[] = [
+    {
+      text: 'Dashboard',
+      icon: 'bi-house',
+      route: '/shopping-cart',
+    },
+    {
+      text: 'Users',
+      icon: 'bi-people',
+      route: '/users',
+      submenu: [
+        { text: 'All Users', icon: 'bi-person', route: '/users/all' },
+        { text: 'Roles', icon: 'bi-shield', route: '/users/roles' },
+      ],
+      isSubmenuOpen: false,
+    },
+    {
+      text: 'Settings',
+      icon: 'bi-gear',
+      route: '/settings',
+      submenu: [
+        { text: 'General', icon: 'bi-sliders', route: '/settings/general' },
+        { text: 'Security', icon: 'bi-lock', route: '/settings/security' },
+      ],
+      isSubmenuOpen: false,
+    },
+  ];
+
+  constructor(private router: Router) {}
+
+  toggleSidenav() {
+    this.isOpen = !this.isOpen;
+  }
+
+  navigate(route: string) {
+    if (route) {
+      this.router.navigate([route]);
     }
   }
 
-  toggleMenu(menu: string) {
-    this.openMenus[menu] = !this.openMenus[menu];
-
-    // Close other menus when opening a new one (optional)
-    if (this.openMenus[menu]) {
-      Object.keys(this.openMenus).forEach((key) => {
-        if (key !== menu) {
-          this.openMenus[key] = false;
-        }
-      });
+  toggleSubmenu(item: MenuItem, event: Event) {
+    if (item.submenu) {
+      item.isSubmenuOpen = !item.isSubmenuOpen;
+      // Prevent navigation when toggling submenu
+      event.preventDefault();
     }
   }
 }
