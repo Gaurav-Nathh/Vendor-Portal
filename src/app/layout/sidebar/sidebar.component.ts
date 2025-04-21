@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 interface MenuItem {
   text: string;
   icon: string;
@@ -19,17 +21,27 @@ interface MenuItem {
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
   isOpen = true;
 
   menuItems: MenuItem[] = [
     {
       text: 'Dashboard',
-      icon: 'bi-house',
-      route: '/shopping-cart',
+      icon: 'bi bi-grid-1x2-fill',
+      route: 'vendor/dashboard',
+    },
+    {
+      text: 'Shopping',
+      icon: 'fa-solid fa-cart-shopping',
+      route: 'vendor/shopping-cart',
     },
     {
       text: 'Users',
-      icon: 'bi-people',
+      icon: 'bi-people-fill',
       route: '/users',
       submenu: [
         { text: 'All Users', icon: 'bi-person', route: '/users/all' },
@@ -39,7 +51,7 @@ export class SidebarComponent {
     },
     {
       text: 'Settings',
-      icon: 'bi-gear',
+      icon: 'bi-gear-fill',
       route: '/settings',
       submenu: [
         { text: 'General', icon: 'bi-sliders', route: '/settings/general' },
@@ -48,8 +60,6 @@ export class SidebarComponent {
       isSubmenuOpen: false,
     },
   ];
-
-  constructor(private router: Router) {}
 
   toggleSidenav() {
     this.isOpen = !this.isOpen;
@@ -64,8 +74,11 @@ export class SidebarComponent {
   toggleSubmenu(item: MenuItem, event: Event) {
     if (item.submenu) {
       item.isSubmenuOpen = !item.isSubmenuOpen;
-      // Prevent navigation when toggling submenu
       event.preventDefault();
     }
+  }
+
+  gotodash() {
+    this.router.navigate(['/vendor/dashboard']);
   }
 }

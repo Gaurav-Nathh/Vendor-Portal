@@ -1,0 +1,37 @@
+.bord {
+  border: 1px solid red;
+}
+
+.nav-toggler {
+  padding-inline: 0.3rem;
+  padding-block: 0.2rem;
+  // border: 2px solid var(--color-black);
+  display: flex;
+  align-items: center;
+  border-radius: 0.3rem;
+}
+
+#nav {
+  background-color: var(--color-card);
+
+  .nav-icons {
+    display: flex;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}
+.menu-toggler {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
+#navcollapse {
+  @media (min-width: 768px) {
+    display: none;
+  }
+}

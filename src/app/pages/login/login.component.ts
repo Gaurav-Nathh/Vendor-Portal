@@ -32,12 +32,6 @@ export class LoginComponent {
     this.themeService.initTheme();
   }
 
-  onLogin(): void {
-    // Simulate login
-    localStorage.setItem('token', 'user-token'); // Store a token
-    this.router.navigate(['/dashboard']); // Navigate to the dashboard
-  }
-
   toggleTheme(): void {
     this.themeService.toggleTheme();
   }
@@ -51,11 +45,9 @@ export class LoginComponent {
   }
 
   onSubmit(form: NgForm) {
-    console.log('login');
-    this.authService.login();
-    this.userService.setUserType(this.userType);
-    const route = this.userType === 'customer' ? '/customer' : '/vendor';
-    console.log(route);
-    this.router.navigate([route]);
+    // this.authService.login();
+    // this.userService.setUserType(this.userType);
+    // const route = this.userType === 'customer' ? '/customer' : '/vendor';
+    this.router.navigate(['/vendor']);
   }
 }

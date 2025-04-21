@@ -8,7 +8,6 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    pathMatch: 'full',
     loadComponent: () =>
       import('./pages/login/login.component').then((c) => c.LoginComponent),
   },
@@ -17,20 +16,31 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/user/user.component').then((c) => c.UserComponent),
     canActivate: [authGuard],
+    children: [
+      {
+        path: 'dashboard',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/dashboard/dashboard.component').then(
+            (c) => c.DashboardComponent
+          ),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'shopping-cart',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/shopping-cart/shopping-cart.component').then(
+            (c) => c.ShoppingCartComponent
+          ),
+        canActivate: [authGuard],
+      },
+    ],
   },
   {
     path: 'customer',
     loadComponent: () =>
       import('./pages/user/user.component').then((c) => c.UserComponent),
-    canActivate: [authGuard],
-  },
-  {
-    path: 'shopping-cart',
-    pathMatch: 'full',
-    loadComponent: () =>
-      import('./pages/shopping-cart/shopping-cart.component').then(
-        (c) => c.ShoppingCartComponent
-      ),
     canActivate: [authGuard],
   },
 ];
