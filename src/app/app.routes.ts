@@ -42,14 +42,32 @@ export const routes: Routes = [
           import('./pages/shopping-cart/shopping-cart.component').then(
             (c) => c.ShoppingCartComponent
           ),
-        // canActivate: [authGuard],
+         canActivate: [authGuard],
       },
+       {
+        path:'update-password',
+        pathMatch:'full',
+        loadComponent: () =>
+          import('./pages/update-password/update-password.component').then(
+            (c) => c.UpdatePasswordComponent
+          ),
+         canActivate: [authGuard],
+       }
     ],
   },
   {
     path: 'customer',
     loadComponent: () =>
       import('./pages/user/user.component').then((c) => c.UserComponent),
-    // canActivate: [authGuard],
+     canActivate: [authGuard],
   },
+  {
+    path: 'item-mapping',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./pages/item-mapping/item-mapping.component').then(
+        (c) => c.ItemMappingComponent
+      ),
+    canActivate: [authGuard],
+  }
 ];
