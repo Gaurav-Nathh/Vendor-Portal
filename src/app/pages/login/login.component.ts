@@ -48,6 +48,6 @@ export class LoginComponent {
     this.authService.login();
     this.userService.setUserType(this.userType);
     const route = this.userType === 'customer' ? '/customer' : '/vendor';
-    this.router.navigate([this.userType]);
+    this.router.navigate(['/vendor']);
   }
 }

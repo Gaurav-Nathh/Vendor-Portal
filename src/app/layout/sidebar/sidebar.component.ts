@@ -34,6 +34,13 @@ export class SidebarComponent {
       icon: 'bi bi-grid-1x2-fill',
       route: 'vendor/dashboard',
     },
+
+    {
+      text: 'Item Mapping',
+      icon: 'fa fa-box sidebar-icon"',
+      route: 'item-mapping',
+    },
+
     {
       text: 'Purchase Order',
       icon: 'bi bi-grid-1x2-fill',
@@ -64,6 +71,14 @@ export class SidebarComponent {
       ],
       isSubmenuOpen: false,
     },
+    {
+      text: 'Change Password',
+      icon: 'fa-solid fa-lock',
+      route: 'vendor/update-password',
+     
+     
+    },
+    
   ];
 
   toggleSidenav() {
