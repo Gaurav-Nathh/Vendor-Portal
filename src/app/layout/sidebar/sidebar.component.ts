@@ -35,6 +35,11 @@ export class SidebarComponent {
       route: 'vendor/dashboard',
     },
     {
+      text: 'Purchase Order',
+      icon: 'bi bi-grid-1x2-fill',
+      route: 'vendor/purchase-order',
+    },
+    {
       text: 'Shopping',
       icon: 'fa-solid fa-cart-shopping',
       route: 'vendor/shopping-cart',

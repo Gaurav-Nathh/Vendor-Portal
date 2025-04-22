@@ -27,13 +27,22 @@ export const routes: Routes = [
         canActivate: [authGuard],
       },
       {
+        path: 'purchase-order',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/purchase-order/purchase-order.component').then(
+            (c) => c.PurchaseOrderComponent
+          ),
+        canActivate: [authGuard],
+      },
+      {
         path: 'shopping-cart',
         pathMatch: 'full',
         loadComponent: () =>
           import('./pages/shopping-cart/shopping-cart.component').then(
             (c) => c.ShoppingCartComponent
           ),
-        canActivate: [authGuard],
+        // canActivate: [authGuard],
       },
     ],
   },
@@ -41,6 +50,6 @@ export const routes: Routes = [
     path: 'customer',
     loadComponent: () =>
       import('./pages/user/user.component').then((c) => c.UserComponent),
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
   },
 ];

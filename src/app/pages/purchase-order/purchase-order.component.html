@@ -1,0 +1,58 @@
+<section id="purchase-container" class="bord">
+  <nav class="navbar">
+    <div class="nav-right">
+      <button>All Orders</button>
+      <button>Pending Orders</button>
+      <button>Approved Orders</button>
+    </div>
+  </nav>
+
+  <!-- Summary Cards -->
+  <div class="summary-cards">
+    <div class="summary-card total mb-3">
+      <div class="card-body">
+        <h3 class="card-title text-secondary">Total Orders</h3>
+        <p class="card-value">{{ summary.total }}</p>
+      </div>
+    </div>
+    <div class="summary-card pending mb-3">
+      <div class="card-body">
+        <h3 class="card-title text-secondary">Pending Orders</h3>
+        <p class="card-value">{{ summary.pending }}</p>
+      </div>
+    </div>
+    <div class="summary-card approved mb-3">
+      <div class="card-body">
+        <h3 class="card-title text-secondary">Approved Orders</h3>
+        <p class="card-value">{{ summary.approved }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Orders Table -->
+  <div class="bord table-card">
+    <table class="bord">
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Vendor</th>
+          <th>Product</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order.customer }}</td>
+          <td>{{ order.vendor }}</td>
+          <td>{{ order.product }}</td>
+          <td>{{ order.date }}</td>
+          <td>
+            <button>{{ order.action }}</button>
+          </td>
+        </tr>
+      </tbody>
+       
+    </table>
+  </div>
+</section>
