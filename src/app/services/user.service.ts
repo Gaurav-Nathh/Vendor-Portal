@@ -17,6 +17,6 @@ export class UserService {
   }
 
   getUserType(): string {
-    return this.userType;
+    return localStorage.getItem('userType') || this.userType;
   }
 }
