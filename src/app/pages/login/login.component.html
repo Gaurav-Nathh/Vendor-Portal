@@ -1,15 +1,10 @@
 <section id="login-page" class="">
-  <div></div>
+  <section
+    class="w-100 d-flex justify-content-end align-items-center py-3 px-4"
+  >
+    <app-theme-toggle></app-theme-toggle>
+  </section>
   <section id="login-main" class="">
-    <section
-      id="page-controle"
-      class="d-flex justify-content-between align-items-center py-3 px-4"
-    >
-      <span class="fs-5 fw-bold" style="color: var(--primary-text)"
-        >Efacto</span
-      >
-      <app-theme-toggle></app-theme-toggle>
-    </section>
     <section id="img-section" class="">
       <img src="/assets/images/vendor_loginpage_img.svg" alt="" />
       <div class="img-info text-center">
@@ -23,10 +18,17 @@
     </section>
     <section id="login-section">
       <div class="login-content">
+        <span class="fs-5 fw-bold" style="color: var(--primary-text)"
+          >Efacto</span
+        >
         <!-- <h2 class="fw-bold">Welcome to Portal</h2> -->
         <div class="text-start">
-          <span class="fs-4 font-bold fw-semibold">Log in</span><br />
-          <span>to access Poral</span>
+          <span
+            class="fs-4 font-bold fw-semibold"
+            style="color: var(--color-blue)"
+            >Log in</span
+          ><br />
+          <span>to access Portal</span>
         </div>
         <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
           <div class="input-field">
