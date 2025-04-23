@@ -21,74 +21,23 @@ interface MenuItem {
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
+  currentMenu: MenuItem[] = [];
   constructor(
     private router: Router,
     private authService: AuthService,
     private userService: UserService
   ) {}
+
   isOpen = true;
 
-  menuItems: MenuItem[] = [
-    {
-      text: 'Dashboard',
-      icon: 'bi bi-grid-1x2-fill',
-      route: 'vendor/dashboard',
-    },
-
-    {
-      text: 'Item Mapping',
-      icon: 'fa fa-box sidebar-icon"',
-      route: 'item-mapping',
-    },
-
-    {
-      text: 'Purchase Order',
-      icon: 'bi bi-grid-1x2-fill',
-      route: 'vendor/purchase-order',
-    },
-    {
-      text: 'Shopping',
-      icon: 'fa-solid fa-cart-shopping',
-      route: 'vendor/shopping-cart',
-    },
-    {
-      text: 'Users',
-      icon: 'bi-people-fill',
-      route: '/users',
-      submenu: [
-        { text: 'All Users', icon: 'bi-person', route: '/users/all' },
-        { text: 'Roles', icon: 'bi-shield', route: '/users/roles' },
-      ],
-      isSubmenuOpen: false,
-    },
-    {
-      text: 'Settings',
-      icon: 'bi-gear-fill',
-      route: '/settings',
-      submenu: [
-        { text: 'General', icon: 'bi-sliders', route: '/settings/general' },
-        { text: 'Security', icon: 'bi-lock', route: '/settings/security' },
-      ],
-      isSubmenuOpen: false,
-    },
-    {
-      text: 'Change Password',
-      icon: 'fa-solid fa-lock',
-      route: 'vendor/update-password',
-     
-     
-    },
-    
-  ];
+  ngOnInit() {
+    const userType = this.userService.getUserType();
+    this.currentMenu =
+      userType === 'vendor' ? this.vendorMenu : this.customerMenu;
+  }
 
   toggleSidenav() {
     this.isOpen = !this.isOpen;
-  }
-
-  navigate(route: string) {
-    if (route) {
-      this.router.navigate([route]);
-    }
   }
 
   toggleSubmenu(item: MenuItem, event: Event) {
@@ -98,7 +47,113 @@ export class SidebarComponent {
     }
   }
 
-  gotodash() {
-    this.router.navigate(['/vendor/dashboard']);
-  }
+  vendorMenu: MenuItem[] = [
+    {
+      text: 'Dashboard',
+      icon: 'bi bi-grid-1x2-fill',
+      route: '/vendor/',
+    },
+
+    {
+      text: 'Item Mapping',
+      icon: 'fa fa-box sidebar-icon"',
+      route: '/vendor/item-mapping',
+    },
+
+    {
+      text: 'Purchase Orders',
+      icon: 'bi bi-grid-1x2-fill',
+      route: '/vendor/purchase-order',
+    },
+    {
+      text: 'Invoice',
+      icon: 'fa-solid fa-cart-shopping',
+      route: '/vendor/',
+    },
+    {
+      text: 'Goods Receipts',
+      icon: 'fa-solid fa-cart-shopping',
+      route: '/vendor/',
+    },
+    {
+      text: 'Payment',
+      icon: 'bi-people-fill',
+      route: '/vendor/',
+      submenu: [
+        { text: 'Pending', icon: 'bi-person', route: '/vendor/' },
+        { text: 'History', icon: 'bi-shield', route: '/vendor/' },
+      ],
+      isSubmenuOpen: false,
+    },
+    {
+      text: 'Statements',
+      icon: 'bi-gear-fill',
+      route: '/vendor/',
+    },
+    {
+      text: 'My Profile',
+      icon: 'bi-gear-fill',
+      route: '/vendor/',
+    },
+    {
+      text: 'Password',
+      icon: 'fa-solid fa-lock',
+      route: '/vendor/update-password',
+    },
+  ];
+
+  customerMenu: MenuItem[] = [
+    {
+      text: 'Dashboard',
+      icon: 'bi bi-grid-1x2-fill',
+      route: '/vendor/',
+    },
+
+    {
+      text: 'Item Mapping',
+      icon: 'fa fa-box sidebar-icon"',
+      route: '/vendor/item-mapping',
+    },
+
+    {
+      text: 'Purchase Orders',
+      icon: 'bi bi-grid-1x2-fill',
+      route: '/vendor/purchase-order',
+    },
+    {
+      text: 'Invoice',
+      icon: 'fa-solid fa-cart-shopping',
+      route: '/vendor/',
+    },
+    {
+      text: 'Goods Receipts',
+      icon: 'fa-solid fa-cart-shopping',
+      route: '/vendor/',
+    },
+    {
+      text: 'Payment',
+      icon: 'bi-people-fill',
+      route: '/vendor/',
+      submenu: [
+        { text: 'Pending', icon: 'bi-person', route: '/vendor/' },
+        { text: 'History', icon: 'bi-shield', route: '/vendor/' },
+      ],
+      isSubmenuOpen: false,
+    },
+    {
+      text: 'Account Statement',
+      icon: 'bi-gear-fill',
+      route: '/vendor/',
+    },
+    {
+      text: 'My Profile',
+      icon: 'bi-gear-fill',
+      route: '/vendor/',
+    },
+    {
+      text: 'Password',
+      icon: 'fa-solid fa-lock',
+      route: '/vendor/update-password',
+    },
+  ];
 }

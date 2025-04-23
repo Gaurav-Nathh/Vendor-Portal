@@ -1,64 +1,58 @@
 .item-mapping-container {
-  
-    background-color: #f8f9fa;
-  
-  
-    
-    input.form-control {
-      border-radius: 0.375rem 0 0 0.375rem;
-    }
-  
-    button.btn {
-      i {
-        margin-right: 4px;
-      }
-    }
-    .table-container{
-      min-height: 300px;
-    }
+  background-color: #f8f9fa;
 
-    .mapping-form-container {
-      position: absolute;
-      top: 8%;
-      left: 4rem;
-      width: 95%;
-      background-color: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
-      overflow: hidden;
-      transform: translateY(-100%); /* Initially hidden */
-      opacity: 0;
-      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition */
-      z-index: 1050;
-     
-    }
+  input.form-control {
+    border-radius: 0.375rem 0 0 0.375rem;
+  }
 
-    .mapping-form-container.open {
-      transform: translateY(0); /* Slide in */
-      opacity: 1; /* Fully visible */
+  button.btn {
+    i {
+      margin-right: 4px;
     }
+  }
+  .table-container {
+    min-height: 300px;
+  }
 
-    .mapping-form-container.closed {
-      transform: translateY(-200%); /* Slide out */
-      opacity: 0; /* Fully hidden */
-      /* Hide the element */
-    }
-  
-    table {
+  .mapping-form-container {
+    position: absolute;
+    top: 8%;
+    left: 4rem;
+    width: 95%;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    transform: translateY(-100%); /* Initially hidden */
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition */
+    z-index: 1050;
+  }
 
-      thead {
-       
-        th {
-          background-color: #D7EEFF;
-          vertical-align: middle;
-          text-align: center;
-        }
-      }
-  
-      td,
+  .mapping-form-container.open {
+    transform: translateY(0); /* Slide in */
+    opacity: 1; /* Fully visible */
+  }
+
+  .mapping-form-container.closed {
+    transform: translateY(-200%); /* Slide out */
+    opacity: 0; /* Fully hidden */
+    /* Hide the element */
+  }
+
+  table {
+    thead {
       th {
+        background-color: #d7eeff;
         vertical-align: middle;
         text-align: center;
       }
     }
+
+    td,
+    th {
+      vertical-align: middle;
+      text-align: center;
+    }
   }
+}

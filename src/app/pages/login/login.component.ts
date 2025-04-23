@@ -25,6 +25,7 @@ export class LoginComponent {
   model = {
     email: '',
     password: '',
+    userType: '',
   };
   hidepassword: boolean = true;
 
