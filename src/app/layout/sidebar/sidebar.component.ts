@@ -56,49 +56,47 @@ export class SidebarComponent {
 
     {
       text: 'Item Mapping',
-      icon: 'fa fa-box sidebar-icon"',
+      icon: 'fa fa-box sidebar-icon',
       route: '/vendor/item-mapping',
     },
 
     {
       text: 'Purchase Orders',
-      icon: 'bi bi-grid-1x2-fill',
+      icon: 'fa-solid fa-rectangle-list',
       route: '/vendor/purchase-order',
     },
     {
       text: 'Invoice',
-      icon: 'fa-solid fa-cart-shopping',
-      route: '/vendor/',
+      icon: 'fa-solid fa-file-lines',
+      route: '/vendor/shopping-cart',
     },
     {
       text: 'Goods Receipts',
-      icon: 'fa-solid fa-cart-shopping',
-      route: '/vendor/',
+      icon: 'fa-solid fa-receipt',
+      route: '/vendor/shopping-cart',
     },
     {
       text: 'Payment',
-      icon: 'bi-people-fill',
-      route: '/vendor/',
+      icon: 'bi bi-credit-card-2-back-fill',
+      route: '/vendor/shopping-cart',
       isSubmenuOpen: false,
       submenu: [
-        { text: 'Pending', icon: 'bi-person', route: '/vendor/' },
-        { text: 'History', icon: 'bi-shield', route: '/vendor/' },
+        {
+          text: 'Pending',
+          icon: 'fa-solid fa-hourglass-half',
+          route: '/vendor/shopping-cart',
+        },
+        {
+          text: 'History',
+          icon: 'fa-solid fa-clock-rotate-left',
+          route: '/vendor/shopping-cart',
+        },
       ],
     },
     {
       text: 'Statements',
-      icon: 'bi-gear-fill',
-      route: '/vendor/',
-    },
-    {
-      text: 'My Profile',
-      icon: 'bi-gear-fill',
-      route: '/vendor/',
-    },
-    {
-      text: 'Password',
-      icon: 'fa-solid fa-lock',
-      route: '/vendor/update-password',
+      icon: 'fa-solid fa-file-invoice-dollar',
+      route: '/vendor/shopping-cart',
     },
   ];
 
@@ -106,7 +104,7 @@ export class SidebarComponent {
     {
       text: 'Dashboard',
       icon: 'bi bi-grid-1x2-fill',
-      route: '/vendor/',
+      route: '/vendor/shopping-cart',
     },
 
     {
@@ -123,12 +121,12 @@ export class SidebarComponent {
     {
       text: 'Invoice',
       icon: 'fa-solid fa-cart-shopping',
-      route: '/vendor/',
+      route: '/vendor/shopping-cart',
     },
     {
       text: 'Goods Receipts',
       icon: 'fa-solid fa-cart-shopping',
-      route: '/vendor/',
+      route: '/vendor/shopping-cart',
     },
     {
       text: 'Payment',
@@ -145,14 +143,22 @@ export class SidebarComponent {
       icon: 'bi-gear-fill',
       route: '/vendor/',
     },
+  ];
+
+  commonMenu = [
     {
       text: 'My Profile',
-      icon: 'bi-gear-fill',
-      route: '/vendor/',
+      icon: 'fa-solid fa-circle-user',
+      route: '/vendor/shopping-cart',
     },
     {
       text: 'Password',
       icon: 'fa-solid fa-lock',
+      route: '/vendor/update-password',
+    },
+    {
+      text: 'Logout',
+      icon: 'fa-solid fa-power-off',
       route: '/vendor/update-password',
     },
   ];

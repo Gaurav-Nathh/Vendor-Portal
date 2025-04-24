@@ -2,9 +2,11 @@
   <section class="">
     <app-navbar></app-navbar>
   </section>
-  <section class="flex-fill d-flex">
-    <app-sidebar class=""></app-sidebar>
-    <section class="w-100 p-2">
+  <section id="main-container">
+    <section id="sidebar-container" class="">
+      <app-sidebar></app-sidebar>
+    </section>
+    <section id="page-container" class="">
       <router-outlet></router-outlet>
     </section>
   </section>

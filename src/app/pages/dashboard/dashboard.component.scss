@@ -1,182 +1,159 @@
 /* filepath: c:\Users\HP\OneDrive\Desktop\bng---portal\Vendor-Portal\src\app\pages\dashboard\dashboard.component.scss */
-.dashboard{
-  
-    .dashboard__card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      
-    }
-    
-    .dashboard__card-image {
-    
-      height: auto;
-      display: block;
-    }
-    
-    .dashboard__card-overlay {
-     
-      position: absolute;
-      top: 50px;
-      left: 40px;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start; 
-      align-items: flex-start; 
-     
-      color: #fff;
-    
-      pointer-events: none; 
-        font-weight: bold;
-    }
-    
-    .dashboard__card-title {
-      font-size: 20px;
-      margin-bottom: 5px;
-    }
-    
-    .dashboard__card-desc {
-      color: yellow;
-      font-size: 20px;
-      margin-bottom: 15px;
-    }
-    
-    .dashboard__card-amount {
-     font-size: 12px;
-     margin-top: 5px;
-    }
-    .dashboard__card-content{
-    
-      display: flex;
-      flex-direction: column;
-    }
-    
-    
-    .dashboard_payment{
-      padding-left: 30px;
-    
-    }
-    
-    .payment_heading{
+.dashboard {
+  .dashboard__card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .dashboard__card-image {
+    height: auto;
+    display: block;
+  }
+
+  .dashboard__card-overlay {
+    position: absolute;
+    top: 50px;
+    left: 40px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    color: #fff;
+
+    pointer-events: none;
+    font-weight: bold;
+  }
+
+  .dashboard__card-title {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  .dashboard__card-desc {
+    color: yellow;
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .dashboard__card-amount {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  .dashboard__card-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dashboard_payment {
+    padding-left: 30px;
+  }
+
+  .payment_heading {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pyment_recevd {
+    /*  width: 648px;*/
+    height: 166px;
+    border-radius: 16px;
+    background-color: #f7f7f7;
+  }
+  .payment_histry {
+    p {
       font-size: 24px;
-      display: flex;
-      align-items: center;
-      gap:10px
+      color: #5b5757;
+      font-weight: bold;
     }
-    .pyment_recevd{
-     /*  width: 648px;*/
-      height: 166px; 
-      border-radius: 16px;
-      background-color: #F7F7F7;
-    }
-    .payment_histry{
-      p{
-        font-size: 24px;
-        color: #5B5757;
-        font-weight: bold;
-       
+    .payemnt_status {
+      span {
+        font-size: 16px;
+        color: #5b5757;
+        font-weight: 400;
       }
-      .payemnt_status{
-        span{
-          font-size: 16px;
-          color: #5B5757;
-          font-weight: 400;
-        }
-        p{
-          font-size: 16px;
-          color: #000000;
-          font-weight: 500;
-        }
+      p {
+        font-size: 16px;
+        color: #000000;
+        font-weight: 500;
       }
     }
-    .dashboard_docmnt{
-      border-radius: 16px;
-      background-color: #F7F7F7;
-    
-     span{
+  }
+  .dashboard_docmnt {
+    border-radius: 16px;
+    background-color: #f7f7f7;
+
+    span {
       font-size: 40px;
-      color:#7B86FF;
-     }
-      p{
-        font-size: 24px;
-        color: #5B5757;
-        font-weight: bold;
-       
-      }
-      .account-container{
-        
-        
-        .account-detls{
-          width: 100% !important;
-          background-color: blue;
-         
-          
-        }
-        
-      }
-      
-      
-    }.account-addrs{
-     /*  width: 643px;*/
-     /*  height: 350px; */ 
-     height: auto;
-      background-color: #369eff57;
-      border-radius: 20px;
-      margin-bottom: 10px;
-      
-      
-      
-      span.ms-2 p {
-        margin-bottom: 5px; /* Reduce the vertical gap between the paragraphs */
-       
-      }
-      .account-holder{
-         color:var(--color-light-gray);
-      }
-      .account-name{
-        color: var(--color-light-black);
-      }
-      .gst-address{
-        color: var(--color-light-gray);
-      }
-      span{
-        color: var(--color-light-black);
+      color: #7b86ff;
+    }
+    p {
+      font-size: 24px;
+      color: #5b5757;
+      font-weight: bold;
+    }
+    .account-container {
+      .account-detls {
+        width: 100% !important;
+        background-color: blue;
       }
     }
-    .account-detls{
-      .heading {
-        font-size: 24px;
-        color: #5B5757;
-        font-weight: bold;
-      }
+  }
+  .account-addrs {
+    /*  width: 643px;*/
+    /*  height: 350px; */
+    height: auto;
+    background-color: #369eff57;
+    border-radius: 20px;
+    margin-bottom: 10px;
+
+    span.ms-2 p {
+      margin-bottom: 5px; /* Reduce the vertical gap between the paragraphs */
+    }
+    .account-holder {
+      color: var(--color-light-gray);
+    }
+    .account-name {
+      color: var(--color-light-black);
+    }
+    .gst-address {
+      color: var(--color-light-gray);
+    }
+    span {
+      color: var(--color-light-black);
+    }
+  }
+  .account-detls {
+    .heading {
+      font-size: 24px;
+      color: #5b5757;
+      font-weight: bold;
+    }
     /* heaing-css */
-     
-    }
-    }
-    
-    
-    .dashboard .account-profile-container .account-profile {
-        width: 36rem;
-        height: 100%;
-        border-radius: 20px;
-        background-color: #E3E3E3;
-        display: flex;
-         padding: 10px;
-        align-items: center;
-        margin-bottom: 10px;
-        span.ms-2 p {
-          margin-bottom: 5px; /* Reduce the vertical gap between the paragraphs */
-         
-        }
-      }
-    
-    
-    
-    @media (max-width: 768px) {
-      .dashboard .account-profile-container .account-profile {
-        width: auto;
-        background-color: #E3E3E3;
-      }
-    }
+  }
+}
+
+.dashboard .account-profile-container .account-profile {
+  width: 36rem;
+  height: 100%;
+  border-radius: 20px;
+  background-color: #e3e3e3;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  span.ms-2 p {
+    margin-bottom: 5px; /* Reduce the vertical gap between the paragraphs */
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard .account-profile-container .account-profile {
+    width: auto;
+    background-color: #e3e3e3;
+  }
+}
