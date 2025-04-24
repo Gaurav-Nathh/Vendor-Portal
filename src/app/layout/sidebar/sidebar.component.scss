@@ -10,12 +10,11 @@
 }
 
 .sidenav-open {
-  width: 220px;
-;
+  width: 196px;
 }
 
 .sidenav-closed {
-  width: 65px;
+  width: 55px;
 }
 
 .sidenav-header {
@@ -30,16 +29,15 @@
   cursor: pointer;
   width: 100%;
   text-align: left;
- 
 }
 
 .sidenav-menu {
-  padding: 10px;
+  padding: 8px;
   ul {
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
+    gap: 0.5rem;
   }
 }
 
@@ -50,13 +48,12 @@
 .menu-link {
   display: flex;
   align-items: center;
-  // padding: 10px 15px;
-  color: #333;
+  color: var(--primary-text);
   text-decoration: none;
-  padding: 0.8rem;
   border-radius: 0.4rem;
   transition: background-color 0.3s;
   height: 2.5rem;
+  font-size: 0.9rem;
 
   &:hover {
     background-color: var(--color-blue);
@@ -64,18 +61,39 @@
   }
 
   i {
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-align: center;
+    margin-left: 11px;
+  }
+
+  .icon {
+    width: 30px;
+    display: flex;
+    justify-content: center;
   }
 
   .menu-text {
-    margin-left: 0.8rem;
+    margin-left: 0.6rem;
+    text-wrap-mode: nowrap;
     flex: 1;
   }
 
   .arrow {
     font-size: 0.9rem;
   }
+}
+
+.menu-link-open {
+  // padding: 0.8rem;
+}
+
+.menu-link-close {
+  // justify-content: center;
+}
+
+.menu-link.active-link {
+  background-color: var(--color-blue);
+  color: white;
 }
 
 .submenu {
@@ -129,6 +147,31 @@
     .menu-text {
       margin-left: 10px;
     }
+  }
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  color: var(--primary-text);
+  text-decoration: none;
+  padding: 0.8rem;
+  border-radius: 0.4rem;
+  transition: background-color 0.3s;
+  height: 2.5rem;
+
+  &:hover {
+    background-color: var(--color-blue);
+    color: white;
+  }
+
+  i {
+    text-align: center;
+  }
+
+  .menu-text {
+    margin-left: 0.8rem;
+    flex: 1;
   }
 }
 .logout {

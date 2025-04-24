@@ -12,6 +12,8 @@ export class ThemeToggleComponent {
 
   ngOngInit(): void {
     this.themeService.initTheme();
+    this.themeService.getCurrentTheme();
+    
   }
 
   toggleTheme(): void {

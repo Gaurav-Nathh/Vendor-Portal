@@ -1,6 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { ThemeToggleComponent } from "../../components/theme-toggle/theme-toggle.component";
 
 interface NavItem {
   icon: string;
@@ -12,6 +13,7 @@ interface NavItem {
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
+  imports: [ThemeToggleComponent],
 })
 export class NavbarComponent {
   navItems: NavItem[] = [

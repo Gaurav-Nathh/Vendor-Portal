@@ -20,7 +20,7 @@
         <li *ngFor="let item of currentMenu" class="menu-item">
           <a
             [routerLink]="item.route"
-            routerLinkActive="active"
+            routerLinkActive="active-link"
             [routerLinkActiveOptions]="{ exact: true }"
             class="menu-link"
             [attr.data-bs-toggle]="item.submenu ? 'collapse' : null"
@@ -67,8 +67,8 @@
   <nav class="sidenav-menu">
     <ul>
       <li class="menu-item">
-        <a routerLink="['/login']" class="menu-link">
-          <i class="bi bi-door-open-fill"></i>
+        <a routerLink="['/login']" class="logout-btn bord">
+          <i class="fa-solid fa-power-off"></i>
           <span class="menu-text" [ngClass]="{ 'd-none': !isOpen }"
             >Logout</span
           >
