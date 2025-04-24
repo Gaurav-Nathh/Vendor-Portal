@@ -9,8 +9,8 @@ interface MenuItem {
   text: string;
   icon: string;
   route: string;
-  submenu?: MenuItem[];
   isSubmenuOpen?: boolean;
+  submenu?: MenuItem[];
 }
 
 @Component({
@@ -28,7 +28,7 @@ export class SidebarComponent {
     private userService: UserService
   ) {}
 
-  isOpen = true;
+  isOpen = false;
 
   ngOnInit() {
     const userType = this.userService.getUserType();
@@ -79,11 +79,11 @@ export class SidebarComponent {
       text: 'Payment',
       icon: 'bi-people-fill',
       route: '/vendor/',
+      isSubmenuOpen: false,
       submenu: [
         { text: 'Pending', icon: 'bi-person', route: '/vendor/' },
         { text: 'History', icon: 'bi-shield', route: '/vendor/' },
       ],
-      isSubmenuOpen: false,
     },
     {
       text: 'Statements',
@@ -134,11 +134,11 @@ export class SidebarComponent {
       text: 'Payment',
       icon: 'bi-people-fill',
       route: '/vendor/',
+      isSubmenuOpen: false,
       submenu: [
         { text: 'Pending', icon: 'bi-person', route: '/vendor/' },
         { text: 'History', icon: 'bi-shield', route: '/vendor/' },
       ],
-      isSubmenuOpen: false,
     },
     {
       text: 'Account Statement',

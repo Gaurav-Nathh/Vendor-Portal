@@ -19,6 +19,7 @@
       <ul>
         <li *ngFor="let item of currentMenu" class="menu-item">
           <a
+            (click)="toggleSubmenu(item, $event)"
             [routerLink]="item.route"
             routerLinkActive="active-link"
             [routerLinkActiveOptions]="{ exact: true }"
@@ -28,14 +29,19 @@
               item.submenu ? '#collapse-' + item.text.toLowerCase() : null
             "
           >
-            <i class="{{ item.icon }}"></i>
+            <div class="icon">
+              <i class="{{ item.icon }}"></i>
+            </div>
             <span class="menu-text" [ngClass]="{ 'd-none': !isOpen }">{{
               item.text
             }}</span>
             <i
               *ngIf="item.submenu && isOpen"
-              class="bi-chevron-down arrow"
-              [ngClass]="{ 'arrow-up': isOpen }"
+              class="arrow bi bi-chevron-down"
+              [ngClass]="{
+                up: item.isSubmenuOpen,
+                down: !item.isSubmenuOpen
+              }"
             ></i>
           </a>
           <div
@@ -67,8 +73,10 @@
   <nav class="sidenav-menu">
     <ul>
       <li class="menu-item">
-        <a routerLink="['/login']" class="logout-btn bord">
-          <i class="fa-solid fa-power-off"></i>
+        <a routerLink="['/login']" class="menu-link">
+          <div class="icon">
+            <i class="fa-solid fa-power-off"></i>
+          </div>
           <span class="menu-text" [ngClass]="{ 'd-none': !isOpen }"
             >Logout</span
           >
