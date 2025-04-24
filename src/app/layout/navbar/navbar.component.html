@@ -1,29 +1,30 @@
 <nav id="nav">
-  <section class="d-flex justify-content-between p-2">
-    <div>Good day, Ayush</div>
+  <section class="d-flex justify-content-between align-items-center py-2 px-3">
+    <span class="fw-semibold">{{ greeting }}</span>
     <div class="nav-icons">
-      <div class="d-flex gap-4 align-items-center">
+      <div class="icons d-flex gap-4 align-items-center">
         <app-theme-toggle> </app-theme-toggle>
         <i
-          class="fa-solid fa-calendar-days fs-5 text-secondary navbar-icon"
+          class="fa-solid fa-calendar-days fs-6 text-secondary navbar-icon"
           role="button"
           title="Calendar"
         ></i>
         <i
-          class="fa-solid fa-bell fs-5 text-secondary navbar-icon"
+          class="fa-solid fa-bell fs-6 text-secondary navbar-icon"
           role="button"
           title="Notifications"
         ></i>
         <i
-          class="bi-gear-fill fs-5 text-secondary navbar-icon"
+          class="bi-gear-fill fs-6 text-secondary navbar-icon"
           role="button"
           title="Settings"
         ></i>
       </div>
       <div class="d-flex ms-4 align-items-center">
-        <i class="fa-solid fa-circle-user fs-5"></i>
+        <i class="fa-solid fa-circle-user fs-6"></i>
         <i
           class="bi bi-caret-down-fill"
+          style="font-size: 0.7rem; padding-left: 0.2rem"
           id="profileDropdown"
           data-bs-toggle="dropdown"
         ></i>
@@ -41,11 +42,11 @@
       </div>
     </div>
     <button
-      class="menu-toggler"
+      class="bord menu-toggler"
       data-bs-toggle="collapse"
       data-bs-target="#navcollapse"
     >
-      <i class="bi bi-list"></i>
+      <i class="bi bi-list fs-2"></i>
     </button>
   </section>
   <div class="collapse" id="navcollapse">
