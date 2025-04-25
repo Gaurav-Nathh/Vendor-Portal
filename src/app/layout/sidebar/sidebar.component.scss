@@ -136,11 +136,21 @@
     }
 
     i {
-      font-size: 1rem;
+      font-size: 0.8rem;
+      text-align: center;
     }
 
-    .menu-text {
-      margin-left: 10px;
+    .sub-icon {
+      width: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .submenu-text {
+      margin-left: 0.2rem;
+      text-wrap-mode: nowrap;
+      flex: 1;
     }
   }
   .submenu-link-close {
@@ -158,7 +168,7 @@
     }
 
     i {
-      font-size: 1rem;
+      font-size: 0.8rem;
     }
 
     .menu-text {
