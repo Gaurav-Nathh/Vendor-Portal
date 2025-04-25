@@ -14,26 +14,38 @@
 }
 
 #search-section {
-  padding: 0.2rem;
-  width: 20rem;
-  // display: flex;
-  display: none;
+  padding: 0.3rem;
+  width: 35rem;
+  display: flex;
+  background-color: red;
   align-items: center;
   border-radius: 2rem;
   justify-content: space-between;
   background-color: var(--color-card);
-}
-#prod-search {
-  padding: 0.5rem;
-  border-radius: 2rem;
-  background-color: var(--color-card);
-}
 
-#search-btn {
-  padding: 0.3rem;
-  border-radius: 2rem;
-  background-color: var(--color-blue);
-  color: #ffffff;
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  #prod-search {
+    width: 85%;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    background-color: var(--color-card);
+
+    &:focus {
+      border: none !important;
+      outline: none !important;
+    }
+  }
+
+  #search-btn {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 100%;
+    color: var(--color-blue);
+    background-color: white;
+  }
 }
 
 #shopping-section {
@@ -50,6 +62,7 @@
   grid-template-columns: 15rem auto;
 
   @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 
   .category-box {
@@ -70,9 +83,60 @@
     }
   }
 }
+.option-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 4px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.shown-options {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+}
+
+.option-btn {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.arrow-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.dropdown-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 6px;
+  padding: 4px;
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.dropdown-panel.show {
+  // display: block;
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
 
 .bord {
-  border: 2px solid red;
+  // border: 2px solid red;s
 }
 
 .category-side-menu {
@@ -183,20 +247,21 @@
   display: inline-block;
 
   .cart-icon {
-    font-size: 20px;
+    font-size: 16px;
     color: #333;
   }
 
   .cart-badge {
     position: absolute;
     top: -5px;
-    right: -10px;
+    right: -5px;
     background-color: red;
+    padding-top: 2px;
     color: white;
-    font-size: 10px;
-    padding: 2px 6px;
+    font-size: 8px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    min-width: 18px;
     text-align: center;
     font-weight: bold;
   }

@@ -1,16 +1,19 @@
-<section id="shopping-cart" class="bord">
-  <Section id="nav-prod" class="bord">
+<section id="shopping-cart" class="">
+  <Section id="nav-prod" class="bord px-3 py-2">
     <span class="fw-bold">Shopping Cart</span>
-    <div id="search-section">
+    <div id="search-section" class="">
       <input
         type="text"
         name=""
         id="prod-search"
+        class=""
         placeholder="Search products..."
       />
-      <button id="search-btn">Search</button>
+      <button id="search-btn" class="">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
     </div>
-    <div class="d-flex gap-2 align-items-center bord">
+    <div class="bord d-flex gap-2 align-items-center">
       <div
         class="dropdown"
         (click)="toggleDropdown()"
@@ -35,15 +38,19 @@
           </li>
         </ul>
       </div>
-      <div class="cart-container" (click)="openCartModal()">
-        <i class="fa fa-shopping-cart cart-icon"></i>
-        <span *ngIf="totalQty > 0" class="cart-badge">
-          {{ totalQty > 99 ? "99+" : totalQty }}
-        </span>
+      <div id="cart-body" class="">
+        <div class="cart-container" (click)="openCartModal()">
+          <i class="fa fa-shopping-cart cart-icon"></i>
+          <span *ngIf="totalQty > 0" class="cart-badge">
+            {{ totalQty > 99 ? "99+" : totalQty }}
+          </span>
+        </div>
       </div>
     </div>
   </Section>
-  <section class="category-btn-section">
+  <!-- Product Ends -->
+
+  <section class="bord category-btn-section">
     <div class="dropdown" (click)="toggleCategoryDropdown()">
       <div class="category-box" [class.show]="categoryDropDownOpen">
         <button
@@ -69,6 +76,56 @@
             >
           </li>
         </ul>
+      </div>
+    </div>
+    <div class="option-bar position-relative">
+      <div class="shown-options">
+        <button class="option-btn">Option 1</button>
+        <button class="option-btn">Option 2</button>
+        <button class="option-btn">Option 3</button>
+      </div>
+
+      <button class="arrow-btn" (click)="toggleFilterSingleDropdown()">
+        <i class="bi bi-chevron-down"></i>
+      </button>
+
+      <div class="dropdown-panel" [class.show]="filterSingleDropdownOpen">
+        <button class="option-btn">Option 4</button>
+        <button class="option-btn">Option 4</button>
+        <button class="option-btn">Option 5</button>
+        <button class="option-btn">Option 6</button>
+        <button class="option-btn">Option 4</button>
+        <button class="option-btn">Option 5</button>
+        <button class="option-btn">Option 6</button>
+        <button class="option-btn">Option 4</button>
+        <button class="option-btn">Option 5</button>
+        <button class="option-btn">Option 6</button>
+        <button class="option-btn">Option 4</button>
+        <button class="option-btn">Option 5</button>
+        <button class="option-btn">Option 6</button>
+        <button class="option-btn">Option 4</button>
+        <button class="option-btn">Option 5</button>
+        <button class="option-btn">Option 6</button>
+        <button class="option-btn">Option 4</button>
+        <button class="option-btn">Option 5</button>
+        <button class="option-btn">Option 6</button>
+        <button class="option-btn">Option 5</button>
+        <button class="option-btn">Option 6</button>
+        <button class="option-btn">Option 4</button>
+        <button class="option-btn">Option 5</button>
+        <button class="option-btn">Option 6</button>
+        <button class="option-btn">Option 4</button>
+        <button class="option-btn">Option 5</button>
+        <button class="option-btn">Option 6</button>
+        <button class="option-btn">Option 4</button>
+        <button class="option-btn">Option 5</button>
+        <button class="option-btn">Option 6</button>
+        <button class="option-btn">Option 4</button>
+        <button class="option-btn">Option 5</button>
+        <button class="option-btn">Option 6</button>
+        <button class="option-btn">Option 4</button>
+        <button class="option-btn">Option 5</button>
+        <button class="option-btn">Option 6</button>
       </div>
     </div>
   </section>
