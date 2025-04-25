@@ -1,154 +1,127 @@
-<div class="dashboard ">
-    <!--   all cards
-     -->  <div class="dashboard__grid d-lg-flex">
-        <!-- Card 1 -->
-        <div class="dashboard__card ">
-          <div class="dashboard__card-overlay">
-            <div class="dashboard__card-content">
-              <p class="dashboard__card-title">Outstanding Invoice</p>
-            <p class="dashboard__card-desc">₹ 850000</p>
-            </div>
-            
-            <span class="dashboard__card-amount">Number of Outstanding performance   1</span>
-          </div>
-          <img src="assets/dashboard_card/blue-card.svg" alt="Blue Card" class="dashboard__card-image" />
+<div class="dashboard">
+  <!-- Cards Section -->
+  <div class="dashboard__grid">
+    <!-- Card 1 -->
+    <div class="dashboard__card">
+      <div class="dashboard__card-overlay">
+        <div class="dashboard__card-content">
+          <p class="dashboard__card-title">Outstanding Invoice</p>
+          <p class="dashboard__card-desc">₹ 850000</p>
         </div>
-        
-        <!-- Card 2 -->
-        <div class="dashboard__card">
-          <div class="dashboard__card-overlay">
-            <div class="dashboard__card-content">
-              <p class="dashboard__card-title">Credit Limit</p>
-            <p class="dashboard__card-desc">₹ 840000</p>
-            </div>
-            
-          
-          </div>
-          <img src="assets/dashboard_card/yellow-card.svg" alt="Blue Card" class="dashboard__card-image" />
-        </div>
-        
-        <!-- Card 3 -->
-        <div class="dashboard__card">
-          <div class="dashboard__card-overlay">
-            <div class="dashboard__card-content">
-              <p class="dashboard__card-title">Open Purchase Order</p>
-            <p class="dashboard__card-desc">1</p>
-            </div>
-            
-           
-          </div>
-          <img src="assets/dashboard_card/orange-card.svg" alt="Blue Card" class="dashboard__card-image" />
-        </div>
-    
-    
+        <span class="dashboard__card-amount">Number of Outstanding performance   1</span>
       </div>
-    
-    <!--   payment history and document status
-     -->  <div class="w-100  dashboard_payment px-4">
-      <h2 class="payment_heading mb-3">Last Payment Received <span>
-        <img src="assets/dashboard_img/Frame.png" alt="Blue Card" class="dashboard__img" />
-      </span></h2>
-    
-      <div class="d-flex flex-column flex-lg-row gap-5 w-100">
-      <div class="payment_histry w-100 ">
-    <div class="pyment_recevd d-flex justify-content-between align-items-center px-2">
-     <p>₹ 6,00,00.00</p>
-     <div class="payemnt_status">
-      <span>Payment Received</span>
-      <p>On 12th Jan 2023</p>
-     </div>
+      <img src="assets/dashboard_card/blue-card.svg" alt="Blue Card" class="dashboard__card-image" />
     </div>
-      </div>
     
-      <div class="dashboard_docmnt   w-100">
-        <div class="d-flex justify-content-between align-items-center px-2 pyment_recevd ">
-        <div class="">
-         <span>1</span>
-         <p>Pending Document</p>
-         
+    <!-- Card 2 -->
+    <div class="dashboard__card">
+      <div class="dashboard__card-overlay">
+        <div class="dashboard__card-content">
+          <p class="dashboard__card-title">Credit Limit</p>
+          <p class="dashboard__card-desc">₹ 840000</p>
         </div>
-        <div class="docmnt_status">
-          <span>0</span>
-          <p>Rejected Document</p>
-         </div>
+      </div>
+      <img src="assets/dashboard_card/yellow-card.svg" alt="Blue Card" class="dashboard__card-image" />
+    </div>
     
+    <!-- Card 3 -->
+    <div class="dashboard__card">
+      <div class="dashboard__card-overlay">
+        <div class="dashboard__card-content">
+          <p class="dashboard__card-title">Open Purchase Order</p>
+          <p class="dashboard__card-desc">1</p>
+        </div>
+      </div>
+      <img src="assets/dashboard_card/orange-card.svg" alt="Blue Card" class="dashboard__card-image" />
+    </div>
+  </div>
+
+  <!-- Payment History and Document Status -->
+  <div class="dashboard_payment">
+    <h2 class="payment_heading">Last Payment Received <span>
+      <img src="assets/dashboard_img/Frame.png" alt="Info" class="dashboard__img" />
+    </span></h2>
+  
+    <div class="dashboard__row">
+      <div class="payment_histry">
+        <div class="pyment_recevd">
+          <p>₹ 6,00,00.00</p>
+          <div class="payemnt_status">
+            <span>Payment Received</span>
+            <p>On 12th Jan 2023</p>
           </div>
         </div>
-        </div>
       </div>
     
-    <!--   account statement and  account summary
-     -->
-    <div class="account-container d-lg-flex mx-4 justify-content-between w-100 gap-5 mt-3 ">
-     
-      <div class="account-detls w-50">
+      <div class="dashboard_docmnt">
+        <div class="pyment_recevd">
+          <div class="">
+            <span>1</span>
+            <p>Pending Document</p>
+          </div>
+          <div class="docmnt_status">
+            <span>0</span>
+            <p>Rejected Document</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Account Details and User Details -->
+  <div class="account-container">
+    <div class="account-detls">
       <p class="heading">My Account Details</p>
-    
-      <div class="account-addrs px-2 d-flex flex-column justify-content-between pb-2">
-    
-     <div class="ms-2 pt-4 d-flex justify-content-between ">
-    
-     <!--  company details -->
-      <div class="d-flex">
-         <img src="assets/dashboard_img/blue-line.svg" alt="Blue Card" class="dashboard__blueline" />
-      <span class="ms-2">
-        <p class="account-holder">Comapny Name</p>
-        <p class="account-name">Name</p>
-        <p class="account-holder">Emailgmail.com</p>
+      <div class="account-addrs">
+        <div class="account-info">
+          <div class="d-flex">
+            <img src="assets/dashboard_img/blue-line.svg" alt="Icon" class="dashboard__blueline" />
+            <span>
+              <p class="account-holder">Comapny Name</p>
+              <p class="account-name">Name</p>
+              <p class="account-holder">Emailgmail.com</p>
+            </span>
+          </div>
+          <i class="fa-solid fa-pencil"></i>
+        </div>
      
-      </span>
-      </div>
-     
-     <!--  gstn info -->
-      
-      <i class="fa-solid fa-pencil" style="color: #3a3b3d;"></i>
+        <div class="gst-address">
+          <div>
+            <p>GST Information</p>
+            <div>
+              <p><span>GST Treatment:</span> Registered Business-Regular</p>
+              <p><span> Business GSTIN:</span> 32AA000A1Z7</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-pencil"></i>
+        </div>
     
-     </div>
-    
-     <div class="gst-address d-flex justify-content-between">
-      <div>
-        <p>GST Information</p>
-        <div>
-          <p><span>GST Treatment:</span> Registered Business-Regular</p>
-          <p><span> Business GSTIN:</span> 32AA000A1Z7</p>
+        <div class="info-address">
+          <div>
+            <p>Billing Address</p>
+            <span>46,Plot,sector Mahavir</span>
+          </div>
+          <div>
+            <p>Shipping Address</p>
+            <span>46,Plot,sector Mahavir</span>
+          </div>
         </div>
       </div>
-      <i class="fa-solid fa-pencil" style="color: #3a3b3d;"></i>
     </div>
-    
-    <div class="info-address d-flex justify-content-between px-2">
-      <div>
-        <p>Billing Address</p>
-        <span>46,Plot,sector Mahavir</span>
-      </div>
-      <div>
-        <p>Shipping Address</p>
-        <span>46,Plot,sector Mahavir</span>  </div>
-    </div>
-     
-    
-     
-      </div>
-      
-      </div>
-    
-    <div class="account-detls w-50">
+  
+    <div class="account-detls">
       <p class="heading">User Details</p>
       <div class="account-profile-container">
-       <div class="account-profile ">
-        <div class="d-flex gap-2">
-          <img src="assets/dashboard_img/profile.svg" alt="Blue Card" class="dashboard__profile" />
-               <span class="d-flex flex-column justify-content-center ms-2">
-                <p>Full Name</p>
-                <p>Emailgmail.com</p>
-               </span>
+        <div class="account-profile">
+          <div class="user-info">
+            <img src="assets/dashboard_img/profile.svg" alt="Profile" class="dashboard__profile" />
+            <span>
+              <p>Full Name</p>
+              <p>Emailgmail.com</p>
+            </span>
+          </div>
         </div>
-         
-       </div>
       </div>
     </div>
-      
-    
-    </div>
-    
-    </div>
+  </div>
+</div>

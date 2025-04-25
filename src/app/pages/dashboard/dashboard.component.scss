@@ -1,159 +1,340 @@
-/* filepath: c:\Users\HP\OneDrive\Desktop\bng---portal\Vendor-Portal\src\app\pages\dashboard\dashboard.component.scss */
 .dashboard {
-  .dashboard__card {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  position: relative;
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  &__card {
     position: relative;
-    overflow: hidden;
+    flex: 1;
+    min-width: 250px;
     border-radius: 10px;
-  }
+    overflow: hidden;
+    
 
-  .dashboard__card-image {
-    height: auto;
-    display: block;
-  }
-
-  .dashboard__card-overlay {
-    position: absolute;
-    top: 50px;
-    left: 40px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-
-    color: #fff;
-
-    pointer-events: none;
-    font-weight: bold;
-  }
-
-  .dashboard__card-title {
-    font-size: 20px;
-    margin-bottom: 5px;
-  }
-
-  .dashboard__card-desc {
-    color: yellow;
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
-
-  .dashboard__card-amount {
-    font-size: 12px;
-    margin-top: 5px;
-  }
-  .dashboard__card-content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .dashboard_payment {
-    padding-left: 30px;
-  }
-
-  .payment_heading {
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .pyment_recevd {
-    /*  width: 648px;*/
-    height: 166px;
-    border-radius: 16px;
-    background-color: #f7f7f7;
-  }
-  .payment_histry {
-    p {
-      font-size: 24px;
-      color: #5b5757;
-      font-weight: bold;
+    &-image {
+      width: 100%;
+      height: auto;
+      display: block;
     }
-    .payemnt_status {
-      span {
-        font-size: 16px;
-        color: #5b5757;
-        font-weight: 400;
+
+    &-overlay {
+      position: absolute;
+      top: 0%;
+      left: 8%;
+      right: 0;
+      bottom: 0;
+      padding: 20px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      @media (max-width:396px) {
+        top: 0.15rem;
       }
+
+      @media (max-width:327px) {
+        top: -1rem;
+      }
+    }
+
+    &-content {
+      margin-top: 20px;
+    }
+
+    &-title {
+      font-size: clamp(14px, 2vw, 18px);
+      margin-bottom: 5px;
+      font-weight: bold;
+
+      @media (max-width:396px) {
+        font-size: 12px;
+      }
+    
+
+    }
+
+    &-desc {
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: bold;
+      color: yellow;
+      margin-bottom: 15px;
+
+      @media (max-width:396px) {
+        font-size: 10px;
+      }
+    }
+
+    &-amount {
+      font-size: clamp(10px, 1.5vw, 12px);
+
+      @media (max-width:396px) {
+        font-size: 8px;
+      }
+    }
+  }
+
+  &_payment {
+    margin-bottom: 30px;
+
+    .payment_heading {
+      font-size: clamp(16px, 2vw, 20px);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dashboard__row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .payment_histry, .dashboard_docmnt {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .pyment_recevd {
+      background-color: #f7f7f7;
+      border-radius: 16px;
+      padding: 20px;
+      height: auto;
+      min-height: 166px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
       p {
-        font-size: 16px;
-        color: #000000;
-        font-weight: 500;
+        font-size: clamp(18px, 3vw, 24px);
+        color: #5b5757;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .payemnt_status {
+        span {
+          font-size: clamp(14px, 1.5vw, 16px);
+          color: #5b5757;
+        }
+        p {
+          font-size: clamp(14px, 1.5vw, 16px);
+          color: #000;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .dashboard_docmnt {
+      .pyment_recevd {
+        flex-direction: row;
+        align-items: center;
+
+        > div {
+          text-align: center;
+          flex: 1;
+        }
+
+        span {
+          font-size: clamp(24px, 5vw, 40px);
+          color: #7b86ff;
+          display: block;
+        }
+
+        p {
+          font-size: clamp(18px, 3vw, 24px);
+          color: #5b5757;
+          font-weight: bold;
+        }
       }
     }
   }
-  .dashboard_docmnt {
-    border-radius: 16px;
-    background-color: #f7f7f7;
 
-    span {
-      font-size: 40px;
-      color: #7b86ff;
-    }
-    p {
-      font-size: 24px;
-      color: #5b5757;
-      font-weight: bold;
-    }
-    .account-container {
-      .account-detls {
-        width: 100% !important;
-        background-color: blue;
+  .account-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .account-detls {
+      flex: 1;
+      min-width: 300px;
+
+      .heading {
+        font-size: clamp(16px, 2vw, 20px);
+        color: #5b5757;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      .account-addrs {
+        background-color: #369eff57;
+        border-radius: 20px;
+        padding: 20px;
+
+        .account-info {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 20px;
+
+          .dashboard__blueline {
+            width: 24px;
+            height: 24px;
+          }
+
+          .account-holder {
+            color: #666;
+            margin: 0 0 5px 0;
+            font-size: clamp(12px, 1.5vw, 14px);
+          }
+
+          .account-name {
+            color: #333;
+            margin: 0 0 5px 0;
+            font-size: clamp(14px, 1.8vw, 16px);
+          }
+
+          .fa-pencil {
+            color: #3a3b3d;
+            cursor: pointer;
+            font-size: clamp(14px, 1.8vw, 16px);
+          }
+        }
+
+        .gst-address {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 20px;
+
+          p {
+            margin: 0 0 10px 0;
+            font-weight: bold;
+            font-size: clamp(14px, 1.8vw, 16px);
+          }
+
+          span {
+            font-weight: normal;
+            font-size: clamp(12px, 1.5vw, 14px);
+          }
+
+          .fa-pencil {
+            color: #3a3b3d;
+            cursor: pointer;
+            font-size: clamp(14px, 1.8vw, 16px);
+          }
+        }
+
+        .info-address {
+          display: flex;
+          gap: 20px;
+
+          > div {
+            flex: 1;
+
+            p {
+              font-weight: bold;
+              margin: 0 0 5px 0;
+              font-size: clamp(14px, 1.8vw, 16px);
+            }
+
+            span {
+              font-size: clamp(12px, 1.5vw, 14px);
+            }
+          }
+        }
+      }
+
+      .account-profile-container {
+        .account-profile {
+          background-color: #e3e3e3;
+          border-radius: 20px;
+          padding: 15px;
+
+          .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            .dashboard__profile {
+              width: clamp(40px, 8vw, 50px);
+              height: clamp(40px, 8vw, 50px);
+            }
+
+            p {
+              margin: 0;
+              font-size: clamp(12px, 1.5vw, 14px);
+
+              &:first-child {
+                font-weight: bold;
+              }
+            }
+          }
+        }
       }
     }
-  }
-  .account-addrs {
-    /*  width: 643px;*/
-    /*  height: 350px; */
-    height: auto;
-    background-color: #369eff57;
-    border-radius: 20px;
-    margin-bottom: 10px;
-
-    span.ms-2 p {
-      margin-bottom: 5px; /* Reduce the vertical gap between the paragraphs */
-    }
-    .account-holder {
-      color: var(--color-light-gray);
-    }
-    .account-name {
-      color: var(--color-light-black);
-    }
-    .gst-address {
-      color: var(--color-light-gray);
-    }
-    span {
-      color: var(--color-light-black);
-    }
-  }
-  .account-detls {
-    .heading {
-      font-size: 24px;
-      color: #5b5757;
-      font-weight: bold;
-    }
-    /* heaing-css */
   }
 }
 
-.dashboard .account-profile-container .account-profile {
-  width: 36rem;
-  height: 100%;
-  border-radius: 20px;
-  background-color: #e3e3e3;
-  display: flex;
-  padding: 10px;
-  align-items: center;
-  margin-bottom: 10px;
-  span.ms-2 p {
-    margin-bottom: 5px; /* Reduce the vertical gap between the paragraphs */
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .dashboard {
+    &__card {
+      min-width: calc(50% - 10px);
+    }
+
+    .account-detls {
+      min-width: 100%;
+    }
   }
 }
 
 @media (max-width: 768px) {
-  .dashboard .account-profile-container .account-profile {
-    width: auto;
-    background-color: #e3e3e3;
+  .dashboard {
+    &__grid {
+      flex-direction: column;
+    }
+
+    &__card {
+      min-width: 100%;
+    }
+
+    .dashboard__row {
+      flex-direction: column;
+    }
+
+    .payment_histry, .dashboard_docmnt {
+      min-width: 100%;
+    }
+
+    .info-address {
+      flex-direction: column;
+    }
   }
 }
+
+@media (max-width: 576px) {
+  .dashboard {
+    padding: 15px;
+
+    &__card {
+      &-overlay {
+        padding: 15px;
+      }
+    }
+
+    .pyment_recevd {
+      padding: 15px;
+    }
+
+    .account-addrs {
+      padding: 15px !important;
+    }
+  }
+}
+
