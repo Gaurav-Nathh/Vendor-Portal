@@ -123,13 +123,13 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>Work Phone</label>
-                <input type="tel" class="form-control" formControlName="workPhone">
+                <input type="tel" class="form-control" formControlName="workPhone" aria-label="Work phone number">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label>Mobile</label>
-                <input type="tel" class="form-control" formControlName="mobile" required>
+                <input type="tel" class="form-control" formControlName="mobile" required aria-label="Mobile number">
                 <div *ngIf="vendorForm.get('mobile')?.errors?.['required']" class="text-danger">
                   Mobile number is required
                 </div>
@@ -137,9 +137,13 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label>Payment Terms</label>
-                <input type="text" class="form-control" formControlName="paymentTerms">
+                <label>Opening Balance</label>
+                <input type="number" class="form-control" formControlName="paymentTerms" aria-label="Payment terms">
               </div>
+
+
+              
+              
             </div>
           </div>
         </div>
@@ -175,7 +179,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Portal Language</label>
-                <select class="form-control" formControlName="portalLanguage">
+                <select class="form-control" formControlName="portalLanguage" aria-label="Select portal language">
                   <option value="en">English</option>
                   <option value="hi">Hindi</option>
                   <option value="mr">Marathi</option>
@@ -194,7 +198,7 @@
         <div class="card-body">
           <div class="form-group">
             <label>Upload Documents</label>
-            <input type="file" class="form-control" (change)="onFileChange($event)" multiple>
+            <input type="file" class="form-control" (change)="onFileChange($event)" multiple areia-label="Upload documents">
             <small class="text-muted">You can upload a maximum of 10 files, 10MB each</small>
           </div>
           <div class="uploaded-files mt-3" *ngIf="uploadedFiles.length > 0">
@@ -212,8 +216,8 @@
   
       <!-- Form Actions -->
       <div class="form-actions text-end">
-        <button type="button" class="btn btn-secondary me-2" (click)="onCancel()">Cancel</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!vendorForm.valid">Save Vendor</button>
+        <button type="button" class="btn btn-secondary me-2" (click)="onCancel()" [routerLink]="'/customer/vendor-dashboard'">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!vendorForm.valid"[routerLink]="'/customer/vendor-dashboard'" >Save Vendor</button>
       </div>
     </form>
   </div>

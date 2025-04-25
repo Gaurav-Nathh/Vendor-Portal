@@ -1,10 +1,11 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-create-vendor-form',
-  imports: [NgIf, NgFor],
+  imports: [NgIf, NgFor,RouterModule],
   templateUrl: './create-vendor-form.component.html',
   styleUrl: './create-vendor-form.component.scss',
 })

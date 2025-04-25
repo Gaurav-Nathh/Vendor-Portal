@@ -22,6 +22,7 @@
   }
 }
 #login-main {
+  
   display: grid;
   border-radius: 0.5rem;
   border: 2px solid var(--border-color);
@@ -34,6 +35,15 @@
     grid-template-columns: 1fr;
     width: auto;
   }
+  @media(max-width: 1110px) {
+    grid-template-columns: 1fr;
+   height: auto;
+  }
+  @media(max-width: 425px) and (min-width: 269px) {
+    grid-template-columns: 1fr;
+    width:  95%!important;
+    
+}
 }
 
 .form-conainer {
@@ -99,8 +109,7 @@
 
   color: var(--primary-text);
   @media (max-width: 768px) {
-    padding: 2rem;
-    border: none;
+    
     // border-top: 2px solid var(--color-card);
   }
 
@@ -120,6 +129,8 @@
 .input-field {
   margin-top: 0.6rem;
   text-align: left;
+  width: auto;
+  height: auto;
 
   label {
     margin-bottom: 0.3rem;
