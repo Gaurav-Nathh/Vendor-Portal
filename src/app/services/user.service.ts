@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
   // private userType: string = 'vendor';
-  private userType: string = 'customer';
+  private userType: string = '';
 
   constructor() {
     const storedType = localStorage.getItem('userType');

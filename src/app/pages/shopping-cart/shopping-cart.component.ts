@@ -1,18 +1,21 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Product } from '../../Models/product.model';
+import { RouterLink } from '@angular/router';
+import { SharedService } from '../../services/shared/shared.service';
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-shopping-cart',
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, NgClass],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.scss',
 })
 export class ShoppingCartComponent {
   @ViewChild('cartModalRef') cartModalRef!: ElementRef;
 
+  cartOpen = false;
   sortByDropDownOpen = false;
   categoryDropDownOpen = false;
   sortByOptions = [
@@ -24,6 +27,19 @@ export class ShoppingCartComponent {
   ];
   selectedOption = 'All Products';
   selectedCategoryOption: string = '';
+
+  constructor(private sharedService: SharedService) {}
+
+  ngOnInit() {
+    this.sharedService.cartToggle$.subscribe(() => {
+      this.cartOpen = !this.cartOpen;
+      console.log(this.cartOpen);
+    });
+  }
+
+  toggleCartPanel() {
+    this.sharedService.toggleCart();
+  }
 
   toggleDropdown() {
     this.sortByDropDownOpen = !this.sortByDropDownOpen;

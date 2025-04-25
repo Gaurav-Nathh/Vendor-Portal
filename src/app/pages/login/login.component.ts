@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  userType = 'vendor';
+  userType = 'customer';
   constructor(
     private themeService: ThemeService,
     private authService: AuthService,
