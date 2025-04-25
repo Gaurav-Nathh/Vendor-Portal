@@ -1,23 +1,27 @@
 <section id="login-page" class="">
-  <section class="w-100 d-flex justify-content-end align-items-center py-3 px-4">
+  <section
+    class="w-100 d-flex justify-content-end align-items-center py-3 px-4"
+  >
     <app-theme-toggle></app-theme-toggle>
   </section>
 
   <!-- Main login layout -->
-  <section id="login-main" class="d-flex  form-conainer">
+  <section id="login-main" class="d-flex form-conainer">
     <!-- Image Section (now on the right) -->
-   
 
     <!-- Login Section (now on the left) -->
     <section id="login-section">
-      <div class="login-content ">
-
+      <div class="login-content">
         <img src="/assets/efacto.webp" alt="Logo" class="logo w-25 mb-4" />
 
-        <div class="text-detls d-flex flex-column ">
-         <!--  <span class="fs-5 fw-bold" style="color: var(--primary-text)">Efacto</span> -->
-           
-          <span class="fs-4 font-bold fw-semibold" style="color: var(--primary-text)">Log in</span><br />
+        <div class="text-detls d-flex flex-column">
+          <!--  <span class="fs-5 fw-bold" style="color: var(--primary-text)">Efacto</span> -->
+
+          <span
+            class="fs-4 font-bold fw-semibold"
+            style="color: var(--primary-text)"
+            >Log in</span
+          ><br />
           <span class="">to access Portal</span>
         </div>
 
@@ -28,7 +32,7 @@
               type="email"
               name="email"
               id="email"
-              class="form-control "
+              class="form-control"
               placeholder="Email address"
               [(ngModel)]="model.email"
               #email="ngModel"
@@ -38,18 +42,21 @@
             />
             <div *ngIf="email.touched && email.invalid" class="error-text">
               <div *ngIf="email.errors?.['required']">Email is required.</div>
-              <div *ngIf="email.errors?.['email']">Please enter a valid email.</div>
+              <div *ngIf="email.errors?.['email']">
+                Please enter a valid email.
+              </div>
             </div>
           </div>
           <button
             *ngIf="!showPasswordField"
             type="button"
             (click)="onNextStep(email)"
-            class="btn btn-primary btn-full-width"
+            class="btn btn-full-width"
+            style="background-color: var(--color-blue)"
           >
             Next
           </button>
-        
+
           <!-- Password Field & Login Button -->
           <div *ngIf="showPasswordField">
             <div class="input-field">
@@ -72,23 +79,27 @@
                   required
                 />
               </div>
-              <div *ngIf="password.touched && password.invalid" class="error-text">
-                <div *ngIf="password.errors?.['required']">Password is required.</div>
+              <div
+                *ngIf="password.touched && password.invalid"
+                class="error-text"
+              >
+                <div *ngIf="password.errors?.['required']">
+                  Password is required.
+                </div>
               </div>
             </div>
-        
+
             <!-- Forgot Password -->
             <div class="controls">
               <small>Forgot password?</small>
             </div>
-        
+
             <!-- Submit Button -->
             <button type="submit" id="login-btn" [disabled]="loginForm.invalid">
               Login
             </button>
           </div>
         </form>
-        
 
         <!-- Company Details -->
         <div class="company-details">
@@ -98,40 +109,42 @@
       <div class="vertl-ln"></div>
     </section>
     <!-- Image Section (now on the right) -->
-     <span class="vrt-line"></span>
+    <span class="vrt-line"></span>
     <section id="img-section" class="carousel h-100">
-  <div class="carousel-inner">
-    <!-- First Slide -->
-    <div class="carousel-item active">
-      <div>
-        <img src="/assets/images/vendor_loginpage_img.svg" alt="Image 1" />
-        <div class="img-info text-center">
-          <span class="fw-semibold " style="color:#727070">
-            A centralized platform that streamlines communication between vendors
-            and customers, allowing vendors to manage orders, update products,
-            track deliveries, and respond to customer needs in real-time.
-          </span>
+      <div class="carousel-inner">
+        <!-- First Slide -->
+        <div class="carousel-item active">
+          <div>
+            <img src="/assets/images/vendor_loginpage_img.svg" alt="Image 1" />
+            <div class="img-info text-center">
+              <span class="fw-semibold" style="color: #727070">
+                A centralized platform that streamlines communication between
+                vendors and customers, allowing vendors to manage orders, update
+                products, track deliveries, and respond to customer needs in
+                real-time.
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- Second Slide -->
+        <div class="carousel-item">
+          <div>
+            <img src="/assets/images/login.jpg" alt="Image 2" />
+            <div class="img-info text-center">
+              <span class="fw-semibold" style="color: #727070">
+                Enhance your business operations with real-time insights and
+                seamless collaboration.
+              </span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- Second Slide -->
-    <div class="carousel-item">
-      <div>
-        <img src="/assets/images/login.jpg" alt="Image 2" />
-        <div class="img-info text-center">
-          <span class="fw-semibold" style="color:#727070">
-            Enhance your business operations with real-time insights and seamless collaboration.
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Custom Carousel Indicator -->
-  <div class="carousel-indicator">
-    <div class="indicator-bar" [style.width.%]="indicatorWidth"></div>
-  </div>
-</section>
+      <!-- Custom Carousel Indicator -->
+      <div class="carousel-indicator">
+        <div class="indicator-bar" [style.width.%]="indicatorWidth"></div>
+      </div>
+    </section>
   </section>
 
   <!-- Footer -->

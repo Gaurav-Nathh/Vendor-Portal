@@ -1,14 +1,14 @@
+import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-vendor-form',
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './create-vendor-form.component.html',
-  styleUrl: './create-vendor-form.component.scss'
+  styleUrl: './create-vendor-form.component.scss',
 })
 export class CreateVendorFormComponent {
-
   vendorForm: FormGroup;
   uploadedFiles: File[] = [];
 
@@ -29,12 +29,12 @@ export class CreateVendorFormComponent {
       openingBalance: [0],
       paymentTerms: [''],
       enablePortal: [false],
-      portalLanguage: ['en']
+      portalLanguage: ['en'],
     });
   }
 
   ngOnInit(): void {
-    this.vendorForm.get('enablePortal')?.valueChanges.subscribe(value => {
+    this.vendorForm.get('enablePortal')?.valueChanges.subscribe((value) => {
       const portalLanguageControl = this.vendorForm.get('portalLanguage');
       if (value) {
         portalLanguageControl?.enable();
@@ -47,20 +47,20 @@ export class CreateVendorFormComponent {
   onSubmit(): void {
     if (this.vendorForm.valid) {
       const formData = new FormData();
-      
+
       // Append form values
-      Object.keys(this.vendorForm.value).forEach(key => {
+      Object.keys(this.vendorForm.value).forEach((key) => {
         const value = this.vendorForm.value[key];
         if (value !== null && value !== undefined) {
           formData.append(key, value);
         }
       });
-      
+
       // Append files
-      this.uploadedFiles.forEach(file => {
+      this.uploadedFiles.forEach((file) => {
         formData.append('documents', file, file.name);
       });
-      
+
       // Here you would typically send formData to your API
       console.log('Form submitted:', formData);
     }
@@ -76,14 +76,14 @@ export class CreateVendorFormComponent {
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     const files = input.files;
-    
+
     if (files && files.length > 0) {
       // Check total files count
       if (this.uploadedFiles.length + files.length > 10) {
         alert('You can upload a maximum of 10 files');
         return;
       }
-      
+
       // Check each file size (10MB max)
       for (let i = 0; i < files.length; i++) {
         if (files[i].size > 10 * 1024 * 1024) {
@@ -96,7 +96,6 @@ export class CreateVendorFormComponent {
   }
 
   removeFile(file: File): void {
-    this.uploadedFiles = this.uploadedFiles.filter(f => f !== file);
+    this.uploadedFiles = this.uploadedFiles.filter((f) => f !== file);
   }
-
 }

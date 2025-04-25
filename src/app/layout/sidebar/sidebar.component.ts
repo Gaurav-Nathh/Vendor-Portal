@@ -29,11 +29,11 @@ export class SidebarComponent {
   ) {}
 
   isOpen = false;
-
+  userType: string = '';
   ngOnInit() {
-    const userType = this.userService.getUserType();
+    this.userType = this.userService.getUserType();
     this.currentMenu =
-      userType === 'vendor' ? this.vendorMenu : this.customerMenu;
+      this.userType === 'vendor' ? this.vendorMenu : this.customerMenu;
   }
 
   toggleSidenav() {
@@ -107,22 +107,27 @@ export class SidebarComponent {
     {
       text: 'Dashboard',
       icon: 'bi bi-grid-1x2-fill',
-      route: '/vendor/shopping-cart',
+      route: '/customer/',
     },
     {
       text: 'Purchase Order',
       icon: 'fa-solid fa-rectangle-list',
-      route: '/vendor/purchase-order',
+      route: '/customer/purchase-order',
+    },
+    {
+      text: 'Vendors',
+      icon: 'bi bi-person-plus-fill',
+      route: '/customer/vendors',
     },
     {
       text: 'Sales',
       icon: 'fa-solid fa-money-bill-trend-up',
-      route: '/vendor/purchase-order',
+      route: '/customer/',
     },
     {
       text: 'Invoice',
       icon: 'fa-solid fa-cart-shopping',
-      route: '/vendor/shopping-cart',
+      route: '/customer/',
     },
     {
       text: 'Payment',
@@ -132,31 +137,31 @@ export class SidebarComponent {
         {
           text: 'Pending',
           icon: 'fa-solid fa-hourglass-half',
-          route: '/vendor/shopping-cart',
+          route: '/customer/',
         },
         {
           text: 'History',
           icon: 'fa-solid fa-clock-rotate-left',
-          route: '/vendor/shopping-cart',
+          route: '/customer/',
         },
       ],
     },
     {
       text: 'Statements',
       icon: 'fa-solid fa-file-invoice-dollar',
-      route: '/vendor/shopping-cart',
+      route: '/customer/',
     },
   ];
   commonMenu = [
     {
       text: 'My Profile',
       icon: 'fa-solid fa-circle-user',
-      route: '/vendor/shopping-cart',
+      route: `/${this.userType}/`,
     },
     {
       text: 'Password',
       icon: 'fa-solid fa-lock',
-      route: '/vendor/update-password',
+      route: `/${this.userType}/update-password`,
     },
   ];
 }

@@ -39,9 +39,9 @@ export const routes: Routes = [
         path: 'purchase-order',
         pathMatch: 'full',
         loadComponent: () =>
-          import('./pages/purchase-order/purchase-order.component').then(
-            (c) => c.PurchaseOrderComponent
-          ),
+          import(
+            './components/create-vendor-form/create-vendor-form.component'
+          ).then((c) => c.CreateVendorFormComponent),
         canActivate: [authGuard],
       },
       {
@@ -66,17 +66,11 @@ export const routes: Routes = [
         path: 'create-vendor',
         pathMatch: 'full',
         loadComponent: () =>
-          import('./components/create-vendor-form/create-vendor-form.component').then(
-            (c) => c.CreateVendorFormComponent
-          ),
+          import(
+            './components/create-vendor-form/create-vendor-form.component'
+          ).then((c) => c.CreateVendorFormComponent),
         canActivate: [authGuard],
       },
-      {
-        path:'purchase-form',
-        pathMatch:'full',
-        loadComponent:()=>import('./components/purchase-form/purchase-form.component').then(c=>c.PurchaseFormComponent),
-        canActivate:[authGuard]
-      }
     ],
   },
   {
@@ -84,6 +78,35 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/user/user.component').then((c) => c.UserComponent),
     canActivate: [authGuard],
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/dashboard/dashboard.component').then(
+            (c) => c.DashboardComponent
+          ),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'purchase-order',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./components/purchase-form/purchase-form.component').then(
+            (c) => c.PurchaseFormComponent
+          ),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'vendors',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import(
+            './components/create-vendor-form/create-vendor-form.component'
+          ).then((c) => c.CreateVendorFormComponent),
+        canActivate: [authGuard],
+      },
+    ],
   },
   {
     path: 'item-mapping',
