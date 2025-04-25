@@ -41,6 +41,11 @@ export class ShoppingCartComponent {
     this.selectedCategoryOption = option;
     this.categoryDropDownOpen = false;
   }
+  filterSingleDropdownOpen = false;
+
+  toggleFilterSingleDropdown() {
+    this.filterSingleDropdownOpen = !this.filterSingleDropdownOpen;
+  }
 
   products: Product[] = [
     {

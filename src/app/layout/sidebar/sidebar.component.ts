@@ -8,7 +8,7 @@ import { UserService } from '../../services/user.service';
 interface MenuItem {
   text: string;
   icon: string;
-  route: string;
+  route?: string;
   isSubmenuOpen?: boolean;
   submenu?: MenuItem[];
 }
@@ -47,6 +47,10 @@ export class SidebarComponent {
     }
   }
 
+  logout() {
+    this.authService.logout();
+  }
+
   vendorMenu: MenuItem[] = [
     {
       text: 'Dashboard',
@@ -78,7 +82,6 @@ export class SidebarComponent {
     {
       text: 'Payment',
       icon: 'bi bi-credit-card-2-back-fill',
-      route: '/vendor/shopping-cart',
       isSubmenuOpen: false,
       submenu: [
         {
@@ -106,16 +109,14 @@ export class SidebarComponent {
       icon: 'bi bi-grid-1x2-fill',
       route: '/vendor/shopping-cart',
     },
-
     {
-      text: 'Item Mapping',
-      icon: 'fa fa-box sidebar-icon"',
-      route: '/vendor/item-mapping',
+      text: 'Purchase Order',
+      icon: 'fa-solid fa-rectangle-list',
+      route: '/vendor/purchase-order',
     },
-
     {
-      text: 'Purchase Orders',
-      icon: 'bi bi-grid-1x2-fill',
+      text: 'Sales',
+      icon: 'fa-solid fa-money-bill-trend-up',
       route: '/vendor/purchase-order',
     },
     {
@@ -124,27 +125,28 @@ export class SidebarComponent {
       route: '/vendor/shopping-cart',
     },
     {
-      text: 'Goods Receipts',
-      icon: 'fa-solid fa-cart-shopping',
-      route: '/vendor/shopping-cart',
-    },
-    {
       text: 'Payment',
-      icon: 'bi-people-fill',
-      route: '/vendor/',
+      icon: 'bi bi-credit-card-2-back-fill',
       isSubmenuOpen: false,
       submenu: [
-        { text: 'Pending', icon: 'bi-person', route: '/vendor/' },
-        { text: 'History', icon: 'bi-shield', route: '/vendor/' },
+        {
+          text: 'Pending',
+          icon: 'fa-solid fa-hourglass-half',
+          route: '/vendor/shopping-cart',
+        },
+        {
+          text: 'History',
+          icon: 'fa-solid fa-clock-rotate-left',
+          route: '/vendor/shopping-cart',
+        },
       ],
     },
     {
-      text: 'Account Statement',
-      icon: 'bi-gear-fill',
-      route: '/vendor/',
+      text: 'Statements',
+      icon: 'fa-solid fa-file-invoice-dollar',
+      route: '/vendor/shopping-cart',
     },
   ];
-
   commonMenu = [
     {
       text: 'My Profile',
@@ -154,11 +156,6 @@ export class SidebarComponent {
     {
       text: 'Password',
       icon: 'fa-solid fa-lock',
-      route: '/vendor/update-password',
-    },
-    {
-      text: 'Logout',
-      icon: 'fa-solid fa-power-off',
       route: '/vendor/update-password',
     },
   ];

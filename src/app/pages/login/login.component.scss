@@ -1,6 +1,6 @@
 #login-page {
   background-color: var(--color-bg);
-  background-image: url('/assets/background.svg'); 
+  background-image: url("/assets/background.svg");
   width: 100vw;
   height: 100vh;
   overflow-y: scroll;
@@ -29,25 +29,22 @@
   box-shadow: 5px 5px 10px var(--box-shadow);
 
   background-color: var(--color-bg-secondry);
-  
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-width: auto;
-    
+    width: auto;
   }
 }
 
-.form-conainer{
+.form-conainer {
   width: 65%;
-  height: 70%;
-  
+  // height: 70%;
 }
 
 .vrt-line {
   width: 3px;
   background-color: rgb(228, 228, 228);
- 
+
   margin: 0 2rem; // Add spacing between the sections
   height: 100%; // Make the line span the full height of the container
 }
@@ -96,11 +93,10 @@ width: auto;
 }
 
 .login-content {
-  
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  
+
   color: var(--primary-text);
   @media (max-width: 768px) {
     padding: 2rem;
@@ -108,26 +104,22 @@ width: auto;
     // border-top: 2px solid var(--color-card);
   }
 
-  .text-detls{
-     display: flex;
-  flex-direction: column;
+  .text-detls {
+    display: flex;
+    flex-direction: column;
 
-  span:nth-child(1) {
-    margin-bottom: 0.3rem; // Increase the gap between "Efacto" and "Log in"
+    span:nth-child(1) {
+      margin-bottom: 0.3rem; // Increase the gap between "Efacto" and "Log in"
+    }
+
+    span:nth-child(2) {
+      margin-bottom: -1rem; // Decrease the gap between "Log in" and "to access Portal"
+    }
   }
-
-  span:nth-child(2) {
-    margin-bottom: -1.0rem; // Decrease the gap between "Log in" and "to access Portal"
-  }
-  }
-
-
-
 }
 .input-field {
   margin-top: 0.6rem;
   text-align: left;
-  
 
   label {
     margin-bottom: 0.3rem;
@@ -148,7 +140,6 @@ width: auto;
   }
 
   input {
-   
     margin-top: 1rem;
     border: 2px solid var(--border-grey);
     border-radius: 0.3rem;
@@ -167,9 +158,7 @@ width: auto;
       box-shadow: 0 0 8px rgba(0, 0, 255, 0.4);
     }
   }
-
 }
-
 
 .btn-full-width {
   width: 100%; // Make the button span the full width
@@ -178,7 +167,7 @@ width: auto;
   font-size: 1rem;
   font-weight: 700;
   color: white;
-  background-color: var( --color-btn);
+  background-color: var(--color-btn);
   border: none;
   border-radius: 0.3rem;
   cursor: pointer;
@@ -188,7 +177,6 @@ width: auto;
     background-color: var(--color-btn-hover);
   }
 }
-
 
 input {
   width: 25rem;
@@ -288,7 +276,7 @@ input {
   .carousel-indicator {
     position: absolute;
     bottom: 20px;
-    
+
     left: 46%;
     right: 50%;
     transform: translateX(-50%);
@@ -310,10 +298,10 @@ input {
   #img-section {
     display: none;
   }
-  .vrt-line{
+  .vrt-line {
     display: none;
   }
-  
+
   #login-section {
     width: 90%; /* Adjust the width for smaller screens */
     max-width: 400px; /* Set a maximum width for the form */
@@ -322,7 +310,7 @@ input {
 
   .form-conainer {
     width: 60%; /* Ensure the form container takes full width */
-    height: 40%; /* Adjust height dynamically */
+    // height: 40%; /* Adjust height dynamically */
   }
 
   .vrt-line {
@@ -335,19 +323,15 @@ input {
 }
 
 @media (max-width: 424px) {
-.form-control{
-  width: 100%;
-  height: 10%;
-  margin-top: 0.5rem;
-}
-
-@media (max-width: 768px) {
-
-  #login-main  {
-width: 70%;
+  .form-control {
+    width: 100%;
+    height: 10%;
+    margin-top: 0.5rem;
   }
- 
-}
 
-
+  @media (max-width: 768px) {
+    #login-main {
+      width: 70%;
+    }
+  }
 }
