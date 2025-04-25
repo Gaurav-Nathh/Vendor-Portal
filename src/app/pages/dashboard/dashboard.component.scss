@@ -26,7 +26,8 @@
 
     &-overlay {
       position: absolute;
-      top: 0%;
+ 
+      top: 0.9rem;
       left: 8%;
       right: 0;
       bottom: 0;
@@ -40,6 +41,10 @@
 
       @media (max-width:327px) {
         top: -1rem;
+        
+      }
+      @media (max-width:1131px) {
+        top: -0.9rem;
       }
     }
 
