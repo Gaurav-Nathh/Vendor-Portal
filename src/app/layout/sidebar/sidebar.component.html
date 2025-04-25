@@ -93,6 +93,16 @@
             }}</span>
           </a>
         </li>
+        <li>
+          <a class="menu-link" (click)="logout()">
+            <div class="icon">
+              <i class="fa-solid fa-power-off"></i>
+            </div>
+            <span class="menu-text" [ngClass]="{ 'd-none': !isOpen }"
+              >Logout</span
+            >
+          </a>
+        </li>
       </ul>
     </nav>
   </div>

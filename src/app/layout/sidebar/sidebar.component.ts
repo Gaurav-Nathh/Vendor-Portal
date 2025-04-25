@@ -47,6 +47,10 @@ export class SidebarComponent {
     }
   }
 
+  logout() {
+    this.authService.logout();
+  }
+
   vendorMenu: MenuItem[] = [
     {
       text: 'Dashboard',
@@ -152,11 +156,6 @@ export class SidebarComponent {
     {
       text: 'Password',
       icon: 'fa-solid fa-lock',
-      route: '/vendor/update-password',
-    },
-    {
-      text: 'Logout',
-      icon: 'fa-solid fa-power-off',
       route: '/vendor/update-password',
     },
   ];
