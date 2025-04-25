@@ -16,6 +16,7 @@
     min-width: 250px;
     border-radius: 10px;
     overflow: hidden;
+   
     
 
     &-image {
@@ -46,6 +47,13 @@
       @media (max-width:1131px) {
         top: -0.9rem;
       }
+
+      @media (min-width:491px) and (max-width: 1131px) {
+        top: 0.9rem;
+      }
+      @media (min-width:993px) and (max-width: 1025px) {
+        top: -0.9rem;
+      } 
     }
 
     &-content {

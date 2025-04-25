@@ -1,0 +1,219 @@
+<div class="vendor-form-container">
+    <h2 class="mb-4">New Vendor</h2>
+    
+    <form (ngSubmit)="onSubmit()">
+      <!-- Section 1: Basic Information -->
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <h5>Fetch Vendor Details From GSTN</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Vendor Number</label>
+                <input type="text" class="form-control" formControlName="vendorNumber" value="VEN-00002" readonly>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>PAN</label>
+                <input type="text" class="form-control" formControlName="pan" maxlength="10">
+                <div *ngIf="vendorForm.get('pan')?.errors?.['pattern']" class="text-danger">
+                  Please enter a valid PAN number
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Currency</label>
+                <select class="form-control" formControlName="currency">
+                  <option value="INR">INR</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Opening Balance</label>
+                <input type="number" class="form-control" formControlName="openingBalance">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Section 2: Primary Contact -->
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <h5>Primary Contact</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Salutation</label>
+                <select class="form-control" formControlName="salutation">
+                  <option value="Mr.">Mr.</option>
+                  <option value="Ms.">Ms.</option>
+                  <option value="Mrs.">Mrs.</option>
+                  <option value="Dr.">Dr.</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" formControlName="firstName" required>
+                <div *ngIf="vendorForm.get('firstName')?.errors?.['required']" class="text-danger">
+                  First Name is required
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" formControlName="lastName" required>
+                <div *ngIf="vendorForm.get('lastName')?.errors?.['required']" class="text-danger">
+                  Last Name is required
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Display Name</label>
+                <input type="text" class="form-control" formControlName="displayName">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Company Name</label>
+                <input type="text" class="form-control" formControlName="companyName" required>
+                <div *ngIf="vendorForm.get('companyName')?.errors?.['required']" class="text-danger">
+                  Company Name is required
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" class="form-control" formControlName="email" required>
+                <div *ngIf="vendorForm.get('email')?.errors?.['required']" class="text-danger">
+                  Email is required
+                </div>
+                <div *ngIf="vendorForm.get('email')?.errors?.['email']" class="text-danger">
+                  Please enter a valid email address
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Section 3: Contact Information -->
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <h5>Phone</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Work Phone</label>
+                <input type="tel" class="form-control" formControlName="workPhone">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Mobile</label>
+                <input type="tel" class="form-control" formControlName="mobile" required>
+                <div *ngIf="vendorForm.get('mobile')?.errors?.['required']" class="text-danger">
+                  Mobile number is required
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Payment Terms</label>
+                <input type="text" class="form-control" formControlName="paymentTerms">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Section 4: Additional Information -->
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <h5>Other Details</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>MSME Registered?</label>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" formControlName="msmeRegistered" id="msmeCheck">
+                  <label class="form-check-label" for="msmeCheck">This vendor is MSME registered</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Enable Portal?</label>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" formControlName="enablePortal" id="portalCheck">
+                  <label class="form-check-label" for="portalCheck">Allow portal access for this vendor</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="vendorForm.get('enablePortal')?.value">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Portal Language</label>
+                <select class="form-control" formControlName="portalLanguage">
+                  <option value="en">English</option>
+                  <option value="hi">Hindi</option>
+                  <option value="mr">Marathi</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Section 5: Documents -->
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <h5>Documents</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>Upload Documents</label>
+            <input type="file" class="form-control" (change)="onFileChange($event)" multiple>
+            <small class="text-muted">You can upload a maximum of 10 files, 10MB each</small>
+          </div>
+          <div class="uploaded-files mt-3" *ngIf="uploadedFiles.length > 0">
+            <h6>Uploaded Files:</h6>
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let file of uploadedFiles">
+                {{ file.name }}
+                <span class="badge bg-primary rounded-pill">{{ file.size }}</span>
+                <button type="button" class="btn btn-sm btn-danger" (click)="removeFile(file)">Remove</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Form Actions -->
+      <div class="form-actions text-end">
+        <button type="button" class="btn btn-secondary me-2" (click)="onCancel()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!vendorForm.valid">Save Vendor</button>
+      </div>
+    </form>
+  </div>

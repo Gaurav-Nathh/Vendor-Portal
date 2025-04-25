@@ -62,6 +62,21 @@ export const routes: Routes = [
           ),
         canActivate: [authGuard],
       },
+      {
+        path: 'create-vendor',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./components/create-vendor-form/create-vendor-form.component').then(
+            (c) => c.CreateVendorFormComponent
+          ),
+        canActivate: [authGuard],
+      },
+      {
+        path:'purchase-form',
+        pathMatch:'full',
+        loadComponent:()=>import('./components/purchase-form/purchase-form.component').then(c=>c.PurchaseFormComponent),
+        canActivate:[authGuard]
+      }
     ],
   },
   {

@@ -10,6 +10,7 @@
       margin-right: 4px;
     }
   }
+
   .table-container {
     min-height: 300px;
   }
@@ -37,7 +38,6 @@
   .mapping-form-container.closed {
     transform: translateY(-200%); /* Slide out */
     opacity: 0; /* Fully hidden */
-    /* Hide the element */
   }
 
   table {
@@ -53,6 +53,69 @@
     th {
       vertical-align: middle;
       text-align: center;
+    }
+  }
+
+  // Responsive Design for Small Screens
+  @media (max-width: 768px) {
+    .mapping-form-container {
+      top: 5%;
+      left: 2rem;
+      width: 90%;
+      padding: 10px;
+    }
+
+    .table-container {
+      min-height: 200px;
+      overflow-x: auto; // Enable horizontal scrolling for tables
+    }
+
+    table {
+      font-size: 12px; // Reduce font size for better fit
+      thead {
+        th {
+          padding: 8px;
+        }
+      }
+      td,
+      th {
+        padding: 6px;
+      }
+    }
+
+    input.form-control {
+      width: 100%; // Make input fields full width
+      margin-bottom: 10px; // Add spacing between inputs
+    }
+
+    button.btn {
+      width: 100%; // Make buttons full width
+      margin-bottom: 10px; // Add spacing between buttons
+    }
+  }
+
+  @media (max-width: 576px) {
+    .mapping-form-container {
+      top: 2%;
+      left: 1rem;
+      width: 95%;
+      padding: 8px;
+    }
+
+    .table-container {
+      min-height: 150px;
+    }
+
+    table {
+      font-size: 10px; // Further reduce font size for very small screens
+    }
+
+    input.form-control {
+      font-size: 14px; // Adjust font size for inputs
+    }
+
+    button.btn {
+      font-size: 14px; // Adjust font size for buttons
     }
   }
 }
