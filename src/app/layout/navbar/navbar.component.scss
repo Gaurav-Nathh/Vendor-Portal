@@ -15,9 +15,53 @@
 }
 .menu-toggler {
   display: none;
-
   @media (max-width: 768px) {
-    display: block;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    .hamburger {
+      display: inline-block;
+      width: 25px;
+      height: 18px;
+      position: relative;
+
+      span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background: #000;
+        border-radius: 2px;
+        position: absolute;
+        left: 0;
+        transition: all 0.3s ease;
+
+        &:nth-child(1) {
+          top: 0;
+        }
+        &:nth-child(2) {
+          top: 7.5px;
+        }
+        &:nth-child(3) {
+          top: 15px;
+        }
+      }
+    }
+    &[aria-expanded="true"] .hamburger span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 7.5px;
+    }
+
+    &[aria-expanded="true"] .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    &[aria-expanded="true"] .hamburger span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 7.5px;
+    }
   }
 }
 
