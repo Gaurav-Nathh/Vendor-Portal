@@ -1,199 +1,286 @@
-<Section id="nav-prod">
-  <h6 class="fw-bold">Shopping Cart</h6>
-  <div id="search-section">
-    <input type="text" name="" id="prod-search" placeholder="Search products..." />
-    <button id="search-btn">Search</button>
-  </div>
-  <div class="d-flex gap-2 align-items-center">
-    <div class="dropdown" (click)="toggleDropdown()" [class.show]="sortByDropDownOpen">
-      <small class="dropdown-toggle d-flex align-items-center justify-content-between" type="button"
-        data-bs-toggle="dropdown" aria-expanded="false">
-        Sort by {{ selectedOption }}
-      </small>
-
-      <ul class="dropdown-menu w-100" [class.show]="sortByDropDownOpen">
-        <li *ngFor="let option of sortByOptions">
-          <small class="dropdown-item" (click)="selectOption(option); $event.stopPropagation()">{{ option }}</small>
-        </li>
-      </ul>
+<section id="shopping-cart">
+  <Section id="nav-prod">
+    <h6 class="fw-bold">Shopping Cart</h6>
+    <div id="search-section">
+      <input
+        type="text"
+        name=""
+        id="prod-search"
+        placeholder="Search products..."
+      />
+      <button id="search-btn">Search</button>
     </div>
+    <div class="d-flex gap-2 align-items-center">
+      <div
+        class="dropdown"
+        (click)="toggleDropdown()"
+        [class.show]="sortByDropDownOpen"
+      >
+        <small
+          class="dropdown-toggle d-flex align-items-center justify-content-between"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Sort by {{ selectedOption }}
+        </small>
 
-    <div class="navbar-cart">
-      <!-- <button (click)="openCartModal()">
+        <ul class="dropdown-menu w-100" [class.show]="sortByDropDownOpen">
+          <li *ngFor="let option of sortByOptions">
+            <small
+              class="dropdown-item"
+              (click)="selectOption(option); $event.stopPropagation()"
+              >{{ option }}</small
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="navbar-cart">
+        <!-- <button (click)="openCartModal()">
         <i class="fa fa-solid fa-cart-shopping cart-icon2"></i> <span class="cart-total cart-total-2">{{ totalQty }}</span> 
       </button> -->
-      <button (click)="openCartModal()">
-        <i class="fa-solid fa-cart-shopping me-1"></i> Cart ({{ totalQty }})
-      </button>
-    </div>
-
-  </div>
-</Section>
-<section class="category-btn-section">
-  <div class="dropdown" (click)="toggleCategoryDropdown()">
-    <div class="category-box" [class.show]="categoryDropDownOpen">
-      <button class="category-btn" type="button" data-bs-toggle="dropdown" style="background-color: var(--color-green)">
-        Select Category
-      </button>
-      <ul class="dropdown-menu" [class.show]="categoryDropDownOpen" style="background-color: var(--color-green)">
-        <li *ngFor="let filter of filters">
-          <small class="dropdown-item" (click)="
-              selectCategoryOption(filter.title); $event.stopPropagation()
-            ">{{ filter.title }}</small>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-<section id="shopping-section" class="">
-  <section class="category-side-menu">
-    <h5>Filters</h5>
-    <div class="checkbox-title" *ngFor="let filter of filters; let i = index">
-      <div class="title" data-bs-toggle="collapse" [attr.href]="'#filter' + i">
-        <span>{{ filter.title }}</span>
-        <i class="bi bi-caret-down-fill"></i>
+        <button (click)="openCartModal()">
+          <i class="fa-solid fa-cart-shopping me-1"></i> Cart ({{ totalQty }})
+        </button>
       </div>
-      <div class="collapse" id="filter{{ i }}">
-        <div class="option-section">
-          <div class="checkbox-container form-check" *ngFor="let option of filter.options.slice(0, 5)">
-            <div class="checkbox">
-              <label class="form-check-label" [for]="option.id">
-                <input type="checkbox" class="form-check-input rounded-circle" [id]="option.id" />
-                {{ option.label }}
-              </label>
-            </div>
-          </div>
-          <a *ngIf="filter.options.length > 5" href="#" class="text-primary small">
-            more...
-          </a>
-        </div>
+    </div>
+  </Section>
+  <section class="category-btn-section">
+    <div class="dropdown" (click)="toggleCategoryDropdown()">
+      <div class="category-box" [class.show]="categoryDropDownOpen">
+        <button
+          class="category-btn"
+          type="button"
+          data-bs-toggle="dropdown"
+          style="background-color: var(--color-green)"
+        >
+          Select Category
+        </button>
+        <ul
+          class="dropdown-menu"
+          [class.show]="categoryDropDownOpen"
+          style="background-color: var(--color-green)"
+        >
+          <li *ngFor="let filter of filters">
+            <small
+              class="dropdown-item"
+              (click)="
+                selectCategoryOption(filter.title); $event.stopPropagation()
+              "
+              >{{ filter.title }}</small
+            >
+          </li>
+        </ul>
       </div>
     </div>
   </section>
-  <section class="card-section">
-    <div class="card-grid">
-      <div class="product-card" *ngFor="let product of products">
-        <img [src]="product.imageUrl" alt="Product Image" />
-        <div class="card-content">
-          <h5 class="card-title fw-bold text-uppercase text-break">
-            {{ product.name }}
-          </h5>
-          <p class="mt-1">
-            <small>Stock: {{ product.stockId }}</small>
-          </p>
-          <div class="d-flex justify-content-between align-items-center">
-            <p class="fw-semibold mb-0">Price: ₹ {{ product.price }}</p>
-            @if(product.stock<10 && product.stock>1) {
-              <small style="color: var(--color-red)">{{ product.stock }} left</small>
+  <section id="shopping-section" class="">
+    <section class="category-side-menu">
+      <h5>Filters</h5>
+      <div class="checkbox-title" *ngFor="let filter of filters; let i = index">
+        <div
+          class="title"
+          data-bs-toggle="collapse"
+          [attr.href]="'#filter' + i"
+        >
+          <span>{{ filter.title }}</span>
+          <i class="bi bi-caret-down-fill"></i>
+        </div>
+        <div class="collapse" id="filter{{ i }}">
+          <div class="option-section">
+            <div
+              class="checkbox-container form-check"
+              *ngFor="let option of filter.options.slice(0, 5)"
+            >
+              <div class="checkbox">
+                <label class="form-check-label" [for]="option.id">
+                  <input
+                    type="checkbox"
+                    class="form-check-input rounded-circle"
+                    [id]="option.id"
+                  />
+                  {{ option.label }}
+                </label>
+              </div>
+            </div>
+            <a
+              *ngIf="filter.options.length > 5"
+              href="#"
+              class="text-primary small"
+            >
+              more...
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="card-section">
+      <div class="card-grid">
+        <div class="product-card" *ngFor="let product of products">
+          <img [src]="product.imageUrl" alt="Product Image" />
+          <div class="card-content">
+            <h5 class="card-title fw-bold text-uppercase text-break">
+              {{ product.name }}
+            </h5>
+            <p class="mt-1">
+              <small>Stock: {{ product.stockId }}</small>
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <p class="fw-semibold mb-0">Price: ₹ {{ product.price }}</p>
+              @if(product.stock<10 && product.stock>1) {
+              <small style="color: var(--color-red)"
+                >{{ product.stock }} left</small
+              >
               } @else if (product.stock === 0) {
               <small style="color: var(--color-red)">Out of stock</small>
               } @else {
               <small style="color: var(--color-green)">In stock</small>
               }
-          </div>
-          <div class="d-flex justify-content-between mt-3 bottom-0">
-            <button class="btn rounded-pill px-3 text-white" style="background-color: var(--color-blue)"
-              (click)="addToCart(product)">
-              Add to Cart
-            </button>
-            <button class="btn btn-dark rounded-pill px-3">Buy Now</button>
+            </div>
+            <div class="d-flex justify-content-between mt-3 bottom-0">
+              <button
+                class="btn rounded-pill px-3 text-white"
+                style="background-color: var(--color-blue)"
+                (click)="addToCart(product)"
+              >
+                Add to Cart
+              </button>
+              <button class="btn btn-dark rounded-pill px-3">Buy Now</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </section>
-</section>
 
+  <!-- Cart Modal -->
+  <div
+    class="modal fade"
+    id="cartModal"
+    tabindex="-1"
+    aria-labelledby="cartModalLabel"
+    aria-hidden="true"
+    #cartModalRef
+  >
+    <div class="modal-dialog modal-lg modal-dialog-centered custom-modal-size">
+      <div class="modal-content">
+        <!-- Header -->
+        <div class="modal-header custom-modal-header p-2">
+          <h6 class="modal-title m-0" id="cartModalLabel">View Cart</h6>
+          <button
+            type="button"
+            class="btn-close ms-auto"
+            data-bs-dismiss="modal"
+            (click)="closeCartModal()"
+          ></button>
+        </div>
 
-<!-- Cart Modal -->
-<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true" #cartModalRef>
-  <div class="modal-dialog modal-lg modal-dialog-centered custom-modal-size">
-    <div class="modal-content">
-
-      <!-- Header -->
-      <div class="modal-header custom-modal-header p-2">
-        <h6 class="modal-title m-0" id="cartModalLabel">View Cart</h6>
-        <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" (click)="closeCartModal()"></button>
-      </div>
-
-      <!-- Body -->
-      <div class="modal-body custom-modal-body">
-        <div class="row g-2">
-          <!-- Product List Column -->
-          <div class="col-sm-8">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body p-2">
-                <div class="table-responsive">
-                  <table class="table table-hover mb-0">
-                    <thead>
-                      <tr>
-                        <th>Item</th>
-                        <th>Code</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let item of cart">
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.stockId }}</td>
-                        <td>
-                          <div class="quantity-controls">
-                            <button (click)="decrementQty(item)" class="btn btn-sm btn-light">
-                              <i class="fa-solid fa-minus"></i>
+        <!-- Body -->
+        <div class="modal-body custom-modal-body">
+          <div class="row g-2">
+            <!-- Product List Column -->
+            <div class="col-sm-8">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body p-2">
+                  <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                      <thead>
+                        <tr>
+                          <th>Item</th>
+                          <th>Code</th>
+                          <th>Quantity</th>
+                          <th>Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of cart">
+                          <td>{{ item.name }}</td>
+                          <td>{{ item.stockId }}</td>
+                          <td>
+                            <div class="quantity-controls">
+                              <button
+                                (click)="decrementQty(item)"
+                                class="btn btn-sm btn-light"
+                              >
+                                <i class="fa-solid fa-minus"></i>
+                              </button>
+                              <span class="mx-2">{{ item.quantity }}</span>
+                              <button
+                                (click)="incrementQty(item)"
+                                class="btn btn-sm btn-light"
+                              >
+                                <i class="fa-solid fa-plus"></i>
+                              </button>
+                            </div>
+                          </td>
+                          <td>${{ item.price }}</td>
+                          <td>
+                            <button
+                              class="btn btn-sm btn-danger ms-2"
+                              (click)="removeItem(item)"
+                            >
+                              <i class="fa-solid fa-trash"></i>
                             </button>
-                            <span class="mx-2">{{ item.quantity }}</span>
-                            <button (click)="incrementQty(item)" class="btn btn-sm btn-light">
-                              <i class="fa-solid fa-plus"></i>
-                            </button>
-
-                          </div>
-                        </td>
-                        <td>${{ item.price }}</td>
-                        <td>
-                          <button class="btn btn-sm btn-danger ms-2" (click)="removeItem(item)">
-                            <i class="fa-solid fa-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Summary Column -->
-          <div class="col-sm-4">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body d-flex flex-column justify-content-between p-3">
-                <div>
-                  <h5 class="card-title fw-bold">SUMMARY</h5>
-                  <h6 class="fw-bold text-center">{{ totalQty }} Items</h6>
-                  <ul class="list-group list-group-flush my-3">
-                    <li class="list-group-item d-flex justify-content-between align-items-center"
-                      *ngFor="let item of cart">
-                      <span>{{ item.name }}</span>
-                      <span>${{ (item.price * (item.quantity || 1)).toFixed(2) }}</span>
-                    </li>
-                  </ul>
-                  <div class="d-flex justify-content-between border-top pt-2 fw-bold">
-                    <span>Total</span>
-                    <span>${{ totalAmount.toFixed(2) }}</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-                <div class="mt-3 d-grid gap-2">
-                  <button class="btn btn-primary custom-rounded-btn" type="button">Checkout</button>
-                  <button class="btn btn-outline-secondary custom-rounded-btn" data-bs-dismiss="modal"
-                    (click)="closeCartModal()">Continue Shopping</button>
+              </div>
+            </div>
+
+            <!-- Summary Column -->
+            <div class="col-sm-4">
+              <div class="card h-100 shadow-sm">
+                <div
+                  class="card-body d-flex flex-column justify-content-between p-3"
+                >
+                  <div>
+                    <h5 class="card-title fw-bold">SUMMARY</h5>
+                    <h6 class="fw-bold text-center">{{ totalQty }} Items</h6>
+                    <ul class="list-group list-group-flush my-3">
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center"
+                        *ngFor="let item of cart"
+                      >
+                        <span>{{ item.name }}</span>
+                        <span
+                          >${{
+                            (item.price * (item.quantity || 1)).toFixed(2)
+                          }}</span
+                        >
+                      </li>
+                    </ul>
+                    <div
+                      class="d-flex justify-content-between border-top pt-2 fw-bold"
+                    >
+                      <span>Total</span>
+                      <span>${{ totalAmount.toFixed(2) }}</span>
+                    </div>
+                  </div>
+                  <div class="mt-3 d-grid gap-2">
+                    <button
+                      class="btn btn-primary custom-rounded-btn"
+                      type="button"
+                    >
+                      Checkout
+                    </button>
+                    <button
+                      class="btn btn-outline-secondary custom-rounded-btn"
+                      data-bs-dismiss="modal"
+                      (click)="closeCartModal()"
+                    >
+                      Continue Shopping
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   </div>
-</div>
+</section>
