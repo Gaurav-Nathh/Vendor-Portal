@@ -1,5 +1,5 @@
 <section id="shopping-cart" class="">
-  <Section id="nav-prod" class="bord px-3 py-2">
+  <Section id="nav-prod" class="">
     <span class="fw-bold">Shopping Cart</span>
     <div id="search-section" class="">
       <input
@@ -13,8 +13,9 @@
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
     </div>
-    <div class="bord d-flex gap-2 align-items-center">
+    <div id="cartNavIcons" class="d-flex gap-2 align-items-center">
       <div
+        id="sortBy"
         class="dropdown"
         (click)="toggleDropdown()"
         [class.show]="sortByDropDownOpen"
@@ -38,7 +39,16 @@
           </li>
         </ul>
       </div>
-      <div id="cart-body" class="">
+      <button
+        type="button"
+        class="ps-3"
+        data-bs-toggle="collapse"
+        data-bs-target="#cartNavCollapse"
+        style="background-color: transparent"
+      >
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="cart-body" class="ps-3">
         <div class="cart-container" (click)="openCartModal()">
           <i class="fa fa-shopping-cart cart-icon"></i>
           <span *ngIf="totalQty > 0" class="cart-badge">
@@ -49,84 +59,95 @@
     </div>
   </Section>
   <!-- Product Ends -->
+  <section
+    class="collapse"
+    id="cartNavCollapse"
+    aria-expanded="false"
+    aria-controls="collapseExample"
+  >
+    <div
+      id="sortBy"
+      class="dropdown"
+      (click)="toggleDropdown()"
+      [class.show]="sortByDropDownOpen"
+    >
+      <small
+        class="dropdown-toggle d-flex align-items-center justify-content-between"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Sort by {{ selectedOption }}
+      </small>
 
-  <section class="bord category-btn-section">
-    <div class="dropdown" (click)="toggleCategoryDropdown()">
-      <div class="category-box" [class.show]="categoryDropDownOpen">
-        <button
-          class="category-btn"
-          type="button"
-          data-bs-toggle="dropdown"
-          style="background-color: var(--color-green)"
-        >
-          Select Category
-        </button>
-        <ul
-          class="dropdown-menu"
-          [class.show]="categoryDropDownOpen"
-          style="background-color: var(--color-green)"
-        >
-          <li *ngFor="let filter of filters">
-            <small
-              class="dropdown-item"
-              (click)="
-                selectCategoryOption(filter.title); $event.stopPropagation()
-              "
-              >{{ filter.title }}</small
-            >
-          </li>
-        </ul>
-      </div>
+      <ul class="dropdown-menu w-100" [class.show]="sortByDropDownOpen">
+        <li *ngFor="let option of sortByOptions">
+          <small
+            class="dropdown-item"
+            (click)="selectOption(option); $event.stopPropagation()"
+            >{{ option }}</small
+          >
+        </li>
+      </ul>
     </div>
-    <div class="option-bar position-relative">
-      <div class="shown-options">
-        <button class="option-btn">Option 1</button>
-        <button class="option-btn">Option 2</button>
-        <button class="option-btn">Option 3</button>
-      </div>
+  </section>
+  <!-- Mobile CartNav  -->
 
-      <button class="arrow-btn" (click)="toggleFilterSingleDropdown()">
-        <i class="bi bi-chevron-down"></i>
+  <!-- FilterSingle -->
+
+  <section id="filterTop" class="">
+    <div class="category-box" [class.show]="categoryDropDownOpen">
+      <button
+        class="p-2 fs-6 d-flex align-items-center justify-content-between"
+        type="button"
+        id="dropdownMenuButton"
+        data-bs-toggle="dropdown"
+        (click)="toggleFilterTopDropdown()"
+      >
+        {{ selectedNavFilterTitleDisplay }}
+        <i
+          class="bi bi-chevron-down ms-2"
+          [class.rotate]="filterTopDropDownOpen"
+        ></i>
       </button>
 
-      <div class="dropdown-panel" [class.show]="filterSingleDropdownOpen">
-        <button class="option-btn">Option 4</button>
-        <button class="option-btn">Option 4</button>
-        <button class="option-btn">Option 5</button>
-        <button class="option-btn">Option 6</button>
-        <button class="option-btn">Option 4</button>
-        <button class="option-btn">Option 5</button>
-        <button class="option-btn">Option 6</button>
-        <button class="option-btn">Option 4</button>
-        <button class="option-btn">Option 5</button>
-        <button class="option-btn">Option 6</button>
-        <button class="option-btn">Option 4</button>
-        <button class="option-btn">Option 5</button>
-        <button class="option-btn">Option 6</button>
-        <button class="option-btn">Option 4</button>
-        <button class="option-btn">Option 5</button>
-        <button class="option-btn">Option 6</button>
-        <button class="option-btn">Option 4</button>
-        <button class="option-btn">Option 5</button>
-        <button class="option-btn">Option 6</button>
-        <button class="option-btn">Option 5</button>
-        <button class="option-btn">Option 6</button>
-        <button class="option-btn">Option 4</button>
-        <button class="option-btn">Option 5</button>
-        <button class="option-btn">Option 6</button>
-        <button class="option-btn">Option 4</button>
-        <button class="option-btn">Option 5</button>
-        <button class="option-btn">Option 6</button>
-        <button class="option-btn">Option 4</button>
-        <button class="option-btn">Option 5</button>
-        <button class="option-btn">Option 6</button>
-        <button class="option-btn">Option 4</button>
-        <button class="option-btn">Option 5</button>
-        <button class="option-btn">Option 6</button>
-        <button class="option-btn">Option 4</button>
-        <button class="option-btn">Option 5</button>
-        <button class="option-btn">Option 6</button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li *ngFor="let filter of filters">
+          <a class="dropdown-item" (click)="selectNavFilterTitle(filter)">{{
+            filter.title
+          }}</a>
+        </li>
+      </ul>
+    </div>
+    <div id="filterTopContainer" class="">
+      <div id="listContainer" class="">
+        <div
+          id="filterList"
+          *ngIf="selectedNavFilterTitle"
+          [ngClass]="filterTopList ? 'list-open' : 'list-close'"
+        >
+          <div
+            *ngFor="let option of selectedNavFilterTitle.options"
+            class="d-flex align-items-center gap-1"
+          >
+            <input
+              type="radio"
+              name="options"
+              [id]="option.id"
+              [value]="option.id"
+              (change)="selectNavFilterOption(option.id)"
+              id="{{ option.id }}"
+            />
+            <label for="{{ option.id }}">{{ option.label }}</label>
+          </div>
+        </div>
       </div>
+      <button
+        style="background-color: transparent"
+        (click)="toggleFilterTopList()"
+      >
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
     </div>
   </section>
   <section id="shopping-section" class="">
