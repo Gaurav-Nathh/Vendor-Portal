@@ -5,6 +5,7 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { SharedService } from '../../services/shared/shared.service';
 interface MenuItem {
   text: string;
   icon: string;
@@ -22,8 +23,11 @@ interface MenuItem {
 })
 export class SidebarComponent {
   currentMenu: MenuItem[] = [];
+  sidebarShrinkStyle: boolean = true;
+  sidebarVisibility: boolean = true;
   constructor(
     private router: Router,
+    private sidebarService: SharedService,
     private authService: AuthService,
     private userService: UserService
   ) {}
@@ -34,6 +38,14 @@ export class SidebarComponent {
     this.userType = this.userService.getUserType();
     this.currentMenu =
       this.userType === 'vendor' ? this.vendorMenu : this.customerMenu;
+
+    this.sidebarService.sidebarStyle$.subscribe((style) => {
+      this.sidebarShrinkStyle = style === 'overlay' ? true : false;
+    });
+
+    this.sidebarService.sidebarVisible$.subscribe((visible) => {
+      this.sidebarVisibility = visible;
+    });
   }
 
   toggleSidenav() {

@@ -1,5 +1,10 @@
 <aside
-  [ngClass]="{ 'sidenav-open': isOpen, 'sidenav-closed': !isOpen }"
+  [ngClass]="{
+    'sidenav-open': isOpen,
+    'sidenav-closed': !isOpen,
+    overlay: sidebarShrinkStyle,
+    hide: !sidebarVisibility
+  }"
   class="sidenav"
 >
   <div class="sidenav-header">

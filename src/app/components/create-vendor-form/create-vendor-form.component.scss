@@ -26,7 +26,7 @@
       background: #007bff;
       border-radius: 8px 8px 0 0;
       padding: 12px 20px;
-      
+
       h5 {
         color: white;
         margin: 0;
@@ -86,7 +86,7 @@
     // Checkbox styling
     .form-check {
       margin-top: 1rem;
-      
+
       .form-check-input {
         margin-right: 0.5rem;
       }
@@ -179,7 +179,7 @@
   // Responsive adjustments
   @media (max-width: 768px) {
     padding: 15px;
-    
+
     .card-body {
       padding: 15px;
     }
@@ -190,11 +190,15 @@
 
     .form-actions {
       margin-top: 20px;
-      
+
       .btn {
         width: 100%;
         margin: 5px 0;
       }
     }
   }
+}
+
+.bord {
+  border: 1px solid red !important;
 }

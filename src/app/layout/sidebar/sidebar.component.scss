@@ -1,6 +1,6 @@
 .sidenav {
   background-color: #f8f9fa;
-  transition: width 0.3s ease-out;
+  transition: all 0.3s ease-out;
   overflow-x: hidden;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   height: 100%;
@@ -8,6 +8,15 @@
   justify-content: space-between;
   flex-direction: column;
   scrollbar-width: none;
+}
+
+.sidenav.overlay {
+  position: absolute;
+}
+
+.sidenav.hide {
+  position: absolute;
+  transform: translateX(-100%);
 }
 
 .sidenav-open {

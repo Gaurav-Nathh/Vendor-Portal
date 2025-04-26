@@ -9,9 +9,11 @@
   display: flex;
   flex: 1;
   overflow: hidden;
+  position: relative;
 
   #sidebar-container {
     overflow-y: auto;
+    z-index: 20;
   }
   #page-container {
     flex: 1;
