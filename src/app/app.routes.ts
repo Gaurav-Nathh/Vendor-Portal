@@ -44,15 +44,7 @@ export const routes: Routes = [
           ).then((c) => c.CreateVendorFormComponent),
         canActivate: [authGuard],
       },
-      {
-        path: 'shopping-cart',
-        pathMatch: 'full',
-        loadComponent: () =>
-          import('./pages/shopping-cart/shopping-cart.component').then(
-            (c) => c.ShoppingCartComponent
-          ),
-        canActivate: [authGuard],
-      },
+     
       {
         path: 'update-password',
         pathMatch: 'full',
@@ -85,6 +77,16 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/dashboard/dashboard.component').then(
             (c) => c.DashboardComponent
+          ),
+        canActivate: [authGuard],
+      },
+
+      {
+        path: 'shopping-cart',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/shopping-cart/shopping-cart.component').then(
+            (c) => c.ShoppingCartComponent
           ),
         canActivate: [authGuard],
       },

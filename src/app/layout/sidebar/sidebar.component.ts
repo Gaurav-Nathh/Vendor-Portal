@@ -120,9 +120,9 @@ export class SidebarComponent {
       route: '/customer/vendor-dashboard',
     },
     {
-      text: 'Sales',
+      text: 'Shoping Cart',
       icon: 'fa-solid fa-money-bill-trend-up',
-      route: '/customer/',
+      route: '/customer/shopping-cart',
     },
     {
       text: 'Invoice',
