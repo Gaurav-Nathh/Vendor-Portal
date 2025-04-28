@@ -8,6 +8,8 @@
         id="prod-search"
         class=""
         placeholder="Search products..."
+        [(ngModel)]="searchText"
+        (input)="filterProducts()"
       />
       <button id="search-btn" class="">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -296,7 +298,7 @@
 
     <section class="card-section">
       <div class="card-grid">
-        <div class="product-card" *ngFor="let product of products">
+        <div class="product-card" *ngFor="let product of filteredProducts">
           <img [src]="product.imageUrl" alt="Product Image" />
           <div class="card-content">
             <h5 class="card-title fw-bold text-uppercase text-break">

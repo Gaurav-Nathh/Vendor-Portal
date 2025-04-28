@@ -13,6 +13,8 @@ declare var bootstrap: any;
   styleUrl: './shopping-cart.component.scss',
 })
 export class ShoppingCartComponent {
+  searchText: string = '';
+  filteredProducts: Product[] = [];
   @ViewChild('cartModalRef') cartModalRef!: ElementRef;
 
   sortByDropDownOpen = false;
@@ -37,6 +39,14 @@ export class ShoppingCartComponent {
     //   this.filters = data;
     // });
     // console.log(this.filters);
+    this.filteredProducts = this.products; 
+  }
+  
+  filterProducts() {
+    const search = this.searchText.toLowerCase();
+    this.filteredProducts = this.products.filter(product =>
+      product.name.toLowerCase().includes(search)
+    );
   }
 
   toggleDropdown() {
