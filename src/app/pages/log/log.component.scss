@@ -1,0 +1,154 @@
+#login-page {
+  // background-color: var(--color-bg);
+  background-image: url("/assets/background.svg");
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 3px 1fr;
+  // height: 100vh;
+  width: fit-content;
+  background-color: white;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+
+  .login-left,
+  .login-right {
+    flex: 1;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    justify-content: center;
+    // position: relative;
+    // overflow: hidden;
+    // width: fit-content;
+    // height: fit-content;
+  }
+
+  .login-left {
+    flex-direction: column;
+    padding: 2rem;
+
+    form {
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+
+      .form-group {
+        margin-top: 1rem;
+        .input-field {
+          position: relative;
+          align-items: center;
+          background-color: white;
+
+          input {
+            flex: 1;
+            padding-left: 2rem;
+            width: 100%;
+            padding-block: 0.5rem;
+            background-color: #f4f4f4;
+          }
+
+          .icon-left {
+            position: absolute;
+            left: 0.6rem;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          .icon-right {
+            position: absolute;
+            right: 0.6rem;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+      }
+
+      .password-group {
+        height: 0;
+        overflow: hidden;
+        transition: all 0.4s ease-in-out;
+
+        &.show {
+          margin-top: 1rem;
+          height: 100%;
+        }
+      }
+
+      button {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        color: white;
+        background-color: #6375f0;
+      }
+    }
+  }
+
+  .vrt-line {
+    width: 3px;
+    background-color: rgb(228, 228, 228);
+    height: 100%; // Make the line span the full height of the container
+  }
+
+  .login-right {
+    background: #fff;
+    flex-direction: column;
+    position: relative;
+
+    @media (max-width: 900px) {
+      display: none;
+    }
+
+    .carousel {
+      width: 80%;
+      text-align: center;
+
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      .carousel-text {
+        margin-top: 10px;
+        font-size: 18px;
+        color: #333;
+      }
+      .progress-bar-body {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        .progress-bar {
+          height: 5px;
+          width: 10%;
+          background: #e0e0e0;
+          border-radius: 5px;
+          overflow: hidden;
+
+          .progress-fill {
+            height: 100%;
+            background: #007bff;
+            width: 0%;
+            transition: width 0.5s ease;
+          }
+        }
+      }
+    }
+  }
+}
+
+.bord {
+  border: 1px solid red !important;
+}

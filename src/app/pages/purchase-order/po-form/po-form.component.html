@@ -1,0 +1,14 @@
+<Section id="form-cart-container" class="">
+  <app-purchase-form></app-purchase-form>
+  <button
+    id="shopping-cart-btn"
+    (click)="toggleShoppingCart()"
+    [class.show]="isShopingCartOpen"
+  >
+    <i class="fa-solid fa-cart-shopping"></i>
+  </button>
+  <app-shopping-cart
+    id="shopping-cart"
+    [class.show]="isShopingCartOpen"
+  ></app-shopping-cart>
+</Section>

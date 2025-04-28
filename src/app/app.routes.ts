@@ -12,6 +12,11 @@ export const routes: Routes = [
       import('./pages/login/login.component').then((c) => c.LoginComponent),
   },
   {
+    path: 'log',
+    loadComponent: () =>
+      import('./pages/log/log.component').then((c) => c.LogComponent),
+  },
+  {
     path: 'vendor',
     loadComponent: () =>
       import('./pages/user/user.component').then((c) => c.UserComponent),
@@ -40,8 +45,8 @@ export const routes: Routes = [
         pathMatch: 'full',
         loadComponent: () =>
           import(
-            './components/create-vendor-form/create-vendor-form.component'
-          ).then((c) => c.CreateVendorFormComponent),
+            './pages/purchase-order/po-dashboard/po-dashboard.component'
+          ).then((c) => c.PoDashboardComponent),
         canActivate: [authGuard],
       },
 
@@ -92,6 +97,30 @@ export const routes: Routes = [
       },
       {
         path: 'purchase-order',
+        canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () =>
+              import(
+                './pages/purchase-order/po-dashboard/po-dashboard.component'
+              ).then((c) => c.PoDashboardComponent),
+            canActivate: [authGuard],
+          },
+          {
+            path: 'create',
+            pathMatch: 'full',
+            loadComponent: () =>
+              import('./pages/purchase-order/po-form/po-form.component').then(
+                (c) => c.PoFormComponent
+              ),
+            canActivate: [authGuard],
+          },
+        ],
+      },
+      {
+        path: 'create',
         pathMatch: 'full',
         loadComponent: () =>
           import('./components/purchase-form/purchase-form.component').then(
@@ -136,5 +165,11 @@ export const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
-  { path: '**', redirectTo: '/login' },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./pages/no-page-exist/no-page-exist.component').then(
+        (c) => c.NoPageExistComponent
+      ),
+  },
 ];

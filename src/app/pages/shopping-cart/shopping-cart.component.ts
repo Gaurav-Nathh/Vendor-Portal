@@ -2,6 +2,7 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Product } from '../../Models/product.model';
 import { FormsModule } from '@angular/forms';
+import { SharedService } from '../../services/shared/shared.service';
 
 declare var bootstrap: any;
 
@@ -28,6 +29,8 @@ export class ShoppingCartComponent {
   ];
   selectedOption = 'All Products';
   selectedCategoryOption: string = '';
+
+  constructor(private sharedService: SharedService) {}
 
   ngOnInit(): void {
     // this.http.get<any>('/assets/test.json').subscribe((data) => {
@@ -66,6 +69,9 @@ export class ShoppingCartComponent {
     this.filterTopList = !this.filterTopList;
   }
 
+  toggleShoppingCart() {
+    this.sharedService.toggleShoppingCartVisibility();
+  }
   products: Product[] = [
     {
       name: 'Cleaning & Household',
@@ -159,6 +165,13 @@ export class ShoppingCartComponent {
   selectNavFilterOption(optionId: string) {
     this.selectedNavFilterOptionId = optionId;
     console.log('Selected Option Id: ', optionId);
+  }
+
+  selectedSideFilter: any = null;
+
+  filterSideModal(filter: any) {
+    console.log(filter);
+    this.selectedSideFilter = filter;
   }
 
   cart: Product[] = [];
@@ -378,6 +391,46 @@ export class ShoppingCartComponent {
     {
       title: 'Color',
       options: [
+        { id: '101', label: 'Red' },
+        { id: '102', label: 'Blue' },
+        { id: '103', label: 'Green' },
+        { id: '104', label: 'Yellow' },
+        { id: '105', label: 'Black' },
+        { id: '106', label: 'White' },
+        { id: '107', label: 'Orange' },
+        { id: '108', label: 'Purple' },
+        { id: '109', label: 'Pink' },
+        { id: '110', label: 'Grey' },
+        { id: '101', label: 'Red' },
+        { id: '101', label: 'Red' },
+        { id: '101', label: 'Red' },
+        { id: '102', label: 'Blue' },
+        { id: '103', label: 'Green' },
+        { id: '104', label: 'Yellow' },
+        { id: '105', label: 'Black' },
+        { id: '106', label: 'White' },
+        { id: '107', label: 'Orange' },
+        { id: '108', label: 'Purple' },
+        { id: '109', label: 'Pink' },
+        { id: '110', label: 'Grey' },
+        { id: '102', label: 'Blue' },
+        { id: '103', label: 'Green' },
+        { id: '104', label: 'Yellow' },
+        { id: '105', label: 'Black' },
+        { id: '106', label: 'White' },
+        { id: '107', label: 'Orange' },
+        { id: '108', label: 'Purple' },
+        { id: '109', label: 'Pink' },
+        { id: '110', label: 'Grey' },
+        { id: '102', label: 'Blue' },
+        { id: '103', label: 'Green' },
+        { id: '104', label: 'Yellow' },
+        { id: '105', label: 'Black' },
+        { id: '106', label: 'White' },
+        { id: '107', label: 'Orange' },
+        { id: '108', label: 'Purple' },
+        { id: '109', label: 'Pink' },
+        { id: '110', label: 'Grey' },
         { id: '101', label: 'Red' },
         { id: '102', label: 'Blue' },
         { id: '103', label: 'Green' },

@@ -124,7 +124,7 @@ export class SidebarComponent {
     {
       text: 'Purchase Order',
       icon: 'fa-solid fa-rectangle-list',
-      route: '/customer/purchase-dashboard',
+      route: '/customer/purchase-order',
     },
     {
       text: 'Vendors',

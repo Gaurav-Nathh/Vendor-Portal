@@ -56,6 +56,7 @@
           </span>
         </div>
       </div>
+      <i class="fa-solid fa-circle-xmark" (click)="toggleShoppingCart()"></i>
     </div>
   </Section>
   <!-- Product Ends -->
@@ -150,7 +151,10 @@
       </button>
     </div>
   </section>
+
+  <!-- Side Filter and Shoppin Cart section -->
   <section id="shopping-section" class="">
+    <!-- Side Filter -->
     <section class="category-side-menu">
       <h5>Filters</h5>
       <div class="checkbox-title" *ngFor="let filter of filters; let i = index">
@@ -165,11 +169,106 @@
         <div class="collapse" id="filter{{ i }}">
           <div class="option-section">
             <div
-              class="checkbox-container form-check"
+              class="checkbox-container"
               *ngFor="let option of filter.options.slice(0, 5)"
             >
               <div class="checkbox">
-                <label class="form-check-label" [for]="option.id">
+                <label class="" [for]="option.id">
+                  <input
+                    type="checkbox"
+                    class="form-check-input rounded-circle"
+                    [id]="option.id"
+                  />
+                  {{ option.label }}
+                </label>
+              </div>
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="filterModal"
+                tabindex="-1"
+                aria-labelledby="filterModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="filterModalLabel">
+                        {{ filter.title }}
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="modal-checkbox-grid">
+                        <div
+                          class="checkbox"
+                          *ngFor="let option of filter.options"
+                        >
+                          <label [for]="option.id">
+                            <input
+                              type="checkbox"
+                              class="form-check-input rounded-circle"
+                              [id]="option.id"
+                            />
+                            {{ option.label }}
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal ENDS -->
+            </div>
+            <button
+              *ngIf="filter.options.length > 5"
+              class="checkbox"
+              (click)="filterSideModal(filter)"
+              data-bs-toggle="modal"
+              data-bs-target="#filterModal"
+            >
+              more...
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Side Filter Ends -->
+
+    <!-- Side Filter Option Modal -->
+    <!-- <section
+      class="modal fade"
+      id="filterModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="filterModalLabel">
+              {{ selectedSideFilter?.title }}
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="modal-checkbox-grid">
+              <div
+                class="bord checkbox"
+                *ngFor="let option of selectedSideFilter?.options"
+              >
+                <label [for]="option.id">
                   <input
                     type="checkbox"
                     class="form-check-input rounded-circle"
@@ -179,17 +278,22 @@
                 </label>
               </div>
             </div>
-            <a
-              *ngIf="filter.options.length > 5"
-              href="#"
-              class="text-primary small"
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
             >
-              more...
-            </a>
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
+    <!-- Side Filter Option Modal ENDS-->
+
     <section class="card-section">
       <div class="card-grid">
         <div class="product-card" *ngFor="let product of products">

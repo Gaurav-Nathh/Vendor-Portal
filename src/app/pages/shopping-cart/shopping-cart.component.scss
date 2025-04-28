@@ -64,7 +64,7 @@
 
 #shopping-section {
   display: grid;
-  grid-template-columns: 13rem auto;
+  grid-template-columns: 15rem auto;
   height: 100svh;
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -106,12 +106,12 @@
     width: 14.5rem;
 
     button {
-      width: 12rem;
+      width: 14rem;
       border-radius: 0.5rem;
     }
 
     .dropdown-menu {
-      width: 12rem !important;
+      width: 14rem !important;
     }
   }
 
@@ -246,17 +246,22 @@
   padding-left: 0.5rem;
   padding-bottom: 0.5rem;
   margin-top: 0.5rem;
-  border-bottom: 1px solid var(--border-grey);
+  // border-bottom: 1px solid var(--border-grey);s
 
   .checkbox-container {
     display: flex;
-    padding-right: 0.3rem;
+    padding-inline: 0.5rem;
+    padding-block: 0.2rem;
     align-items: center;
-    border-radius: 1rem;
-    background-color: var(--color-card);
+    border-radius: 2rem;
+    background-color: #dce1fa66;
 
     .checkbox {
       font-size: 0.8rem;
+
+      input::focus {
+        background-color: var(--color-blue);
+      }
     }
   }
 }
