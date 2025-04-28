@@ -301,11 +301,11 @@
         <div class="product-card" *ngFor="let product of filteredProducts">
           <img [src]="product.imageUrl" alt="Product Image" />
           <div class="card-content">
-            <h5 class="card-title fw-bold text-uppercase text-break">
+            <h5 class="card-title fw-bold text-uppercase text-break text-center">
               {{ product.name }}
             </h5>
-            <p class="mt-1">
-              <small>Stock: {{ product.stockId }}</small>
+            <p class="mt-1 text-center">
+              <small>Stock Id: {{ product.stockId }}</small>
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <p class="fw-semibold mb-0">Price: ₹ {{ product.price }}</p>
