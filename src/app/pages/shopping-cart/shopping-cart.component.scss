@@ -17,6 +17,52 @@
       display: none;
     }
   }
+
+
+
+/* filepath: c:\Users\HP\OneDrive\Desktop\bng---portal\bng\Vendor-Portal\src\app\pages\shopping-cart\shopping-cart.component.scss */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 2rem;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+  background-color: transparent;
+}
+
+.search-input::placeholder {
+  color: #aaa;
+}
+
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-blue);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
 }
 
 #search-section {
@@ -275,6 +321,44 @@
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
     display: none;
+  }
+  .card-grid{
+    
+    .product-card:hover {
+      box-shadow: 
+        0 10px 20px rgba(22, 78, 127, 0.3),
+        0 6px 6px rgba(22, 78, 127, 0.2);
+      transform: translateY(-5px) scale(1.02);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      
+      
+      z-index: 10;
+      border-radius: 8px;
+    }
+
+
+    
+    .product-card{
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+     
+      .img-container{
+        position: relative;
+        overflow: hidden; /* Ensures the image stays within the container */
+        width:100%; /* Ensures the container takes full width */
+        height: 200px; /* Set a fixed height for the container */
+        border-radius: 8px; /* Optional: Adds rounded corners */
+        
+      }
+   
+      img {
+        width: 90%; /* Ensures the image scales to the container's width */
+        height: 100%; /* Ensures the image scales to the container's height */
+        object-fit: cover; /* Ensures the image covers the container without distortion */
+        object-position: center;
+      }
+    }
   }
 }
 

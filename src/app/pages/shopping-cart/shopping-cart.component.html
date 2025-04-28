@@ -1,7 +1,7 @@
 <section id="shopping-cart" class="">
   <Section id="nav-prod" class="">
     <span class="fw-bold">Shopping Cart</span>
-    <div id="search-section" class="">
+    <!-- <div id="search-section" class="">
       <input
         type="text"
         name=""
@@ -14,7 +14,21 @@
       <button id="search-btn" class="">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
+    </div> -->
+    <div id="search-section" class="search-container">
+      <input
+        type="text"
+        id="prod-search"
+        class="search-input"
+        placeholder="Search products..."
+        [(ngModel)]="searchText"
+        (input)="filterProducts()"
+      />
+      <button id="search-btn" class="search-button">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
     </div>
+    
     <div id="cartNavIcons" class="d-flex gap-2 align-items-center">
       <div
         id="sortBy"
@@ -299,7 +313,10 @@
     <section class="card-section">
       <div class="card-grid">
         <div class="product-card" *ngFor="let product of filteredProducts">
-          <img [src]="product.imageUrl" alt="Product Image" />
+          <div class="img-container">
+            <img [src]="product.imageUrl" alt="Product Image" class=""/>
+          </div>
+          
           <div class="card-content">
             <h5 class="card-title fw-bold text-uppercase text-break text-center">
               {{ product.name }}
