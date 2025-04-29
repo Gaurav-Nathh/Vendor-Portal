@@ -22,7 +22,7 @@ export class ShoppingCartComponent {
   categoryDropDownOpen = false;
   filterTopDropDownOpen = false;
   filterTopList = false;
-  sideFilterMobile = true;
+  sideFilterMobile = false;
   // filters: any[] = [];
   sortByOptions = [
     'All Products',

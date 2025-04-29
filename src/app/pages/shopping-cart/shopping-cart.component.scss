@@ -389,7 +389,9 @@
 }
 
 .category-side-menu.show {
-  display: none;
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .card-section {
