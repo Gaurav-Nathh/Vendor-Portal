@@ -243,6 +243,8 @@
                     type="checkbox"
                     class="form-check-input rounded-circle"
                     [id]="option.id"
+                    [value]="option.label"
+                    (change)="onCheckboxChange(option.label, filter.title.toLowerCase())"
                   />
                   {{ option.label }}
                 </label>
@@ -302,6 +304,7 @@
           </div>
         </div>
       </div>
+      <button type="button" class="btn btn-primary" (click)="resetFilters()">Reset Filter</button>
     </section>
     <!-- Side Filter Ends -->
 
