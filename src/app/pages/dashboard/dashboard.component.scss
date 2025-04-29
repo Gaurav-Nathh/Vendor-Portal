@@ -1,35 +1,78 @@
-// Design System Variables
+// Design System Variables - Updated Color Palette
 $primary: #4361ee;
-$secondary: #3f37c9;
+$secondary: #3a0ca3;
 $success: #4cc9f0;
+$info: #4895ef;
 $warning: #f8961e;
-$danger: #f94144;
+$danger: #f72585;
 $light: #f8f9fa;
 $dark: #212529;
 $gray: #6c757d;
 $light-gray: #e9ecef;
 
+// New Vibrant Colors
+$violet: #7209b7;
+$pink: #b5179e;
+$teal: #38b2ac;
+$indigo: #5a67d8;
+$orange: #f97316;
+$yellow: #f59e0b;
+
 $border-radius: 12px;
 $box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 $transition: all 0.3s ease;
 
-// Base Styles
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #f5f7fa;
-  color: $dark;
-  line-height: 1.6;
+// Animation Keyframes
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+// Base Styles with Animations
 .dashboard-container {
-  max-width: 1400px;
+  width: 100%;
+  background-color: #f5f7fa;
   margin: 0 auto;
   padding: 2rem;
   display: grid;
   gap: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+  > * {
+    animation: fadeIn 0.6s ease-out forwards;
+    
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * 0.1s;
+      }
+    }
+  }
 }
 
-// Stats Cards
+// Stats Cards with Animations
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -44,10 +87,27 @@ body {
   color: white;
   transition: $transition;
   box-shadow: $box-shadow;
+  transform-style: preserve-3d;
   
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px) perspective(1000px) rotateX(5deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    
+    .stat-icon {
+      animation: float 2s ease-in-out infinite;
+      opacity: 0.5;
+    }
+    
+    .card-bg::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(white, 0.2) 0%, transparent 70%);
+      animation: ripple 2s ease-out infinite;
+    }
   }
   
   .card-bg {
@@ -72,57 +132,112 @@ body {
   
   .stat-info {
     flex: 1;
+    transform: translateZ(30px);
   }
   
   .stat-title {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 0.5rem;
     opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
   }
   
   .stat-value {
     font-size: 1.75rem;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: $transition;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
   }
   
   .stat-meta {
     font-size: 0.85rem;
-    opacity: 0.8;
+    opacity: 0.9;
+    font-weight: 500;
   }
   
   .stat-icon {
-    font-size: 2.5rem;
-    opacity: 0.2;
+    font-size: 3rem;
+    opacity: 0.3;
     margin-left: 1rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    transition: $transition;
   }
 }
 
 .primary-card {
-  background: linear-gradient(135deg, $primary 0%, $secondary 100%);
+  background: linear-gradient(135deg, $primary 0%, $indigo 100%);
 }
 
 .warning-card {
-  background: linear-gradient(135deg, $warning 0%, #f3722c 100%);
+  background: linear-gradient(135deg, $orange 0%, $yellow 100%);
 }
 
 .danger-card {
-  background: linear-gradient(135deg, $danger 0%, #f3722c 100%);
+  background: linear-gradient(135deg, $danger 0%, $pink 100%);
 }
 
-// Payment and Documents Section
+// Payment and Documents Section with Animations
 .data-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
-.payment-card, .documents-card {
+.payment-card {
   background: white;
   border-radius: $border-radius;
   padding: 1.5rem;
   box-shadow: $box-shadow;
+  border-top: 4px solid $success;
+  transition: $transition;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-header {
+    h2 {
+      color: $dark;
+    }
+  }
+  
+  .payment-amount {
+    color: $primary;
+    font-weight: 800;
+    transition: $transition;
+    
+    &:hover {
+      transform: scale(1.02);
+      text-shadow: 0 2px 5px rgba($primary, 0.1);
+    }
+  }
+}
+
+.documents-card {
+  background: white;
+  border-radius: $border-radius;
+  padding: 1.5rem;
+  box-shadow: $box-shadow;
+  border-top: 4px solid $violet;
+  transition: $transition;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-header {
+    h2 {
+      color: $dark;
+    }
+  }
 }
 
 .section-header {
@@ -133,8 +248,9 @@ body {
   
   h2 {
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 700;
     margin: 0;
+    color: $dark;
   }
 }
 
@@ -148,14 +264,15 @@ body {
   
   &:hover {
     color: $primary;
+    animation: pulse 0.5s ease;
   }
 }
 
 .payment-details {
   .payment-amount {
     font-size: 1.75rem;
-    font-weight: 700;
-    color: $dark;
+    font-weight: 800;
+    color: $primary;
     margin-bottom: 1rem;
   }
   
@@ -165,12 +282,17 @@ body {
       padding: 0.35rem 0.75rem;
       border-radius: 20px;
       font-size: 0.85rem;
-      font-weight: 500;
+      font-weight: 600;
+      transition: $transition;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
     }
     
     .success-badge {
-      background-color: rgba($success, 0.1);
-      color: darken($success, 20%);
+      background-color: rgba($success, 0.2);
+      color: darken($success, 30%);
     }
     
     .payment-date {
@@ -189,11 +311,16 @@ body {
   
   .count {
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 0.5rem;
+    transition: $transition;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
     
     &:first-child {
-      color: $primary;
+      color: $violet;
     }
     
     &:last-child {
@@ -204,21 +331,55 @@ body {
   .count-label {
     font-size: 0.95rem;
     color: $gray;
+    font-weight: 500;
   }
 }
 
-// Account Section
+// Account Section with Animations
 .account-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
-.company-details-card, .user-profile-card {
+.company-details-card {
   background: white;
   border-radius: $border-radius;
   padding: 1.5rem;
   box-shadow: $box-shadow;
+  border-top: 4px solid $info;
+  transition: $transition;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-header {
+    h2 {
+      color: $dark;
+    }
+  }
+}
+
+.user-profile-card {
+  background: white;
+  border-radius: $border-radius;
+  padding: 1.5rem;
+  box-shadow: $box-shadow;
+  border-top: 4px solid $teal;
+  transition: $transition;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-header {
+    h2 {
+      color: $dark;
+    }
+  }
 }
 
 .company-info {
@@ -231,19 +392,27 @@ body {
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgba($primary, 0.1) 0%, rgba($primary, 0.2) 100%);
+      background: linear-gradient(135deg, rgba($primary, 0.1) 0%, rgba($primary, 0.3) 100%);
       color: $primary;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
       margin-right: 1rem;
+      box-shadow: 0 4px 10px rgba($primary, 0.1);
+      transition: $transition;
+      
+      &:hover {
+        transform: rotate(15deg) scale(1.1);
+        box-shadow: 0 6px 15px rgba($primary, 0.2);
+      }
     }
     
     .company-name {
       font-size: 1.25rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 0.25rem;
+      color: $dark;
     }
     
     .contact-name, .contact-email {
@@ -268,9 +437,14 @@ body {
       p {
         font-size: 0.9rem;
         margin-bottom: 0.25rem;
+        transition: $transition;
+        
+        &:hover {
+          transform: translateX(5px);
+        }
         
         span {
-          font-weight: 500;
+          font-weight: 600;
           color: $dark;
         }
       }
@@ -283,9 +457,11 @@ body {
       font-size: 1rem;
       cursor: pointer;
       align-self: flex-start;
+      transition: $transition;
       
       &:hover {
         color: $primary;
+        transform: rotate(90deg);
       }
     }
   }
@@ -304,6 +480,12 @@ body {
       
       p {
         font-size: 0.9rem;
+        color: $dark;
+        transition: $transition;
+        
+        &:hover {
+          transform: translateX(5px);
+        }
       }
     }
   }
@@ -318,19 +500,27 @@ body {
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgba($success, 0.1) 0%, rgba($success, 0.2) 100%);
-      color: $success;
+      background: linear-gradient(135deg, rgba($teal, 0.1) 0%, rgba($teal, 0.3) 100%);
+      color: $teal;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2rem;
       margin-right: 1.5rem;
+      box-shadow: 0 4px 10px rgba($teal, 0.1);
+      transition: $transition;
+      
+      &:hover {
+        animation: bounceIn 0.6s ease;
+        box-shadow: 0 6px 15px rgba($teal, 0.2);
+      }
     }
     
     .user-name {
       font-size: 1.25rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 0.25rem;
+      color: $dark;
     }
     
     .user-email {
@@ -347,13 +537,38 @@ body {
   padding: 0.35rem 0.75rem;
   border-radius: 6px;
   font-size: 0.85rem;
+  font-weight: 600;
   cursor: pointer;
   transition: $transition;
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba($primary, 0.3);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
   
   &:hover {
     background: $light;
     color: $primary;
     border-color: rgba($primary, 0.3);
+    
+    &::after {
+      animation: ripple 0.6s ease-out;
+    }
+  }
+  
+  &:active {
+    transform: scale(0.96);
   }
 }
 
