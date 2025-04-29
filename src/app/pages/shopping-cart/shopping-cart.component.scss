@@ -1,17 +1,23 @@
 #shopping-cart {
+  color: var(--primary-text);
   height: 100%;
   display: flex;
   flex-direction: column;
   padding-right: 0.5rem;
   overflow: hidden;
-  background-color: white;
+  background-color: rgb(255, 255, 255); ///color chnage
   transition: right 0.3s ease;
+  background-color: var(--color-sidnav);
+}
+.fa-solid{
+  color: var(--primary-text);
 }
 #nav-prod {
+  background-color: var(--color-sidnav);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.4rem;
+  padding-bottom: 0.4rem;
 
   span {
     @media (max-width: 768px) {
@@ -94,7 +100,7 @@
     width: 2.5rem;
     border-radius: 100%;
     color: var(--color-blue);
-    background-color: white;
+    background-color: var(--color-sidnav);
   }
 }
 
@@ -158,6 +164,7 @@
 }
 
 #filterTop {
+  background-color: var(--color-sidnav);
   display: flex;
   padding-bottom: 0.5rem;
   gap: 0.4rem;
@@ -182,12 +189,14 @@
   }
 
   #filterTopContainer {
+     background-color: var(--color-sidnav);
     width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 0.5rem;
 
     #listContainer {
+     
       width: 100%;
       position: relative;
 
@@ -327,6 +336,8 @@
 }
 
 .category-side-menu {
+  background-color: var(--color-sidnav);
+  color: var(--primary-text);
   display: block;
   overflow-y: auto;
   padding: 1rem;
@@ -415,11 +426,12 @@
     justify-content: center;
 
     .product-card {
+      background-color: var(--color-sidnav);
       text-wrap: wrap;
       height: fit-content;
       margin-inline: auto;
       width: 22rem;
-      background: #fff;
+      color: var(--primary-text);
       border: 1px solid #ddd;
       border-radius: 0.75rem;
       padding: 1.3rem;
