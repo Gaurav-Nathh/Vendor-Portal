@@ -220,7 +220,7 @@
   <!-- Side Filter and Shoppin Cart section -->
   <section id="shopping-section" class="">
     <!-- Side Filter -->
-    <section class="category-side-menu">
+    <section class="category-side-menu" [class.show]="sideFilterMobile">
       <h5>Filters</h5>
       <div class="checkbox-title" *ngFor="let filter of filters; let i = index">
         <div
@@ -401,6 +401,9 @@
         </div>
       </div>
     </section>
+    <div id="filterBtn" (click)="toggleSideFilterMobile()">
+      <i class="fa-solid fa-filter"></i>
+    </div>
   </section>
 
   <!-- Cart Modal -->

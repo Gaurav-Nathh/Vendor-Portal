@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { SharedService } from '../../services/shared/shared.service';
 import Swal from 'sweetalert2';
 
-
 declare var bootstrap: any;
 
 @Component({
@@ -23,6 +22,7 @@ export class ShoppingCartComponent {
   categoryDropDownOpen = false;
   filterTopDropDownOpen = false;
   filterTopList = false;
+  sideFilterMobile = true;
   // filters: any[] = [];
   sortByOptions = [
     'All Products',
@@ -41,12 +41,12 @@ export class ShoppingCartComponent {
     //   this.filters = data;
     // });
     // console.log(this.filters);
-    this.filteredProducts = this.products; 
+    this.filteredProducts = this.products;
   }
-  
+
   filterProducts() {
     const search = this.searchText.toLowerCase();
-    this.filteredProducts = this.products.filter(product =>
+    this.filteredProducts = this.products.filter((product) =>
       product.name.toLowerCase().includes(search)
     );
   }
@@ -84,83 +84,99 @@ export class ShoppingCartComponent {
   toggleShoppingCart() {
     this.sharedService.toggleShoppingCartVisibility();
   }
+
+  toggleSideFilterMobile() {
+    this.sideFilterMobile = !this.sideFilterMobile;
+  }
+
   products: Product[] = [
     {
       name: 'Cleaning & Household',
       stockId: 'FNSRM0000048147',
       price: 500,
       stock: 12,
-      imageUrl: 'https://images.unsplash.com/photo-1593081891731-fda0877988da?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl:
+        'https://images.unsplash.com/photo-1593081891731-fda0877988da?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Personal Care',
       stockId: 'FNSRM0000048123',
       price: 300,
       stock: 4,
-      imageUrl: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl:
+        'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Groceries',
       stockId: 'FNSRM0000048999',
       price: 250,
       stock: 0,
-      imageUrl: 'https://images.unsplash.com/photo-1555529669-2269763671c0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl:
+        'https://images.unsplash.com/photo-1555529669-2269763671c0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Cleaning & Household',
       stockId: 'FNSRM0000048147',
       price: 500,
       stock: 7,
-      imageUrl: 'https://images.unsplash.com/photo-1605636808063-ba999ff935eb?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl:
+        'https://images.unsplash.com/photo-1605636808063-ba999ff935eb?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Personal Care',
       stockId: 'FNSRM0000048123',
       price: 300,
       stock: 12,
-      imageUrl: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl:
+        'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Groceries',
       stockId: 'FNSRM0000048999',
       price: 250,
       stock: 0,
-      imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl:
+        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Cleaning & Household',
       stockId: 'FNSRM0000048147',
       price: 500,
       stock: 13,
-      imageUrl: 'https://plus.unsplash.com/premium_photo-1664392147011-2a720f214e01?q=80&w=2078&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl:
+        'https://plus.unsplash.com/premium_photo-1664392147011-2a720f214e01?q=80&w=2078&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Personal Care',
       stockId: 'FNSRM00000481234',
       price: 300,
       stock: 3,
-      imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl:
+        'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Groceries',
       stockId: 'FNSRM00000489992',
       price: 250,
       stock: 18,
-      imageUrl: 'https://images.unsplash.com/photo-1615397349754-cfa2066a298e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl:
+        'https://images.unsplash.com/photo-1615397349754-cfa2066a298e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Personal Care',
       stockId: 'FNSRM00000481231',
       price: 300,
       stock: 3,
-      imageUrl: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl:
+        'https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Groceries',
       stockId: 'FNSRM00000489990',
       price: 250,
       stock: 18,
-      imageUrl: 'https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl:
+        'https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
   ];
 
@@ -189,8 +205,6 @@ export class ShoppingCartComponent {
   cart: Product[] = [];
 
   addToCart(product: Product) {
-
-    
     Swal.fire({
       toast: true,
       position: 'top-end',
@@ -203,10 +217,9 @@ export class ShoppingCartComponent {
       customClass: {
         popup: 'swal-toast',
         icon: 'no-border', // This removes the icon container border
-        title: 'swal-title'
-      }
+        title: 'swal-title',
+      },
     });
-    
 
     const existing = this.cart.find((item) => item.stockId === product.stockId);
     if (existing) {
