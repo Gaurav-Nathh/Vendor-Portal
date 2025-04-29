@@ -1,125 +1,143 @@
-<div class="dashboard">
-  <!-- Cards Section -->
-  <div class="dashboard__grid">
+<div class="dashboard-container">
+  <!-- Stats Cards Row -->
+  <div class="stats-grid">
     <!-- Card 1 -->
-    <div class="dashboard__card">
-      <div class="dashboard__card-overlay">
-        <div class="dashboard__card-content">
-          <p class="dashboard__card-title">Outstanding Invoice</p>
-          <p class="dashboard__card-desc">₹ 850000</p>
+    <div class="stat-card primary-card">
+      <div class="card-bg"></div>
+      <div class="card-content">
+        <div class="stat-info">
+          <h3 class="stat-title">Outstanding Invoice</h3>
+          <p class="stat-value">₹ 850,000</p>
+          <p class="stat-meta">1 Outstanding Performance</p>
         </div>
-        <span class="dashboard__card-amount">Number of Outstanding performance   1</span>
+        <div class="stat-icon">
+          <i class="fas fa-file-invoice-dollar"></i>
+        </div>
       </div>
-      <img src="assets/dashboard_card/blue-card.svg" alt="Blue Card" class="dashboard__card-image" />
     </div>
     
     <!-- Card 2 -->
-    <div class="dashboard__card">
-      <div class="dashboard__card-overlay">
-        <div class="dashboard__card-content">
-          <p class="dashboard__card-title">Credit Limit</p>
-          <p class="dashboard__card-desc">₹ 840000</p>
+    <div class="stat-card warning-card">
+      <div class="card-bg"></div>
+      <div class="card-content">
+        <div class="stat-info">
+          <h3 class="stat-title">Credit Limit</h3>
+          <p class="stat-value">₹ 840,000</p>
+        </div>
+        <div class="stat-icon">
+          <i class="fas fa-credit-card"></i>
         </div>
       </div>
-      <img src="assets/dashboard_card/yellow-card.svg" alt="Blue Card" class="dashboard__card-image" />
     </div>
     
     <!-- Card 3 -->
-    <div class="dashboard__card">
-      <div class="dashboard__card-overlay">
-        <div class="dashboard__card-content">
-          <p class="dashboard__card-title">Open Purchase Order</p>
-          <p class="dashboard__card-desc">1</p>
+    <div class="stat-card danger-card">
+      <div class="card-bg"></div>
+      <div class="card-content">
+        <div class="stat-info">
+          <h3 class="stat-title">Open Purchase Order</h3>
+          <p class="stat-value">1</p>
         </div>
-      </div>
-      <img src="assets/dashboard_card/orange-card.svg" alt="Blue Card" class="dashboard__card-image" />
-    </div>
-  </div>
-
-  <!-- Payment History and Document Status -->
-  <div class="dashboard_payment">
-    <h2 class="payment_heading">Last Payment Received <span>
-      <img src="assets/dashboard_img/Frame.png" alt="Info" class="dashboard__img" />
-    </span></h2>
-  
-    <div class="dashboard__row">
-      <div class="payment_histry">
-        <div class="pyment_recevd">
-          <p>₹ 6,00,00.00</p>
-          <div class="payemnt_status">
-            <span>Payment Received</span>
-            <p>On 12th Jan 2023</p>
-          </div>
-        </div>
-      </div>
-    
-      <div class="dashboard_docmnt">
-        <div class="pyment_recevd">
-          <div class="">
-            <span>1</span>
-            <p>Pending Document</p>
-          </div>
-          <div class="docmnt_status">
-            <span>0</span>
-            <p>Rejected Document</p>
-          </div>
+        <div class="stat-icon">
+          <i class="fas fa-shopping-cart"></i>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Account Details and User Details -->
-  <div class="account-container">
-    <div class="account-detls">
-      <p class="heading">My Account Details</p>
-      <div class="account-addrs">
-        <div class="account-info">
-          <div class="d-flex">
-            <img src="assets/dashboard_img/blue-line.svg" alt="Icon" class="dashboard__blueline" />
-            <span>
-              <p class="account-holder">Comapny Name</p>
-              <p class="account-name">Name</p>
-              <p class="account-holder">Emailgmail.com</p>
-            </span>
-          </div>
-          <i class="fa-solid fa-pencil"></i>
+  <!-- Payment and Documents Section -->
+  <div class="data-section">
+    <div class="payment-card">
+      <div class="section-header">
+        <h2>Last Payment Received</h2>
+        <button class="info-button" aria-label="Info">
+          <i class="fas fa-info-circle"></i>
+        </button>
+      </div>
+      <div class="payment-details">
+        <p class="payment-amount">₹ 6,00,000.00</p>
+        <div class="payment-status">
+          <span class="badge success-badge">Payment Received</span>
+          <p class="payment-date">On 12th Jan 2023</p>
         </div>
-     
-        <div class="gst-address">
-          <div>
-            <p>GST Information</p>
-            <div>
-              <p><span>GST Treatment:</span> Registered Business-Regular</p>
-              <p><span> Business GSTIN:</span> 32AA000A1Z7</p>
-            </div>
-          </div>
-          <i class="fa-solid fa-pencil"></i>
+      </div>
+    </div>
+
+    <div class="documents-card">
+      <div class="documents-grid">
+        <div class="document-count">
+          <p class="count">1</p>
+          <p class="count-label">Pending Documents</p>
         </div>
-    
-        <div class="info-address">
-          <div>
-            <p>Billing Address</p>
-            <span>46,Plot,sector Mahavir</span>
+        <div class="document-count">
+          <p class="count">0</p>
+          <p class="count-label">Rejected Documents</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Account Details Section -->
+  <div class="account-section">
+    <div class="company-details-card">
+      <div class="section-header">
+        <h2>My Account Details</h2>
+        <button class="edit-button">
+          <i class="fas fa-pencil-alt"></i> Edit
+        </button>
+      </div>
+      
+      <div class="company-info">
+        <div class="company-header">
+          <div class="avatar">
+            <i class="fas fa-building"></i>
           </div>
-          <div>
-            <p>Shipping Address</p>
-            <span>46,Plot,sector Mahavir</span>
+          <div class="company-text">
+            <h3 class="company-name">Company Name</h3>
+            <p class="contact-name">Name</p>
+            <p class="contact-email">emailgmail.com</p>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-group">
+            <h4 class="info-label">GST Information</h4>
+            <p><span>GST Treatment:</span> Registered Business-Regular</p>
+            <p><span>Business GSTIN:</span> 32AA000A1Z7</p>
+          </div>
+          <button class="icon-button" aria-label="Edit">
+            <i class="fas fa-pencil-alt"></i>
+          </button>
+        </div>
+
+        <div class="address-row">
+          <div class="address-group">
+            <h4 class="info-label">Billing Address</h4>
+            <p>46, Plot, Sector Mahavir</p>
+          </div>
+          <div class="address-group">
+            <h4 class="info-label">Shipping Address</h4>
+            <p>46, Plot, Sector Mahavir</p>
           </div>
         </div>
       </div>
     </div>
-  
-    <div class="account-detls">
-      <p class="heading">User Details</p>
-      <div class="account-profile-container">
-        <div class="account-profile">
-          <div class="user-info">
-            <img src="assets/dashboard_img/profile.svg" alt="Profile" class="dashboard__profile" />
-            <span>
-              <p>Full Name</p>
-              <p>Emailgmail.com</p>
-            </span>
-          </div>
+
+    <div class="user-profile-card">
+      <div class="section-header">
+        <h2>User Details</h2>
+        <button class="edit-button">
+          <i class="fas fa-pencil-alt"></i> Edit
+        </button>
+      </div>
+      
+      <div class="profile-content">
+        <div class="user-avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="user-info">
+          <h3 class="user-name">Full Name</h3>
+          <p class="user-email">emailgmail.com</p>
         </div>
       </div>
     </div>
