@@ -15,10 +15,69 @@
       </button>
     </div>
 
-    <div id="cartNavIcons" class="d-flex gap-2 align-items-center">
+    <div id="cartNavIcons" class="d-flex align-items-center">
       <div
-        id="sortBy"
-        class="dropdown"
+        id="sortByBody"
+        class="dropdown d-flex justify-content-end"
+        [class.show]="sortByDropDownOpen"
+      >
+        <div class="sortBy">
+          <small
+            class="dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            (click)="toggleDropdown()"
+          >
+            Sort by
+            <span style="color: var(--color-blue)" class="mx-1">{{
+              selectedOption
+            }}</span>
+          </small>
+          <ul class="dropdown-menu w-100" [class.show]="sortByDropDownOpen">
+            <li *ngFor="let option of sortByOptions">
+              <small
+                class="dropdown-item"
+                (click)="selectOption(option); $event.stopPropagation()"
+                >{{ option }}</small
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <button
+        id="toggleSortByMobile"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMobileCollapse"
+        aria-bs-expanded="false"
+        aria-bs-controls="collapseExample"
+        style="background-color: transparent"
+      >
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="cart-body" class="">
+        <div class="cart-container" (click)="openCartModal()">
+          <i class="fa fa-shopping-cart cart-icon"></i>
+          <span *ngIf="totalQty > 0" class="cart-badge">
+            {{ totalQty > 99 ? "99+" : totalQty }}
+          </span>
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <i
+          class="fs-4 fa-solid fa-circle-xmark"
+          style="color: red"
+          (click)="toggleShoppingCart()"
+        ></i>
+      </div>
+    </div>
+  </Section>
+  <!-- Product Ends -->
+  <section id="cartNavCollapse">
+    <div class="collapse" id="navMobileCollapse">
+      <div
+        id="sortByCollapse"
+        class="dropdown shortByCollapse"
         (click)="toggleDropdown()"
         [class.show]="sortByDropDownOpen"
       >
@@ -41,64 +100,68 @@
           </li>
         </ul>
       </div>
-      <button
-        type="button"
-        class="ps-3"
-        data-bs-toggle="collapse"
-        data-bs-target="#cartNavCollapse"
-        style="background-color: transparent"
-      >
-        <i class="fa-solid fa-chevron-down"></i>
-      </button>
-      <div id="cart-body" class="ps-3">
-        <div class="cart-container" (click)="openCartModal()">
-          <i class="fa fa-shopping-cart cart-icon"></i>
-          <span *ngIf="totalQty > 0" class="cart-badge">
-            {{ totalQty > 99 ? "99+" : totalQty }}
-          </span>
-        </div>
-      </div>
-      <i class="fa-solid fa-circle-xmark" (click)="toggleShoppingCart()"></i>
-    </div>
-  </Section>
-  <!-- Product Ends -->
-  <section
-    class="collapse"
-    id="cartNavCollapse"
-    aria-expanded="false"
-    aria-controls="collapseExample"
-  >
-    <div
-      id="sortBy"
-      class="dropdown"
-      (click)="toggleDropdown()"
-      [class.show]="sortByDropDownOpen"
-    >
-      <small
-        class="dropdown-toggle d-flex align-items-center justify-content-between"
-        type="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        Sort by {{ selectedOption }}
-      </small>
-
-      <ul class="dropdown-menu w-100" [class.show]="sortByDropDownOpen">
-        <li *ngFor="let option of sortByOptions">
-          <small
-            class="dropdown-item"
-            (click)="selectOption(option); $event.stopPropagation()"
-            >{{ option }}</small
+      <section id="filterTop" class="mobile">
+        <div class="category-box" [class.show]="categoryDropDownOpen">
+          <button
+            class="p-2 fs-6 d-flex align-items-center justify-content-between"
+            type="button"
+            id="dropdownMenuButton"
+            data-bs-toggle="dropdown"
+            (click)="toggleFilterTopDropdown()"
           >
-        </li>
-      </ul>
+            {{ selectedNavFilterTitleDisplay }}
+            <i
+              class="bi bi-chevron-down ms-2"
+              [class.rotate]="filterTopDropDownOpen"
+            ></i>
+          </button>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li *ngFor="let filter of filters">
+              <a class="dropdown-item" (click)="selectNavFilterTitle(filter)">{{
+                filter.title
+              }}</a>
+            </li>
+          </ul>
+        </div>
+        <div id="filterTopContainer" class="">
+          <div id="listContainer" class="">
+            <div
+              id="filterList"
+              *ngIf="selectedNavFilterTitle"
+              [ngClass]="filterTopList ? 'list-open' : 'list-close'"
+            >
+              <div
+                *ngFor="let option of selectedNavFilterTitle.options"
+                class="d-flex align-items-center gap-1"
+              >
+                <input
+                  type="radio"
+                  name="options"
+                  [id]="option.id"
+                  [value]="option.id"
+                  (change)="selectNavFilterOption(option.id)"
+                  id="{{ option.id }}"
+                />
+                <label for="{{ option.id }}">{{ option.label }}</label>
+              </div>
+            </div>
+          </div>
+          <button
+            style="background-color: transparent"
+            (click)="toggleFilterTopList()"
+          >
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+        </div>
+      </section>
     </div>
   </section>
   <!-- Mobile CartNav  -->
 
   <!-- FilterSingle -->
 
-  <section id="filterTop" class="">
+  <section id="filterTop" class="screen">
     <div class="category-box" [class.show]="categoryDropDownOpen">
       <button
         class="p-2 fs-6 d-flex align-items-center justify-content-between"

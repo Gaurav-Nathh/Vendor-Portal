@@ -7,11 +7,10 @@
     class="position-fixed"
     (click)="toggleShoppingCart()"
     [class.show]="isShopingCartOpen"
-    
   >
     <i class="fa-solid fa-cart-shopping"></i>
   </button>
   <section id="shopping-cart" [class.show]="isShopingCartOpen">
-    <app-shopping-cart></app-shopping-cart>
+    <app-shopping-cart id="dome"></app-shopping-cart>
   </section>
 </Section>
