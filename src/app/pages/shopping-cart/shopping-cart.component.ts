@@ -3,6 +3,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Product } from '../../Models/product.model';
 import { FormsModule } from '@angular/forms';
 import { SharedService } from '../../services/shared/shared.service';
+import Swal from 'sweetalert2';
+
 
 declare var bootstrap: any;
 
@@ -187,6 +189,25 @@ export class ShoppingCartComponent {
   cart: Product[] = [];
 
   addToCart(product: Product) {
+
+    
+    Swal.fire({
+      toast: true,
+      position: 'top-end',
+      title: 'Product added successfully',
+      iconHtml: '<div style="font-size: 1.5rem">🛒</div>',
+      background: '#f8f9fa',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      customClass: {
+        popup: 'swal-toast',
+        icon: 'no-border', // This removes the icon container border
+        title: 'swal-title'
+      }
+    });
+    
+
     const existing = this.cart.find((item) => item.stockId === product.stockId);
     if (existing) {
       existing.quantity! += product.quantity || 1;
