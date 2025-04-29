@@ -10,8 +10,7 @@
         [(ngModel)]="searchText"
         (input)="filterProducts()"
       />
-      <button id="search-btn" class="search-button"
-      aria-label="">
+      <button id="search-btn" class="search-button" aria-label="">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
     </div>
@@ -264,7 +263,7 @@
                       </h5>
                       <button
                         type="button"
-                        class="btn-close "
+                        class="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
@@ -292,6 +291,7 @@
               <!-- Modal ENDS -->
             </div>
             <button
+              id="moreBtn"
               *ngIf="filter.options.length > 5"
               (click)="filterSideModal(filter)"
               data-bs-toggle="modal"
@@ -404,7 +404,7 @@
   </section>
 
   <!-- Cart Modal -->
- <div
+  <div
     class="modal fade"
     id="cartModal"
     tabindex="-1"
@@ -416,7 +416,9 @@
       <div class="modal-content">
         <!-- Header -->
         <div class="modal-header custom-modal-header p-3">
-          <h5 class="modal-title fw-bold" id="cartModalLabel">Your Shopping Cart</h5>
+          <h5 class="modal-title fw-bold" id="cartModalLabel">
+            Your Shopping Cart
+          </h5>
           <button
             type="button"
             class="btn-close ms-auto cross-bnt"
@@ -447,7 +449,9 @@
                       <tbody>
                         <tr *ngFor="let item of cart" class="align-middle">
                           <td class="ps-4 fw-medium">{{ item.name }}</td>
-                          <td class="text-muted d-none d-md-table-cell">{{ item.stockId }}</td>
+                          <td class="text-muted d-none d-md-table-cell">
+                            {{ item.stockId }}
+                          </td>
                           <td>
                             <div class="d-flex justify-content-center">
                               <button
@@ -456,7 +460,9 @@
                               >
                                 <i class="fa-solid fa-minus"></i>
                               </button>
-                              <span class="mx-2 my-auto">{{ item.quantity }}</span>
+                              <span class="mx-2 my-auto">{{
+                                item.quantity
+                              }}</span>
                               <button
                                 (click)="incrementQty(item)"
                                 class="btn btn-sm btn-outline-secondary qunty-btn rounded-3"
@@ -465,7 +471,9 @@
                               </button>
                             </div>
                           </td>
-                          <td class="text-end pe-4 fw-medium">₹{{ item.price }}</td>
+                          <td class="text-end pe-4 fw-medium">
+                            ₹{{ item.price }}
+                          </td>
                           <td class="text-end">
                             <button
                               class="btn btn-sm btn-outline-danger"
@@ -486,11 +494,9 @@
             <!-- Summary Column -->
             <div class="col-lg-4">
               <div class="card h-100 shadow-sm border-0">
-                <div
-                  class="card-body d-flex flex-column p-4"
-                >
+                <div class="card-body d-flex flex-column p-4">
                   <h5 class="card-title fw-bold mb-4">Order Summary</h5>
-                 <!--  <div class="d-flex justify-content-between mb-3">
+                  <!--  <div class="d-flex justify-content-between mb-3">
                     <span class="text-muted">{{ totalQty }} Items</span>
                     <span class="fw-medium">₹{{ totalAmount.toFixed(2) }}</span>
                   </div>
@@ -511,20 +517,25 @@
                     <span class="text-muted">{{ totalQty }} Items</span>
                     <span class="fw-medium">₹{{ totalAmount.toFixed(2) }}</span>
                   </div>
-                  
+
                   <div class="scrollable-items">
                     <ul class="list-group list-group-flush mb-3">
                       <li
                         class="list-group-item d-flex justify-content-between align-items-center px-0 py-2 border-0"
                         *ngFor="let item of cart"
                       >
-                        <span class="text-truncate" style="max-width: 150px;">{{ item.name }}</span>
-                        <span class="fw-medium">₹{{ (item.price * (item.quantity || 1)).toFixed(2) }}</span>
+                        <span class="text-truncate" style="max-width: 150px">{{
+                          item.name
+                        }}</span>
+                        <span class="fw-medium"
+                          >₹{{
+                            (item.price * (item.quantity || 1)).toFixed(2)
+                          }}</span
+                        >
                       </li>
                     </ul>
                   </div>
 
-                  
                   <div class="border-top pt-3">
                     <div class="d-flex justify-content-between mb-2">
                       <span>Subtotal</span>
@@ -539,7 +550,7 @@
                       <span>₹{{ totalAmount.toFixed(2) }}</span>
                     </div>
                   </div>
-                  
+
                   <div class="mt-4 d-grid gap-3">
                     <button
                       class="btn btn-primary btn-lg rounded-pill fw-bold py-2"
