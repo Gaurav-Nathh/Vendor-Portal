@@ -1,255 +1,252 @@
-<<<<<<< HEAD
-<div class=" p-4 w-100">
-=======
-<div class="p-4 w-100" style="background-color: #f8f9fa;">
->>>>>>> d81d56a7536db4950661826824f98c2416602792
-  <div class="row mb-4">
-    <div class="col-12">
-      <h2 class="fw-bold text-primary">New Purchase Order</h2>
-    </div>
-  </div>
-
-  <!-- Vendor and Delivery Info -->
-  <div class="row mb-4">
-    <div class="col-md-6 mb-3 mb-md-0">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title fw-semibold">Vendor Information</h5>
-          <div class="mb-3">
-            <label class="form-label">Vendor Name</label>
-            <select class="form-select">
-              <option selected disabled>Select vendor</option>
-              <option>Vendor 1</option>
-              <option>Vendor 2</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Organization</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Organization name"
-            />
-          </div>
-        </div>
+<div class="p-4 w-100">
+  <div class="p-4 w-100" style="background-color: #f8f9fa">
+    <div class="row mb-4">
+      <div class="col-12">
+        <h2 class="fw-bold text-primary">New Purchase Order</h2>
       </div>
     </div>
 
-    <div class="col-md-6">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title fw-semibold">Delivery Information</h5>
-          <div class="mb-3">
-            <label class="form-label">Delivery Address</label>
-            <textarea class="form-control" rows="3">
-Uttarakhand, India</textarea
-            >
-            <button class="btn btn-sm btn-link mt-2 px-0">
-              Change destination to deliver
-            </button>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Customer</label>
-            <input
-              type="text"
-              class="form-control"
-              value="Ayush Panwar"
-              readonly
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PO Details -->
-  <div class="card mb-4 shadow-sm">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-3 mb-3">
-          <label class="form-label">Purchase Order #</label>
-          <input type="text" class="form-control" value="PO-00001" readonly />
-        </div>
-        <div class="col-md-3 mb-3">
-          <label class="form-label">Reference #</label>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Enter reference"
-          />
-        </div>
-        <div class="col-md-3 mb-3">
-          <label class="form-label">Date</label>
-          <input type="date" class="form-control" value="2025-04-25" />
-        </div>
-        <div class="col-md-3 mb-3">
-          <label class="form-label">Delivery Date</label>
-          <input type="date" class="form-control" placeholder="dd/MM/yyyy" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label class="form-label">Payment Terms</label>
-          <select class="form-select">
-            <option selected disabled>Select payment terms</option>
-            <option>Net 15</option>
-            <option>Net 30</option>
-          </select>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label class="form-label">Shipment Preference</label>
-          <select class="form-select">
-            <option selected disabled>
-              Choose the shipment preference or type to add
-            </option>
-            <option>Standard</option>
-            <option>Express</option>
-          </select>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Items Table -->
-  <div class="card mb-4 shadow-sm">
-    <div class="card-body p-0">
-      <div class="table-responsive">
-        <table class="table table-hover mb-0">
-          <thead class="bg-light">
-            <tr>
-              <th class="fw-semibold">Item Details</th>
-              <th class="fw-semibold">Account</th>
-              <th class="fw-semibold">Quantity</th>
-              <th class="fw-semibold">Rate</th>
-              <th class="fw-semibold">Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colspan="5" class="text-center py-4 text-muted">
-                No items added
-              </td>
-            </tr>
-            <tr>
-              <td colspan="5" class="text-center py-2">
-                <button class="btn btn-sm btn-outline-primary">
-                  <i class="fas fa-plus me-2"></i>Add Item
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- Customer Notes -->
-  <div class="card mb-4 shadow-sm">
-    <div class="card-body">
-      <h5 class="card-title fw-semibold">Customer Notes</h5>
-      <textarea
-        class="form-control"
-        rows="3"
-        placeholder="Will be displayed on purchase order"
-      ></textarea>
-    </div>
-  </div>
-
-  <!-- Totals Section -->
-  <div class="row mb-4">
-    <div class="col-md-6 mb-3 mb-md-0">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title fw-semibold">Terms & Conditions</h5>
-          <textarea
-            class="form-control"
-            rows="5"
-            placeholder="Enter the terms and conditions of your business to be displayed in your transaction"
-          ></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body">
-          <div class="d-flex justify-content-between mb-2">
-            <span>Sub Total</span>
-            <span>₹0.00</span>
-          </div>
-          <div class="d-flex justify-content-between mb-2">
-            <span>Discount</span>
-            <div class="input-group input-group-sm" style="width: 120px">
-              <input type="number" class="form-control" value="0" />
-              <span class="input-group-text">%</span>
-              <span class="input-group-text">₹0.00</span>
+    <!-- Vendor and Delivery Info -->
+    <div class="row mb-4">
+      <div class="col-md-6 mb-3 mb-md-0">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold">Vendor Information</h5>
+            <div class="mb-3">
+              <label class="form-label">Vendor Name</label>
+              <select class="form-select">
+                <option selected disabled>Select vendor</option>
+                <option>Vendor 1</option>
+                <option>Vendor 2</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Organization</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Organization name"
+              />
             </div>
           </div>
-          <div class="d-flex justify-content-between mb-2">
-            <span>TDS</span>
-            <span>-</span>
-          </div>
-          <div class="d-flex justify-content-between mb-2">
-            <span>TCS</span>
-            <span>₹0.00</span>
-          </div>
-          <div class="d-flex justify-content-between mb-3">
-            <span>Adjustment</span>
-            <span>₹0.00</span>
-          </div>
-          <div class="d-flex justify-content-between border-top pt-2">
-            <span class="fw-bold">Total (₹)</span>
-            <span class="fw-bold">₹0.00</span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold">Delivery Information</h5>
+            <div class="mb-3">
+              <label class="form-label">Delivery Address</label>
+              <textarea class="form-control" rows="3">
+Uttarakhand, India</textarea
+              >
+              <button class="btn btn-sm btn-link mt-2 px-0">
+                Change destination to deliver
+              </button>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Customer</label>
+              <input
+                type="text"
+                class="form-control"
+                value="Ayush Panwar"
+                readonly
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- File Attachment -->
-  <div class="card mb-4 shadow-sm">
-    <div class="card-body">
-      <h5 class="card-title fw-semibold">Attach File(s) to Purchase Order</h5>
-      <div class="border rounded p-4 text-center bg-light">
-        <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
-        <p class="text-muted">
-          You can upload a maximum of 10 files, 10MB each
-        </p>
-        <button class="btn btn-primary">
-          <i class="fas fa-plus me-2"></i>Add Files
-        </button>
+    <!-- PO Details -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Purchase Order #</label>
+            <input type="text" class="form-control" value="PO-00001" readonly />
+          </div>
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Reference #</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter reference"
+            />
+          </div>
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" value="2025-04-25" />
+          </div>
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Delivery Date</label>
+            <input type="date" class="form-control" placeholder="dd/MM/yyyy" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Payment Terms</label>
+            <select class="form-select">
+              <option selected disabled>Select payment terms</option>
+              <option>Net 15</option>
+              <option>Net 30</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Shipment Preference</label>
+            <select class="form-select">
+              <option selected disabled>
+                Choose the shipment preference or type to add
+              </option>
+              <option>Standard</option>
+              <option>Express</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Additional Fields Note -->
-  <div class="alert alert-info">
-    <i class="fas fa-info-circle me-2"></i>
-    Additional Fields: Start adding custom fields for your purchase orders by
-    going to
-    <strong>Settings → Purchases → Purchase orders</strong>.
-  </div>
+    <!-- Items Table -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead class="bg-light">
+              <tr>
+                <th class="fw-semibold">Item Details</th>
+                <th class="fw-semibold">Account</th>
+                <th class="fw-semibold">Quantity</th>
+                <th class="fw-semibold">Rate</th>
+                <th class="fw-semibold">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="5" class="text-center py-4 text-muted">
+                  No items added
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5" class="text-center py-2">
+                  <button class="btn btn-sm btn-outline-primary">
+                    <i class="fas fa-plus me-2"></i>Add Item
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-  <!-- Form Actions -->
-  <div class="d-flex justify-content-end gap-3">
-    <button
-      class="btn btn-outline-secondary px-4"
-      [routerLink]="'/customer/purchase-dashboard'"
-    >
-      Cancel
-    </button>
-    <button
-      class="btn btn-primary px-4"
-      [routerLink]="'/customer/purchase-dashboard'"
-    >
-      Save Draft
-    </button>
-    <button
-      class="btn btn-success px-4"
-      [routerLink]="'/customer/purchase-dashboard'"
-    >
-      Create Purchase Order
-    </button>
-  </div>
+    <!-- Customer Notes -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title fw-semibold">Customer Notes</h5>
+        <textarea
+          class="form-control"
+          rows="3"
+          placeholder="Will be displayed on purchase order"
+        ></textarea>
+      </div>
+    </div>
 
+    <!-- Totals Section -->
+    <div class="row mb-4">
+      <div class="col-md-6 mb-3 mb-md-0">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold">Terms & Conditions</h5>
+            <textarea
+              class="form-control"
+              rows="5"
+              placeholder="Enter the terms and conditions of your business to be displayed in your transaction"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-2">
+              <span>Sub Total</span>
+              <span>₹0.00</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span>Discount</span>
+              <div class="input-group input-group-sm" style="width: 120px">
+                <input type="number" class="form-control" value="0" />
+                <span class="input-group-text">%</span>
+                <span class="input-group-text">₹0.00</span>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span>TDS</span>
+              <span>-</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span>TCS</span>
+              <span>₹0.00</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+              <span>Adjustment</span>
+              <span>₹0.00</span>
+            </div>
+            <div class="d-flex justify-content-between border-top pt-2">
+              <span class="fw-bold">Total (₹)</span>
+              <span class="fw-bold">₹0.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- File Attachment -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title fw-semibold">Attach File(s) to Purchase Order</h5>
+        <div class="border rounded p-4 text-center bg-light">
+          <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+          <p class="text-muted">
+            You can upload a maximum of 10 files, 10MB each
+          </p>
+          <button class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Add Files
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Fields Note -->
+    <div class="alert alert-info">
+      <i class="fas fa-info-circle me-2"></i>
+      Additional Fields: Start adding custom fields for your purchase orders by
+      going to
+      <strong>Settings → Purchases → Purchase orders</strong>.
+    </div>
+
+    <!-- Form Actions -->
+    <div class="d-flex justify-content-end gap-3">
+      <button
+        class="btn btn-outline-secondary px-4"
+        [routerLink]="'/customer/purchase-dashboard'"
+      >
+        Cancel
+      </button>
+      <button
+        class="btn btn-primary px-4"
+        [routerLink]="'/customer/purchase-dashboard'"
+      >
+        Save Draft
+      </button>
+      <button
+        class="btn btn-success px-4"
+        [routerLink]="'/customer/purchase-dashboard'"
+      >
+        Create Purchase Order
+      </button>
+    </div>
+  </div>
 </div>

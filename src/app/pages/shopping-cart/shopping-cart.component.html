@@ -1,20 +1,6 @@
 <section id="shopping-cart" class="">
   <Section id="nav-prod" class="">
     <span class="fw-bold">Shopping Cart</span>
-    <!-- <div id="search-section" class="">
-      <input
-        type="text"
-        name=""
-        id="prod-search"
-        class=""
-        placeholder="Search products..."
-        [(ngModel)]="searchText"
-        (input)="filterProducts()"
-      />
-      <button id="search-btn" class="">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-    </div> -->
     <div id="search-section" class="search-container">
       <input
         type="text"
@@ -28,7 +14,7 @@
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
     </div>
-    
+
     <div id="cartNavIcons" class="d-flex gap-2 align-items-center">
       <div
         id="sortBy"
@@ -243,7 +229,6 @@
             </div>
             <button
               *ngIf="filter.options.length > 5"
-              class="checkbox"
               (click)="filterSideModal(filter)"
               data-bs-toggle="modal"
               data-bs-target="#filterModal"
@@ -257,7 +242,7 @@
     <!-- Side Filter Ends -->
 
     <!-- Side Filter Option Modal -->
-    <!-- <section
+    <section
       class="modal fade"
       id="filterModal"
       tabindex="-1"
@@ -307,18 +292,20 @@
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
     <!-- Side Filter Option Modal ENDS-->
 
     <section class="card-section">
       <div class="card-grid">
         <div class="product-card" *ngFor="let product of filteredProducts">
           <div class="img-container">
-            <img [src]="product.imageUrl" alt="Product Image" class=""/>
+            <img [src]="product.imageUrl" alt="Product Image" class="" />
           </div>
-          
+
           <div class="card-content">
-            <h5 class="card-title fw-bold text-uppercase text-break text-center">
+            <h5
+              class="card-title fw-bold text-uppercase text-break text-center"
+            >
               {{ product.name }}
             </h5>
             <p class="mt-1 text-center">

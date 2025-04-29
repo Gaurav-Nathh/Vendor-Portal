@@ -1,15 +1,16 @@
 <Section id="form-cart-container" class="">
-  <app-purchase-form></app-purchase-form>
+  <section id="purchase-form">
+    <app-purchase-form></app-purchase-form>
+  </section>
   <button
     id="shopping-cart-btn"
-    class="position-fixed "
+    class="position-fixed"
     (click)="toggleShoppingCart()"
     [class.show]="isShopingCartOpen"
   >
     <i class="fa-solid fa-cart-shopping"></i>
   </button>
-  <app-shopping-cart
-    id="shopping-cart"
-    [class.show]="isShopingCartOpen"
-  ></app-shopping-cart>
+  <section id="shopping-cart" [class.show]="isShopingCartOpen">
+    <app-shopping-cart></app-shopping-cart>
+  </section>
 </Section>

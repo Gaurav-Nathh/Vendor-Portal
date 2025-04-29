@@ -173,8 +173,7 @@ export class SidebarComponent {
     {
       text: 'Password',
       icon: 'fa-solid fa-lock',
-     // route: `/${this.userType}/update-password`,
-     route: '/vendor/update-password',
+      route: `/${this.userType}/update-password`,
     },
   ];
 }
