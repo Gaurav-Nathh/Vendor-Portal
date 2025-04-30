@@ -448,10 +448,15 @@
 
       @media (max-width: 1041px) and (min-width:594px) {
         max-width: 17rem;
+        min-height: 430px;
       }
       @media(max-width:594px)
       {
         width: 100%;
+      }
+      @media(max-width:428px)
+      {
+        width:80%;
       }
 
       &:hover {

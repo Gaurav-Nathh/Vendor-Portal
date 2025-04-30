@@ -364,12 +364,12 @@
 
     <section class="card-section">
       <div class="card-grid">
-        <div class="product-card" *ngFor="let product of filteredProducts">
+        <div class="product-card d-flex flex-column justify-content-between" *ngFor="let product of filteredProducts">
           <div class="img-container">
             <img [src]="product.imageUrl" alt="Product Image" class="" />
           </div>
 
-          <div class="card-content">
+          <div class="card-content ">
             <h5
               class="card-title fw-bold text-uppercase text-break text-center"
             >
