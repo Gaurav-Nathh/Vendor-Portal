@@ -1,5 +1,5 @@
 .sidenav {
-  background-color: #f8f9fa;
+  background-color: var(--color-sidnav);
   transition: all 0.3s ease-out;
   overflow-x: hidden;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -12,6 +12,9 @@
 
 .sidenav.overlay {
   position: absolute;
+}
+.arrow{
+  color:var(--primary-text) ;
 }
 
 .sidenav.hide {
@@ -54,6 +57,7 @@
 }
 
 #sidenav-container.scroll {
+  
   height: 100%;
   overflow-y: scroll;
   scrollbar-width: none;

@@ -1,28 +1,19 @@
-<section id="login-page" class="">
-  <section
-    class="w-100 d-flex justify-content-end align-items-center py-3 px-4"
-  >
+<section id="login-page">
+  <!-- Theme Toggle -->
+  <section class="theme-toggle-container">
     <app-theme-toggle></app-theme-toggle>
   </section>
 
-  <!-- Main login layout -->
-  <section id="login-main" class="d-flex form-conainer">
-    <!-- Image Section (now on the right) -->
-
-    <!-- Login Section (now on the left) -->
+  <!-- Main Login Container -->
+  <section id="login-main">
+    <!-- Login Form Section -->
     <section id="login-section">
       <div class="login-content">
-        <img src="/assets/efacto.webp" alt="Logo" class="logo w-25 mb-4" />
+        <img src="/assets/efacto.webp" alt="Logo" class="logo" />
 
-        <div class="text-detls d-flex flex-column">
-          <!--  <span class="fs-5 fw-bold" style="color: var(--primary-text)">Efacto</span> -->
-
-          <span
-            class="fs-4 font-bold fw-semibold"
-            style="color: var(--primary-text)"
-            >Log in</span
-          ><br />
-          <span class="">to access Portal</span>
+        <div class="text-detls">
+          <span class="login-title">Log in</span>
+          <span class="login-subtitle">to access Portal</span>
         </div>
 
         <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
@@ -47,12 +38,13 @@
               </div>
             </div>
           </div>
+          
+          <!-- Next Button -->
           <button
             *ngIf="!showPasswordField"
             type="button"
             (click)="onNextStep(email)"
-            class="btn btn-full-width"
-            style="background-color: var(--color-blue)"
+            class="btn btn-full-width next-btn"
           >
             Next
           </button>
@@ -103,50 +95,27 @@
 
         <!-- Company Details -->
         <div class="company-details">
-          <h6 class="fw-semibold">© BNG Infotech Private Limited</h6>
+          <h6>© BNG Infotech Private Limited</h6>
         </div>
       </div>
-      <div class="vertl-ln"></div>
     </section>
-    <!-- Image Section (now on the right) -->
-    <span class="vrt-line"></span>
-    <section id="img-section" class="carousel h-100">
+
+    <!-- Image Section (Hidden on small screens) -->
+    <section id="img-section" class="carousel">
       <div class="carousel-inner">
-        <!-- First Slide -->
         <div class="carousel-item active">
-          <div>
-            <img
-              src="/assets/images/vendor_loginpage_img_1.svg"
-              alt="Image 1"
-            />
-            <div class="img-info text-center">
-              <span class="fw-semibold" style="color: #727070">
-                A centralized platform that streamlines communication between
-                vendors and customers, allowing vendors to manage orders, update
-                products, track deliveries, and respond to customer needs in
-                real-time.
-              </span>
-            </div>
+          <img src="/assets/images/vendor_loginpage_img_1.svg" alt="Image 1" />
+          <div class="img-info">
+            <span>A centralized platform that streamlines communication between vendors and customers.</span>
           </div>
         </div>
-        <!-- Second Slide -->
         <div class="carousel-item">
-          <div>
-            <img
-              src="/assets/images/vendor_loginpage_img_2.svg"
-              alt="Image 2"
-            />
-            <div class="img-info text-center">
-              <span class="fw-semibold" style="color: #727070">
-                Enhance your business operations with real-time insights and
-                seamless collaboration.
-              </span>
-            </div>
+          <img src="/assets/images/vendor_loginpage_img_2.svg" alt="Image 2" />
+          <div class="img-info">
+            <span>Enhance your business operations with real-time insights.</span>
           </div>
         </div>
       </div>
-
-      <!-- Custom Carousel Indicator -->
       <div class="carousel-indicator">
         <div class="indicator-bar" [style.width.%]="indicatorWidth"></div>
       </div>
@@ -154,7 +123,5 @@
   </section>
 
   <!-- Footer -->
-  <small class="pb-3" style="color: #727070">
-    © 2025, BNG Pvt.Ltd. All Right Reserved.
-  </small>
+  <small class="footer">© 2025, BNG Pvt.Ltd. All Right Reserved.</small>
 </section>
