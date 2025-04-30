@@ -31,7 +31,7 @@ export class LoginComponent {
   hidepassword: boolean = true;
 
   ngOnInit(): void {
-    this.themeService.initTheme();
+    // this.themeService.initTheme();
     this.startCarousel();
   }
 
