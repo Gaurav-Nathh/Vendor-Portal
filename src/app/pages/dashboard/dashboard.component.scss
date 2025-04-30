@@ -88,6 +88,18 @@ $transition: all 0.3s ease;
   transition: $transition;
   box-shadow: $box-shadow;
   transform-style: preserve-3d;
+  @media(max-width:348px)
+  {
+   
+
+      
+      width: 70vw;
+      height: 30vh;
+      
+    
+
+  }
+  
   
   &:hover {
     transform: translateY(-5px) perspective(1000px) rotateX(5deg);
@@ -227,6 +239,7 @@ $transition: all 0.3s ease;
   box-shadow: $box-shadow;
   border-top: 4px solid $violet;
   transition: $transition;
+ 
   
   &:hover {
     transform: translateY(-3px);
