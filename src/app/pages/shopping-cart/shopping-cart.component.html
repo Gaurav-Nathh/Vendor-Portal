@@ -221,18 +221,49 @@
   <section id="shopping-section" class="">
     <!-- Side Filter -->
     <section class="category-side-menu" [class.show]="!sideFilterMobile">
-      <h5>Filters</h5>
+      <div id="sectionTitle" class="">
+        <span class="fs-5">Filters</span>
+        <button class="resetBtn" (click)="resetFilters()">Reset All</button>
+      </div>
+      <!-- In Stock Toggle -->
+      <div class="form-switch inStock">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inStockToggle"
+          [checked]="inStock"
+          (change)="onInStockChange($event)"
+        />
+        <label class="form-check-label" for="inStockToggle">In Stock</label>
+      </div>
+      <!-- In Stock END -->
       <div class="checkbox-title" *ngFor="let filter of filters; let i = index">
         <div
           class="title"
           data-bs-toggle="collapse"
           [attr.href]="'#filter' + i"
         >
-          <span>{{ filter.title }}</span>
-          <i class="bi bi-caret-down-fill"></i>
+          <div>
+            <span>{{ filter.title }}</span>
+            <!-- <span
+              id="appliedTag"
+              *ngIf="selectedFilters[filter.title].length > 0"
+              >Applied</span
+            > -->
+          </div>
+          <div class="controlBody">
+            <button
+              id="resetBtn"
+              (click)="resetFilterSection(filter.title)"
+              *ngIf="selectedFilters[filter.title].length > 0"
+            >
+              Reset
+            </button>
+            <i class="bi bi-caret-down-fill"></i>
+          </div>
         </div>
         <div class="collapse" id="filter{{ i }}">
-          <div class="option-section">
+          <div class="option-section" *ngIf="filter.options.length > 0">
             <div
               class="checkbox-container"
               *ngFor="let option of filter.options.slice(0, 5)"
@@ -243,59 +274,19 @@
                     type="checkbox"
                     class="form-check-input rounded-circle"
                     [id]="option.id"
-                    [value]="option.label"
-                    (change)="onCheckboxChange(option.label, filter.title.toLowerCase())"
+                    [checked]="
+                      selectedFilters[filter.title].includes(option.id)
+                    "
+                    (change)="onFilterChange(filter.title, option.id, $event)"
                   />
                   {{ option.label }}
                 </label>
               </div>
-              <!-- Modal -->
-              <div
-                class="modal fade"
-                id="filterModal"
-                tabindex="-1"
-                aria-labelledby="filterModalLabel"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="filterModalLabel">
-                        {{ filter.title }}
-                      </h5>
-                      <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="modal-checkbox-grid">
-                        <div
-                          class="checkbox"
-                          *ngFor="let option of filter.options"
-                        >
-                          <label [for]="option.id">
-                            <input
-                              type="checkbox"
-                              class="form-check-input rounded-circle"
-                              [id]="option.id"
-                            />
-                            {{ option.label }}
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Modal ENDS -->
             </div>
             <button
               id="moreBtn"
               *ngIf="filter.options.length > 5"
-              (click)="filterSideModal(filter)"
+              (click)="openModal(filter)"
               data-bs-toggle="modal"
               data-bs-target="#filterModal"
             >
@@ -304,7 +295,6 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary" (click)="resetFilters()">Reset Filter</button>
     </section>
     <!-- Side Filter Ends -->
 
@@ -315,39 +305,52 @@
       tabindex="-1"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="filterModalLabel">
-              {{ selectedSideFilter?.title }}
+              {{ currentModalFilter?.title }} Options
             </h5>
             <button
               type="button"
-              class="close"
+              class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+            ></button>
           </div>
           <div class="modal-body">
-            <div class="modal-checkbox-grid">
+            <ng-container *ngIf="currentModalFilter">
               <div
-                class="bord checkbox"
-                *ngFor="let option of selectedSideFilter?.options"
+                class="form-check"
+                *ngFor="let option of currentModalFilter.options"
               >
-                <label [for]="option.id">
-                  <input
-                    type="checkbox"
-                    class="form-check-input rounded-circle"
-                    [id]="option.id"
-                  />
-                  {{ option.label }}
-                </label>
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  [id]="'modal-' + option.id"
+                  [checked]="
+                    selectedFilters[currentModalFilter.title].includes(
+                      option.id
+                    )
+                  "
+                  (change)="
+                    onFilterChange(currentModalFilter.title, option.id, $event)
+                  "
+                />
+                <label class="form-check-label" [for]="'modal-' + option.id">{{
+                  option.label
+                }}</label>
               </div>
-            </div>
+            </ng-container>
           </div>
           <div class="modal-footer">
+            <button
+              *ngIf="currentModalFilter"
+              class="btn btn-outline-danger btn-sm me-2"
+              (click)="resetFilterSection(currentModalFilter.title)"
+            >
+              Reset {{ currentModalFilter.title }}
+            </button>
             <button
               type="button"
               class="btn btn-secondary"
@@ -355,7 +358,6 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -364,7 +366,11 @@
 
     <section class="card-section">
       <div class="card-grid">
-        <div class="product-card d-flex flex-column justify-content-between" *ngFor="let product of filteredProducts">
+        <div *ngIf="filteredProducts.length === 0" class="noItem">
+          <img src="/assets/images/no-item.svg" alt="" />
+          <h5>No such Item found!</h5>
+        </div>
+        <div class="product-card  d-flex flex-column justify-content-between" *ngFor="let product of filteredProducts">
           <div class="img-container">
             <img [src]="product.imageUrl" alt="Product Image" class="" />
           </div>

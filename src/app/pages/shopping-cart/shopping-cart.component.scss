@@ -354,14 +354,42 @@
     height: 100%;
     // display: none;
   }
+
+  #sectionTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .resetBtn {
+      color: white;
+      padding: 3px 5px 3px 5px;
+      font-size: 0.7rem;
+      border-radius: 0.3rem;
+      background-color: var(--color-red);
+    }
+  }
   .checkbox-title {
     margin-top: 1rem;
     .title {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      i {
+
+      #appliedTag {
         font-size: 0.7rem;
+        padding: 0.2rem;
+        border-radius: 0.3rem;
+      }
+      .controlBody {
+        font-size: 0.7rem;
+
+        #resetBtn {
+          margin-right: 0.5rem;
+          padding: 2px 3px 2px 3px;
+          border-radius: 0.3rem;
+          background-color: var(--color-red);
+          color: white;
+        }
       }
     }
 
@@ -395,6 +423,17 @@
         border-radius: 2rem;
         background-color: #a0eda7;
       }
+    }
+  }
+
+  .inStock {
+    margin-top: 1rem;
+    input {
+      background-color: #a0eda7;
+      border-color: #a0eda7;
+    }
+    label {
+      margin-left: 0.5rem;
     }
   }
 }
@@ -481,6 +520,21 @@
       .card-content {
         margin-top: 1.2rem;
         text-align: left;
+      }
+    }
+
+    .noItem {
+      margin-top: 10rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      row-gap: 2rem;
+      color: rgb(158, 157, 157);
+
+      img {
+        width: 15rem;
       }
     }
   }

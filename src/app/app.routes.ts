@@ -157,15 +157,6 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'item-mapping',
-    pathMatch: 'full',
-    loadComponent: () =>
-      import('./pages/item-mapping/item-mapping.component').then(
-        (c) => c.ItemMappingComponent
-      ),
-    canActivate: [authGuard],
-  },
-  {
     path: '**',
     loadComponent: () =>
       import('./pages/no-page-exist/no-page-exist.component').then(

@@ -1,11 +1,44 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Product } from '../../Models/product.model';
+// import { Product } from '../../Models/product.model';
 import { FormsModule } from '@angular/forms';
 import { SharedService } from '../../services/shared/shared.service';
 import Swal from 'sweetalert2';
 
 declare var bootstrap: any;
+
+interface FilterOption {
+  id: string;
+  label: string;
+}
+
+interface FilterCategory {
+  title: string;
+  options: FilterOption[];
+}
+
+interface ProductFilters {
+  division?: string;
+  category?: string;
+  subCategory?: string;
+  brand?: string;
+  season?: string[];
+  occasion?: string[];
+  gender?: string;
+  baseItem?: string;
+  variant?: string;
+  colors?: string[];
+}
+
+interface Product {
+  name: string;
+  stockId: string;
+  price: number;
+  stock: number;
+  imageUrl: string;
+  quantity?: number;
+  filters?: ProductFilters;
+}
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,9 +48,6 @@ declare var bootstrap: any;
 })
 export class ShoppingCartComponent {
   searchText: string = '';
-  filteredProducts: Product[] = [];
-  selectedBrands: string[] = [];
-  selectedColors: string[] = [];
   @ViewChild('cartModalRef') cartModalRef!: ElementRef;
 
   sortByDropDownOpen = false;
@@ -25,7 +55,6 @@ export class ShoppingCartComponent {
   filterTopDropDownOpen = false;
   filterTopList = false;
   sideFilterMobile = false;
-  // filters: any[] = [];
   sortByOptions = [
     'All Products',
     'Popularity',
@@ -36,22 +65,28 @@ export class ShoppingCartComponent {
   selectedOption = 'All Products';
   selectedCategoryOption: string = '';
 
-  constructor(private sharedService: SharedService) {}
+  selectedFilters: { [key: string]: string[] } = {};
+  currentModalFilter: FilterCategory | null = null;
+  inStock: boolean = true;
+  filteredProducts: Product[] = [];
+
+  constructor(private sharedService: SharedService) {
+    this.filters.forEach((filter) => {
+      this.selectedFilters[filter.title] = [];
+    });
+  }
 
   ngOnInit(): void {
-    // this.http.get<any>('/assets/test.json').subscribe((data) => {
-    //   this.filters = data;
-    // });
-    // console.log(this.filters);
-    this.filteredProducts = this.products;
+    // this.filteredProducts = this.products;
+    this.filterProducts();
   }
 
-  filterProducts() {
-    const search = this.searchText.toLowerCase();
-    this.filteredProducts = this.products.filter((product) =>
-      product.name.toLowerCase().includes(search)
-    );
-  }
+  // filterProducts() {
+  //   const search = this.searchText.toLowerCase();
+  //   this.filteredProducts = this.products.filter((product) =>
+  //     product.name.toLowerCase().includes(search)
+  //   );
+  // }
 
   toggleDropdown() {
     this.sortByDropDownOpen = !this.sortByDropDownOpen;
@@ -91,197 +126,100 @@ export class ShoppingCartComponent {
     this.sideFilterMobile = !this.sideFilterMobile;
   }
 
-  // products: Product[] = [
-  //   {
-  //     name: 'Cleaning & Household',
-  //     stockId: 'FNSRM0000048147',
-  //     price: 500,
-  //     stock: 12,
-  //     imageUrl:
-  //       'https://images.unsplash.com/photo-1593081891731-fda0877988da?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   },
-  //   {
-  //     name: 'Personal Care',
-  //     stockId: 'FNSRM0000048123',
-  //     price: 300,
-  //     stock: 4,
-  //     imageUrl:
-  //       'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   },
-  //   {
-  //     name: 'Groceries',
-  //     stockId: 'FNSRM0000048999',
-  //     price: 250,
-  //     stock: 0,
-  //     imageUrl:
-  //       'https://images.unsplash.com/photo-1555529669-2269763671c0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   },
-  //   {
-  //     name: 'Cleaning & Household',
-  //     stockId: 'FNSRM0000048147',
-  //     price: 500,
-  //     stock: 7,
-  //     imageUrl:
-  //       'https://images.unsplash.com/photo-1605636808063-ba999ff935eb?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   },
-  //   {
-  //     name: 'Personal Care',
-  //     stockId: 'FNSRM0000048123',
-  //     price: 300,
-  //     stock: 12,
-  //     imageUrl:
-  //       'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   },
-  //   {
-  //     name: 'Groceries',
-  //     stockId: 'FNSRM0000048999',
-  //     price: 250,
-  //     stock: 0,
-  //     imageUrl:
-  //       'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   },
-  //   {
-  //     name: 'Cleaning & Household',
-  //     stockId: 'FNSRM0000048147',
-  //     price: 500,
-  //     stock: 13,
-  //     imageUrl:
-  //       'https://plus.unsplash.com/premium_photo-1664392147011-2a720f214e01?q=80&w=2078&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   },
-  //   {
-  //     name: 'Personal Care',
-  //     stockId: 'FNSRM00000481234',
-  //     price: 300,
-  //     stock: 3,
-  //     imageUrl:
-  //       'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   },
-  //   {
-  //     name: 'Groceries',
-  //     stockId: 'FNSRM00000489992',
-  //     price: 250,
-  //     stock: 18,
-  //     imageUrl:
-  //       'https://images.unsplash.com/photo-1615397349754-cfa2066a298e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   },
-  //   {
-  //     name: 'Personal Care',
-  //     stockId: 'FNSRM00000481231',
-  //     price: 300,
-  //     stock: 3,
-  //     imageUrl:
-  //       'https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   },
-  //   {
-  //     name: 'Groceries',
-  //     stockId: 'FNSRM00000489990',
-  //     price: 250,
-  //     stock: 18,
-  //     imageUrl:
-  //       'https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   },
-  // ];
+  openModal(filter: FilterCategory): void {
+    this.currentModalFilter = filter;
+  }
 
-  products: Product[] = [
-    {
-      name: 'Cleaning & Household',
-      stockId: 'FNSRM0000048147',
-      price: 500,
-      stock: 12,
-      brand: 'Nike',
-      color: 'Red',
-      imageUrl: 'https://images.unsplash.com/photo-1593081891731-fda0877988da?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Personal Care',
-      stockId: 'FNSRM0000048123',
-      price: 300,
-      stock: 4,
-      brand: 'GlowEssence',
-      color: 'Blue',
-      imageUrl: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Groceries',
-      stockId: 'FNSRM0000048999',
-      price: 250,
-      stock: 0,
-      brand: 'DailyFresh',
-      color: 'Green',
-      imageUrl: 'https://images.unsplash.com/photo-1555529669-2269763671c0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Cleaning & Household',
-      stockId: 'FNSRM0000048147',
-      price: 500,
-      stock: 7,
-      brand: 'CleanMate',
-      color: 'Black',
-      imageUrl: 'https://images.unsplash.com/photo-1605636808063-ba999ff935eb?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Personal Care',
-      stockId: 'FNSRM0000048123',
-      price: 300,
-      stock: 12,
-      brand: 'Puma',
-      color: 'White',
-      imageUrl: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Groceries',
-      stockId: 'FNSRM0000048999',
-      price: 250,
-      stock: 0,
-      brand: 'DailyFresh',
-      color: 'Orange',
-      imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Cleaning & Household',
-      stockId: 'FNSRM0000048147',
-      price: 500,
-      stock: 13,
-      brand: 'CleanMate',
-      color: 'Purple',
-      imageUrl: 'https://plus.unsplash.com/premium_photo-1664392147011-2a720f214e01?q=80&w=2078&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Personal Care',
-      stockId: 'FNSRM0000048123',
-      price: 300,
-      stock: 3,
-      brand: 'GlowEssence',
-      color: 'Pink',
-      imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Groceries',
-      stockId: 'FNSRM0000048999',
-      price: 250,
-      stock: 18,
-      brand: 'Under Armour',
-      color: 'Grey',
-      imageUrl: 'https://images.unsplash.com/photo-1615397349754-cfa2066a298e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Personal Care',
-      stockId: 'FNSRM0000048123',
-      price: 300,
-      stock: 3,
-      brand: 'Adidas',
-      imageUrl: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Groceries',
-      stockId: 'FNSRM0000048999',
-      price: 250,
-      stock: 18,
-      brand: 'Reebok',
-      color: 'Yellow',
-      imageUrl: 'https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-  ];
+  onFilterChange(title: string, optionId: string, event: Event): void {
+    const isChecked = (event.target as HTMLInputElement).checked;
+    if (isChecked) {
+      this.selectedFilters[title].push(optionId);
+    } else {
+      this.selectedFilters[title] = this.selectedFilters[title].filter(
+        (id) => id !== optionId
+      );
+    }
+    this.filterProducts();
+  }
+
+  onInStockChange(event: Event): void {
+    this.inStock = (event.target as HTMLInputElement).checked;
+    this.filterProducts();
+  }
+
+  resetFilterSection(title: string): void {
+    this.selectedFilters[title] = [];
+    const checkboxes = document.querySelectorAll(
+      `input[type="checkbox"][id^="${title.replace(
+        ' ',
+        '-'
+      )}-"], input[type="checkbox"][id^="modal-"]`
+    );
+    checkboxes.forEach((checkbox) => {
+      (checkbox as HTMLInputElement).checked = false;
+    });
+    this.filterProducts();
+  }
+
+  resetFilters(): void {
+    this.filters.forEach((filter) => {
+      this.selectedFilters[filter.title] = [];
+    });
+    this.inStock = true;
+    this.currentModalFilter = null;
+    this.filteredProducts = [...this.products.filter((p) => p.stock > 0)];
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      (checkbox as HTMLInputElement).checked = false;
+    });
+    const inStockToggle = document.getElementById(
+      'inStockToggle'
+    ) as HTMLInputElement;
+    if (inStockToggle) inStockToggle.checked = true;
+  }
+
+  filterProducts(): void {
+    this.filteredProducts = this.products.filter((product) => {
+      // In Stock filter
+      if (this.inStock && product.stock <= 0) {
+        return false;
+      }
+      // Category filters
+      return this.filters.every((filter) => {
+        const selectedOptionIds = this.selectedFilters[filter.title];
+        if (!selectedOptionIds.length) return true;
+        const selectedLabels = filter.options
+          .filter((option) => selectedOptionIds.includes(option.id))
+          .map((option) => option.label);
+        if (
+          !product.filters ||
+          !product.filters[
+            filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
+          ]
+        ) {
+          return selectedOptionIds.length === 0;
+        }
+        if (
+          filter.title === 'Color' ||
+          filter.title === 'Season' ||
+          filter.title === 'Occasion'
+        ) {
+          const productValues =
+            (product.filters[
+              filter.title
+                .toLowerCase()
+                .replace(' ', '') as keyof ProductFilters
+            ] as string[]) || [];
+          return productValues.some((value) => selectedLabels.includes(value));
+        }
+        const productValue =
+          product.filters[
+            filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
+          ];
+        return selectedLabels.includes(productValue as string);
+      });
+    });
+  }
 
   selectedNavFilterTitleDisplay = 'Select a filter';
   selectedNavFilterTitle: any = null;
@@ -306,7 +244,6 @@ export class ShoppingCartComponent {
   }
 
   cart: Product[] = [];
-
   addToCart(product: Product) {
     Swal.fire({
       toast: true,
@@ -384,6 +321,7 @@ export class ShoppingCartComponent {
   toggleExpand() {
     this.expanded = !this.expanded;
   }
+
   filters = [
     {
       title: 'Division',
@@ -548,95 +486,206 @@ export class ShoppingCartComponent {
         { id: '108', label: 'Purple' },
         { id: '109', label: 'Pink' },
         { id: '110', label: 'Grey' },
-        { id: '101', label: 'Red' },
-        { id: '101', label: 'Red' },
-        { id: '101', label: 'Red' },
-        { id: '102', label: 'Blue' },
-        { id: '103', label: 'Green' },
-        { id: '104', label: 'Yellow' },
-        { id: '105', label: 'Black' },
-        { id: '106', label: 'White' },
-        { id: '107', label: 'Orange' },
-        { id: '108', label: 'Purple' },
-        { id: '109', label: 'Pink' },
-        { id: '110', label: 'Grey' },
-        { id: '102', label: 'Blue' },
-        { id: '103', label: 'Green' },
-        { id: '104', label: 'Yellow' },
-        { id: '105', label: 'Black' },
-        { id: '106', label: 'White' },
-        { id: '107', label: 'Orange' },
-        { id: '108', label: 'Purple' },
-        { id: '109', label: 'Pink' },
-        { id: '110', label: 'Grey' },
-        { id: '102', label: 'Blue' },
-        { id: '103', label: 'Green' },
-        { id: '104', label: 'Yellow' },
-        { id: '105', label: 'Black' },
-        { id: '106', label: 'White' },
-        { id: '107', label: 'Orange' },
-        { id: '108', label: 'Purple' },
-        { id: '109', label: 'Pink' },
-        { id: '110', label: 'Grey' },
-        { id: '101', label: 'Red' },
-        { id: '102', label: 'Blue' },
-        { id: '103', label: 'Green' },
-        { id: '104', label: 'Yellow' },
-        { id: '105', label: 'Black' },
-        { id: '106', label: 'White' },
-        { id: '107', label: 'Orange' },
-        { id: '108', label: 'Purple' },
-        { id: '109', label: 'Pink' },
-        { id: '110', label: 'Grey' },
       ],
     },
   ];
 
-  onCheckboxChange(value: string, filterType: string) {
-    if (filterType === 'brand') {
-      this.toggleSelection(this.selectedBrands, value);
-    } else if (filterType === 'color') {
-      this.toggleSelection(this.selectedColors, value);
-    }
-    this.applyFilters();
-  }
-
-  toggleSelection(array: string[], value: string) {
-    const index = array.indexOf(value);
-    if (index > -1) {
-      array.splice(index, 1);
-    } else {
-      array.push(value);
-    }
-  }
-
-  applyFilters() {
-    const noBrandFilter = this.selectedBrands.length === 0;
-    const noColorFilter = this.selectedColors.length === 0;
-
-    // If no filters are applied, show all products
-    if (noBrandFilter && noColorFilter) {
-      this.filteredProducts = this.products;
-      return;
-    }
-    this.filteredProducts = this.products.filter(product =>
-      this.selectedBrands.includes(product.brand) || this.selectedColors.includes(product.color || '')
-
-    );
-    console.log('filtered Products', this.filteredProducts);
-  }
-
-  resetFilters() {
-    // Clear selected filters
-    this.selectedBrands = [];
-    this.selectedColors = [];
-  
-    // Reset all checkboxes in the DOM
-    const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
-    checkboxes.forEach(cb => cb.checked = false);
-  
-    // Show all products
-    this.applyFilters();
-  }
-  
+  products: Product[] = [
+    {
+      name: 'Cleaning & Household',
+      stockId: 'FNSRM0000048147',
+      price: 500.99,
+      stock: 12,
+      imageUrl:
+        'https://images.unsplash.com/photo-1593081891731-fda0877988da?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      filters: {
+        division: 'Alpha',
+        category: 'Apple',
+        subCategory: 'Rock',
+        brand: 'Nike',
+        season: ['Spring', 'Summer'],
+        occasion: ['Birthday', ''],
+        gender: 'Male',
+        baseItem: 'Shirt',
+        variant: 'Small',
+        colors: ['Red', 'Blue'],
+      },
+    },
+    {
+      name: 'Personal Care',
+      stockId: 'FNSRM0000048123',
+      price: 300.59,
+      stock: 4,
+      imageUrl:
+        'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      filters: {
+        division: 'Beta',
+        category: 'Banana',
+        brand: 'Adidas',
+        colors: ['Blue', 'Green'],
+      },
+    },
+    {
+      name: 'Groceries',
+      stockId: 'FNSRM0000048999',
+      price: 250.36,
+      stock: 0,
+      imageUrl:
+        'https://images.unsplash.com/photo-1555529669-2269763671c0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      filters: {
+        division: 'Gamma',
+        gender: 'Unisex',
+        baseItem: 'Skirt',
+      },
+    },
+    {
+      name: 'Cleaning & Household',
+      stockId: 'FNSRM0000048147',
+      price: 500.86,
+      stock: 7,
+      imageUrl:
+        'https://images.unsplash.com/photo-1605636808063-ba999ff935eb?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      filters: undefined,
+    },
+    {
+      name: 'Personal Care',
+      stockId: 'FNSRM0000048123',
+      price: 300.0,
+      stock: 12,
+      imageUrl:
+        'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      filters: {
+        division: 'Theta',
+        category: 'Apple',
+        subCategory: 'Rock',
+        brand: 'Nike',
+        season: ['Spring', 'Summer'],
+        occasion: ['Birthday'],
+        gender: 'Male',
+        baseItem: 'Shirt',
+        variant: 'Small',
+        colors: ['Red', 'Blue'],
+      },
+    },
+    {
+      name: 'Groceries',
+      stockId: 'FNSRM0000048999',
+      price: 250.65,
+      stock: 0,
+      imageUrl:
+        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      filters: {
+        division: 'Kappa',
+        category: 'Apple',
+        subCategory: 'Rock',
+        brand: 'Nike',
+        season: ['Spring', 'Summer'],
+        occasion: ['Birthday'],
+        gender: 'Male',
+        baseItem: 'Shirt',
+        variant: 'Small',
+        colors: ['Red', 'Blue'],
+      },
+    },
+    {
+      name: 'Cleaning & Household',
+      stockId: 'FNSRM0000048147',
+      price: 500.78,
+      stock: 13,
+      imageUrl:
+        'https://plus.unsplash.com/premium_photo-1664392147011-2a720f214e01?q=80&w=2078&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      filters: {
+        division: 'Iota',
+        category: 'Apple',
+        subCategory: 'Rock',
+        brand: 'Nike',
+        season: ['Spring', 'Summer'],
+        occasion: ['Birthday'],
+        gender: 'Male',
+        baseItem: 'Shirt',
+        variant: 'Small',
+        colors: ['Red', 'Blue'],
+      },
+    },
+    {
+      name: 'Personal Care',
+      stockId: 'FNSRM00000481234',
+      price: 300.99,
+      stock: 3,
+      imageUrl:
+        'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      filters: {
+        division: 'Delta',
+        category: 'Apple',
+        subCategory: 'Rock',
+        brand: 'Nike',
+        season: ['Spring', 'Summer'],
+        occasion: ['Birthday'],
+        gender: 'Male',
+        baseItem: 'Shirt',
+        variant: 'Small',
+        colors: ['Red', 'Blue'],
+      },
+    },
+    {
+      name: 'Groceries',
+      stockId: 'FNSRM00000489992',
+      price: 250.55,
+      stock: 18,
+      imageUrl:
+        'https://images.unsplash.com/photo-1615397349754-cfa2066a298e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      filters: {
+        division: 'Alpha',
+        category: 'Apple',
+        subCategory: 'Rock',
+        brand: 'Nike',
+        season: ['Spring', 'Summer'],
+        occasion: ['Birthday'],
+        gender: 'Male',
+        baseItem: 'Shirt',
+        variant: 'Small',
+        colors: ['Red', 'Blue'],
+      },
+    },
+    {
+      name: 'Personal Care',
+      stockId: 'FNSRM00000481231',
+      price: 300.34,
+      stock: 3,
+      imageUrl:
+        'https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      filters: {
+        division: 'Gamma',
+        category: 'Apple',
+        subCategory: 'Rock',
+        brand: 'Nike',
+        season: ['Spring', 'Summer'],
+        occasion: ['Birthday'],
+        gender: 'Male',
+        baseItem: 'Shirt',
+        variant: 'Small',
+        colors: ['Red', 'Blue'],
+      },
+    },
+    {
+      name: 'Groceries',
+      stockId: 'FNSRM00000489990',
+      price: 250.1,
+      stock: 18,
+      imageUrl:
+        'https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      filters: {
+        division: 'Epsilon',
+        category: 'Apple',
+        subCategory: 'Rock',
+        brand: 'Nike',
+        season: ['Spring', 'Summer'],
+        occasion: ['Birthday'],
+        gender: 'Male',
+        baseItem: 'Shirt',
+        variant: 'Small',
+        colors: ['Red', 'Blue'],
+      },
+    },
+  ];
 }
