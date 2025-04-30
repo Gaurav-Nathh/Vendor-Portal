@@ -157,27 +157,6 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'filter',
-    pathMatch: 'full',
-    loadComponent: () =>
-      import('./pages/filter/filter.component').then((c) => c.FilterComponent),
-  },
-  {
-    path: 'fit',
-    pathMatch: 'full',
-    loadComponent: () =>
-      import('./pages/fit/fit.component').then((c) => c.FitComponent),
-  },
-  {
-    path: 'item-mapping',
-    pathMatch: 'full',
-    loadComponent: () =>
-      import('./pages/item-mapping/item-mapping.component').then(
-        (c) => c.ItemMappingComponent
-      ),
-    canActivate: [authGuard],
-  },
-  {
     path: '**',
     loadComponent: () =>
       import('./pages/no-page-exist/no-page-exist.component').then(
