@@ -92,13 +92,13 @@ export class ShoppingCartComponent {
   onSearchInput(): void {
     // Clear previous timer
     clearTimeout(this.searchDebounceTimer);
-    
+
     // Set new timer
     this.searchDebounceTimer = setTimeout(() => {
       this.filterProducts();
     }, 300); // 300ms delay
   }
-  
+
   toggleDropdown() {
     this.sortByDropDownOpen = !this.sortByDropDownOpen;
   }
@@ -109,6 +109,7 @@ export class ShoppingCartComponent {
   selectOption(option: string) {
     this.selectedOption = option;
     this.sortByDropDownOpen = false;
+    this.filterProducts(); // re-filtering and sorting
   }
 
   selectCategoryOption(option: string) {
@@ -191,8 +192,8 @@ export class ShoppingCartComponent {
 
   filterProducts(): void {
     const searchTerm = this.searchText.toLowerCase().trim();
-    
-    this.filteredProducts = this.products.filter((product) => {
+    // First apply all filters
+    let filtered = this.products.filter((product) => {
       // Search text filter (if search term exists)
       if (searchTerm && !product.name.toLowerCase().includes(searchTerm)) {
         return false;
@@ -212,7 +213,7 @@ export class ShoppingCartComponent {
         if (
           !product.filters ||
           !product.filters[
-            filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
+          filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
           ]
         ) {
           return selectedOptionIds.length === 0;
@@ -232,11 +233,34 @@ export class ShoppingCartComponent {
         }
         const productValue =
           product.filters[
-            filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
+          filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
           ];
         return selectedLabels.includes(productValue as string);
       });
     });
+    
+    // sorting based on selectedOption
+    switch (this.selectedOption) {
+      case 'Price: High to Low':
+        filtered = filtered.sort((a, b) => b.price - a.price);
+        break;
+      case 'Price: Low to High':
+        filtered = filtered.sort((a, b) => a.price - b.price);
+        break;
+      case 'Popularity':
+        // Implement popularity sorting if you have a popularity metric
+        // For now, we'll just sort by name as an example
+        filtered = filtered.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'Discount':
+        filtered = filtered.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'All Products':
+      default:
+        break;
+    }
+
+    this.filteredProducts = filtered;
   }
 
   selectedNavFilterTitleDisplay = 'Select a filter';
@@ -293,16 +317,16 @@ export class ShoppingCartComponent {
   addToCart(product: Product): boolean {
     try {
       const existing = this.cart.find((item) => item.stockId === product.stockId);
-      
+
       if (existing) {
         existing.quantity! += product.quantity || 1;
       } else {
         const newItem = { ...product, quantity: product.quantity || 1 };
         this.cart.push(newItem);
       }
-  
+
       product.quantity = 1;
-      
+
       Swal.fire({
         toast: true,
         position: 'top-end',
@@ -318,7 +342,7 @@ export class ShoppingCartComponent {
           title: 'swal-title',
         },
       });
-      
+
       return true;
     } catch (error) {
       console.error('Error adding to cart:', error);
@@ -329,7 +353,7 @@ export class ShoppingCartComponent {
   buyNow(product: Product) {
     // Check if product is already in cart
     const existingProduct = this.cart.find(item => item.stockId === product.stockId);
-    
+
     if (existingProduct) {
       // Product is already in cart, just open modal
       this.openCartModal();
