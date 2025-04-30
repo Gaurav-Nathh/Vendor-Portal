@@ -48,6 +48,7 @@ interface Product {
 })
 export class ShoppingCartComponent {
   searchText: string = '';
+  private searchDebounceTimer: any;
   @ViewChild('cartModalRef') cartModalRef!: ElementRef;
 
   sortByDropDownOpen = false;
@@ -88,6 +89,16 @@ export class ShoppingCartComponent {
   //   );
   // }
 
+  onSearchInput(): void {
+    // Clear previous timer
+    clearTimeout(this.searchDebounceTimer);
+    
+    // Set new timer
+    this.searchDebounceTimer = setTimeout(() => {
+      this.filterProducts();
+    }, 300); // 300ms delay
+  }
+  
   toggleDropdown() {
     this.sortByDropDownOpen = !this.sortByDropDownOpen;
   }
@@ -179,7 +190,14 @@ export class ShoppingCartComponent {
   }
 
   filterProducts(): void {
+    const searchTerm = this.searchText.toLowerCase().trim();
+    
     this.filteredProducts = this.products.filter((product) => {
+      // Search text filter (if search term exists)
+      if (searchTerm && !product.name.toLowerCase().includes(searchTerm)) {
+        return false;
+      }
+
       // In Stock filter
       if (this.inStock && product.stock <= 0) {
         return false;

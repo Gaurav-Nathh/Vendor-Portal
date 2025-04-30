@@ -8,7 +8,7 @@
         class="search-input"
         placeholder="Search products..."
         [(ngModel)]="searchText"
-        (input)="filterProducts()"
+        (input)="onSearchInput()"
       />
       <button id="search-btn" class="search-button" aria-label="">
         <i class="fa-solid fa-magnifying-glass"></i>
