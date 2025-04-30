@@ -244,32 +244,83 @@ export class ShoppingCartComponent {
   }
 
   cart: Product[] = [];
-  addToCart(product: Product) {
-    Swal.fire({
-      toast: true,
-      position: 'top-end',
-      title: 'Product added successfully',
-      iconHtml: '<div style="font-size: 1.5rem">🛒</div>',
-      background: '#f8f9fa',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      customClass: {
-        popup: 'swal-toast',
-        icon: 'no-border', // This removes the icon container border
-        title: 'swal-title',
-      },
-    });
+  // addToCart(product: Product) {
+  //   Swal.fire({
+  //     toast: true,
+  //     position: 'top-end',
+  //     title: 'Product added successfully',
+  //     iconHtml: '<div style="font-size: 1.5rem">🛒</div>',
+  //     background: '#f8f9fa',
+  //     showConfirmButton: false,
+  //     timer: 3000,
+  //     timerProgressBar: true,
+  //     customClass: {
+  //       popup: 'swal-toast',
+  //       icon: 'no-border', // This removes the icon container border
+  //       title: 'swal-title',
+  //     },
+  //   });
 
-    const existing = this.cart.find((item) => item.stockId === product.stockId);
-    if (existing) {
-      existing.quantity! += product.quantity || 1;
-    } else {
-      const newItem = { ...product, quantity: product.quantity || 1 };
-      this.cart.push(newItem);
+  //   const existing = this.cart.find((item) => item.stockId === product.stockId);
+  //   if (existing) {
+  //     existing.quantity! += product.quantity || 1;
+  //   } else {
+  //     const newItem = { ...product, quantity: product.quantity || 1 };
+  //     this.cart.push(newItem);
+  //   }
+
+  //   product.quantity = 1;
+  // }
+
+  addToCart(product: Product): boolean {
+    try {
+      const existing = this.cart.find((item) => item.stockId === product.stockId);
+      
+      if (existing) {
+        existing.quantity! += product.quantity || 1;
+      } else {
+        const newItem = { ...product, quantity: product.quantity || 1 };
+        this.cart.push(newItem);
+      }
+  
+      product.quantity = 1;
+      
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        title: 'Product added successfully',
+        iconHtml: '<div style="font-size: 1.5rem">🛒</div>',
+        background: '#f8f9fa',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        customClass: {
+          popup: 'swal-toast',
+          icon: 'no-border',
+          title: 'swal-title',
+        },
+      });
+      
+      return true;
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      return false;
     }
+  }
 
-    product.quantity = 1;
+  buyNow(product: Product) {
+    // Check if product is already in cart
+    const existingProduct = this.cart.find(item => item.stockId === product.stockId);
+    
+    if (existingProduct) {
+      // Product is already in cart, just open modal
+      this.openCartModal();
+    } else {
+      // Product not in cart, add it first
+      this.addToCart(product);
+      // Then open modal
+      this.openCartModal();
+    }
   }
 
   openCartModal() {
