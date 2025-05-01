@@ -8,15 +8,24 @@ import { NgClass } from '@angular/common';
   styleUrl: './theme-toggle.component.scss',
 })
 export class ThemeToggleComponent {
+  isDarkMode = false;
   constructor(private themeService: ThemeService) {}
 
-  ngOngInit(): void {
-    this.themeService.initTheme();
-    this.themeService.getCurrentTheme();
-    
+  // ngOngInit(): void {
+  //   this.themeService.initTheme();
+  //   this.themeService.getCurrentTheme();
+  // }
+
+  // toggleTheme(): void {
+  //   this.themeService.toggleTheme();
+  // }
+
+  ngOnInit(): void {
+    this.isDarkMode = this.themeService.getCurrentTheme() === 'dark-theme';
   }
 
   toggleTheme(): void {
     this.themeService.toggleTheme();
+    this.isDarkMode = !this.isDarkMode;
   }
 }

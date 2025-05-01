@@ -6,7 +6,9 @@ import { Injectable } from '@angular/core';
 export class ThemeService {
   private darkThemeClass = 'dark-theme';
   private lightThemeClass = 'light-theme';
-  constructor() {}
+  constructor() {
+    this.initTheme();
+  }
 
   initTheme(): void {
     const savedTheme = localStorage.getItem('theme');

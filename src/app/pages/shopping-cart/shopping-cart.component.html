@@ -8,7 +8,7 @@
         class="search-input"
         placeholder="Search products..."
         [(ngModel)]="searchText"
-        (input)="filterProducts()"
+        (input)="onSearchInput()"
       />
       <button id="search-btn" class="search-button" aria-label="">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -370,12 +370,12 @@
           <img src="/assets/images/no-item.svg" alt="" />
           <h5>No such Item found!</h5>
         </div>
-        <div class="product-card" *ngFor="let product of filteredProducts">
+        <div class="product-card  d-flex flex-column justify-content-between" *ngFor="let product of filteredProducts">
           <div class="img-container">
             <img [src]="product.imageUrl" alt="Product Image" class="" />
           </div>
 
-          <div class="card-content">
+          <div class="card-content ">
             <h5
               class="card-title fw-bold text-uppercase text-break text-center"
             >
@@ -404,7 +404,7 @@
               >
                 Add to Cart
               </button>
-              <button class="btn btn-dark rounded-pill px-3">Buy Now</button>
+              <button (click)="buyNow(product)" class="btn btn-dark rounded-pill px-3">Buy Now</button>
             </div>
           </div>
         </div>
@@ -527,7 +527,7 @@
 
                   <div class="d-flex justify-content-between mb-3">
                     <span class="text-muted">{{ totalQty }} Items</span>
-                    <span class="fw-medium">₹{{ totalAmount.toFixed(2) }}</span>
+                    <!-- <span class="fw-medium">₹{{ totalAmount.toFixed(2) }}</span> -->
                   </div>
 
                   <div class="scrollable-items">

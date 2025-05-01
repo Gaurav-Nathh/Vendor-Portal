@@ -314,6 +314,9 @@
     grid-template-columns: 1fr;
     position: relative;
   }
+  @media (max-width:875px) and (min-width:770px) {
+    grid-template-columns: 10rem auto;
+  }
 
   #filterBtn {
     position: absolute;
@@ -354,7 +357,7 @@
     height: 100%;
     // display: none;
   }
-
+ 
   #sectionTitle {
     display: flex;
     align-items: center;
@@ -409,6 +412,7 @@
         align-items: center;
         border-radius: 2rem;
         background-color: #e4f8ec;
+        color: black;
 
         .checkbox {
           font-size: 0.8rem;
@@ -487,10 +491,15 @@
 
       @media (max-width: 1041px) and (min-width:594px) {
         max-width: 17rem;
+        min-height: 430px;
       }
       @media(max-width:594px)
       {
         width: 100%;
+      }
+      @media(max-width:428px)
+      {
+        width:80%;
       }
 
       &:hover {
