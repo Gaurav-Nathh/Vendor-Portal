@@ -314,6 +314,9 @@
     grid-template-columns: 1fr;
     position: relative;
   }
+  @media (max-width:875px) and (min-width:770px) {
+    grid-template-columns: 10rem auto;
+  }
 
   #filterBtn {
     position: absolute;
@@ -354,7 +357,7 @@
     height: 100%;
     // display: none;
   }
-
+ 
   #sectionTitle {
     display: flex;
     align-items: center;
