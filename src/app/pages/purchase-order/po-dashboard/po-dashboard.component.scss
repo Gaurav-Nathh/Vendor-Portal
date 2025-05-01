@@ -1,6 +1,6 @@
 .dashboard-container {
   padding: 2rem;
-  background: #ffffff;
+  background: var(--color-sidnav);
   border-radius: 1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
@@ -99,7 +99,7 @@
 
     .ref-number-value {
       font-family: "Roboto Mono", monospace;
-      color: #475569;
+      color: var( --color-mint);
       font-size: 0.875rem;
     }
 
