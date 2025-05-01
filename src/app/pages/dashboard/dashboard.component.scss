@@ -6,7 +6,7 @@ $info: #4895ef;
 $warning: #f8961e;
 $danger: #f72585;
 $light: #f8f9fa;
-$dark: #212529;
+
 $gray: #6c757d;
 $light-gray: #e9ecef;
 
@@ -54,7 +54,7 @@ $transition: all 0.3s ease;
 // Base Styles with Animations
 .dashboard-container {
   width: 100%;
-  background-color: #f5f7fa;
+  background-color: var( --color-bg);
   margin: 0 auto;
   padding: 2rem;
   display: grid;
@@ -202,12 +202,13 @@ $transition: all 0.3s ease;
 }
 
 .payment-card {
-  background: white;
+  background: var(--card-mode);
   border-radius: $border-radius;
   padding: 1.5rem;
   box-shadow: $box-shadow;
   border-top: 4px solid $success;
   transition: $transition;
+
   
   &:hover {
     transform: translateY(-3px);
@@ -216,7 +217,7 @@ $transition: all 0.3s ease;
   
   .section-header {
     h2 {
-      color: $dark;
+      color: var(--primary-text);
     }
   }
   
@@ -233,12 +234,13 @@ $transition: all 0.3s ease;
 }
 
 .documents-card {
-  background: white;
+  background: var(--card-mode);
   border-radius: $border-radius;
   padding: 1.5rem;
   box-shadow: $box-shadow;
   border-top: 4px solid $violet;
   transition: $transition;
+  
  
   
   &:hover {
@@ -248,7 +250,7 @@ $transition: all 0.3s ease;
   
   .section-header {
     h2 {
-      color: $dark;
+      color: var(--primary-text);
     }
   }
 }
@@ -263,7 +265,7 @@ $transition: all 0.3s ease;
     font-size: 1.25rem;
     font-weight: 700;
     margin: 0;
-    color: $dark;
+    color: var(--primary-text);
   }
 }
 
@@ -356,7 +358,7 @@ $transition: all 0.3s ease;
 }
 
 .company-details-card {
-  background: white;
+  background: var(--card-mode);
   border-radius: $border-radius;
   padding: 1.5rem;
   box-shadow: $box-shadow;
@@ -370,13 +372,13 @@ $transition: all 0.3s ease;
   
   .section-header {
     h2 {
-      color: $dark;
+      color: var(--primary-text);
     }
   }
 }
 
 .user-profile-card {
-  background: white;
+  background: var(--card-mode);
   border-radius: $border-radius;
   padding: 1.5rem;
   box-shadow: $box-shadow;
@@ -390,7 +392,7 @@ $transition: all 0.3s ease;
   
   .section-header {
     h2 {
-      color: $dark;
+      color: var(--primary-text);
     }
   }
 }
@@ -425,7 +427,7 @@ $transition: all 0.3s ease;
       font-size: 1.25rem;
       font-weight: 700;
       margin-bottom: 0.25rem;
-      color: $dark;
+      color: var(--primary-text);
     }
     
     .contact-name, .contact-email {
@@ -458,7 +460,7 @@ $transition: all 0.3s ease;
         
         span {
           font-weight: 600;
-          color: $dark;
+          color: var(--primary-text);
         }
       }
     }
@@ -493,7 +495,7 @@ $transition: all 0.3s ease;
       
       p {
         font-size: 0.9rem;
-        color: $dark;
+        color: var(--primary-text);
         transition: $transition;
         
         &:hover {
@@ -533,7 +535,7 @@ $transition: all 0.3s ease;
       font-size: 1.25rem;
       font-weight: 700;
       margin-bottom: 0.25rem;
-      color: $dark;
+      color: var(--primary-text);
     }
     
     .user-email {

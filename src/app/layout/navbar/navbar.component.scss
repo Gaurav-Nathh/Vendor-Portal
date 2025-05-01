@@ -12,6 +12,13 @@
       display: none;
     }
   }
+  #sidebarMode{
+    background-color: var(--toggle);
+  }
+  .btn-mnu{
+    background-color: transparent;
+    color: var( --primary-text);
+  }
 }
 .menu-toggler {
   display: none;
