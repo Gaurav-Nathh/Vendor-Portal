@@ -12,11 +12,12 @@
   --secondry-text: #bfbcbc;
   --border-color: #ffffff00;
   --color-bg: #0d121e;
-  --color-btn:#159AFF;
-  --color-btn-hover:#138ae6;
-  --color-input-bg:#F8F8F8;
-  --color-qunty-btn:#E0F2FE;
+  --color-btn: #159aff;
+  --color-btn-hover: #138ae6;
+  --color-input-bg: #f8f8f8;
+  --color-qunty-btn: #e0f2fe;
 
+  --color-sid: cyan;
   /*  background primary color */
 
   --primary-blue: #6375f0;
@@ -41,11 +42,11 @@
   --secondry-text: #bfbcbc;
   --border-color: #6375f0;
   --box-shadow: rgb(59, 71, 149);
-  --color-sidnav:rgb(46, 46, 46);
+  --color-sid: rgb(46, 46, 46);
 }
 
 .light-theme {
-  --color-sidnav:rgb(255, 255, 255);
+  --color-sidnav: rgb(255, 255, 255);
   --color-blue: #6375f0;
   --color-red: #fe7062;
   --color-green: #7fcf6b;
@@ -58,6 +59,7 @@
   --primary-text: #000000;
   --secondry-text: #bfbcbc;
   --box-shadow: #dad6d6;
+  --color-sid: cyan;
 }
 *,
 ::after,
@@ -75,5 +77,4 @@ body {
 /* Global styles */
 body {
   font-family: "Inter", sans-serif;
- 
 }
