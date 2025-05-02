@@ -1,0 +1,154 @@
+<div class="invoice-dashboard">
+  <!-- Header Section -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1 class="dashboard-title">Invoice Management</h1>
+      <div class="header-controls">
+        <button class="primary-action">
+          <i class="bi bi-plus-lg"></i>
+          Create Invoice
+        </button>
+      </div>
+    </div>
+    
+    <!-- Status Quick Filters -->
+    <div class="status-filters">
+      <div class="filter-container">
+        <div class="filter-item" 
+             *ngFor="let filter of filters"
+             [class.active]="currentFilter === filter.value"
+             (click)="filterInvoices(filter.value)">
+          <div class="filter-content">
+            <div class="filter-indicator" [ngClass]="filter.value"></div>
+            <span class="filter-label">{{ filter.label }}</span>
+            <span class="filter-count">{{ getStatusCount(filter.value) }}</span>
+          </div>
+          <div class="filter-progress" [ngClass]="filter.value"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Key Metrics -->
+  <div class="performance-metrics">
+    <div class="metric-card">
+      <div class="metric-content">
+        <div class="metric-icon-container total">
+          <i class="bi bi-receipt"></i>
+        </div>
+        <div class="metric-data">
+          <span class="metric-label">Total Invoices</span>
+          <div class="metric-value-container">
+            <span class="metric-value">{{ invoices.length }}</span>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="metric-card">
+      <div class="metric-content">
+        <div class="metric-icon-container revenue">
+          <i class="bi bi-currency-dollar"></i>
+        </div>
+        <div class="metric-data">
+          <span class="metric-label">Total Value</span>
+          <div class="metric-value-container">
+            <span class="metric-value">{{ getTotalValue() | currency }}</span>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="metric-card">
+      <div class="metric-content">
+        <div class="metric-icon-container pending">
+          <i class="bi bi-clock-history"></i>
+        </div>
+        <div class="metric-data">
+          <span class="metric-label">Pending Clearance</span>
+          <div class="metric-value-container">
+            <span class="metric-value">{{ getPendingAmount() | currency }}</span>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invoice Table -->
+  <div class="data-section">
+    <div class="table-controls">
+      <div class="search-container">
+        <i class="bi bi-search"></i>
+        <input type="text" 
+               placeholder="Search invoices..." 
+               class="search-input"
+               (input)="applyFilter($event)">
+      </div>
+      <div class="view-options">
+        <span class="results-count">{{ filteredInvoices.length }} results</span>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="invoice-table">
+        <thead>
+          <tr>
+            <th>Invoice ID</th>
+            <th>Client</th>
+            <th>Issued Date</th>
+            <th>Due Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th class="text-right">Actions</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr *ngFor="let invoice of filteredInvoices">
+            <td class="invoice-id">{{ invoice.no }}</td>
+            <td class="client-info">
+              <div class="client-name">Client {{ invoice.no.split('-')[1] }}</div>
+              <div class="client-meta">Net 30 Days</div>
+            </td>
+            <td class="date">{{ invoice.date | date:'MMM dd, yyyy' }}</td>
+            <td class="date" [class.overdue]="isOverdue(invoice)">
+              {{ invoice.dueDate | date:'MMM dd, yyyy' }}
+              <div *ngIf="isOverdue(invoice)" class="overdue-badge">
+                <i class="bi bi-exclamation-circle"></i>
+                Overdue
+              </div>
+            </td>
+            <td class="amount">{{ invoice.value | currency }}</td>
+            <td>
+              <div class="status-indicator" [ngClass]="invoice.status.toLowerCase()">
+                <div class="status-dot"></div>
+                {{ invoice.status }}
+              </div>
+            </td>
+            <td class="actions">
+              <button class="icon-btn" tooltip="View Details">
+                <i class="bi bi-eye"></i>
+              </button>
+              <button class="icon-btn" tooltip="Download PDF">
+                <i class="bi bi-file-earmark-arrow-down"></i>
+              </button>
+            </td>
+          </tr>
+
+          <tr class="empty-state" *ngIf="filteredInvoices.length === 0">
+            <td colspan="7">
+              <div class="empty-content">
+                <i class="bi bi-file-earmark-excel"></i>
+                <h3>No invoices found</h3>
+                <p>Try adjusting your filters or search terms</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

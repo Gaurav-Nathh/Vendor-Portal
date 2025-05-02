@@ -78,6 +78,10 @@ export class ShoppingCartComponent implements OnInit {
   inStock: boolean = true;
   filteredProducts: Product[] = [];
 
+  priceRange = { min: 0, max: 1000 };
+  minPossiblePrice = 0;
+  maxPossiblePrice = 1000;
+
   constructor(private sharedService: SharedService) {
     this.filters.forEach((filter) => {
       this.selectedFilters[filter.title] = [];
@@ -85,6 +89,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.filteredProducts = this.products;
     this.filterProducts();
   }
 
@@ -172,6 +177,26 @@ export class ShoppingCartComponent implements OnInit {
     this.filterProducts();
   }
 
+  calculatePriceRange(): void {
+    if (this.products.length === 0) return;
+
+    const prices = this.products.map(p => p.price);
+    this.minPossiblePrice = Math.floor(Math.min(...prices));
+    this.maxPossiblePrice = Math.ceil(Math.max(...prices));
+    this.priceRange = {
+      min: this.minPossiblePrice,
+      max: this.maxPossiblePrice
+    };
+  }
+
+  updatePriceRange(): void {
+    // Ensure min is not greater than max
+    if (this.priceRange.min > this.priceRange.max) {
+      this.priceRange.min = this.priceRange.max;
+    }
+    this.filterProducts();
+  }
+
   resetFilters(): void {
     this.filters.forEach((filter) => {
       this.selectedFilters[filter.title] = [];
@@ -193,6 +218,12 @@ export class ShoppingCartComponent implements OnInit {
     const searchTerm = this.searchText.toLowerCase().trim();
     // First apply all filters
     let filtered = this.products.filter((product) => {
+
+      // Price range filter
+      if (product.price < this.priceRange.min || product.price > this.priceRange.max) {
+        return false;
+      }
+
       // Search text filter (if search term exists)
       if (searchTerm && !product.name.toLowerCase().includes(searchTerm)) {
         return false;

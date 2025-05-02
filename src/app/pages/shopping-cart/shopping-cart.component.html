@@ -237,6 +237,57 @@
         <label class="form-check-label" for="inStockToggle">In Stock</label>
       </div>
       <!-- In Stock END -->
+       <!-- In Stock END -->
+
+<!-- Price Range Filter -->
+<div class="price-range-filter">
+  <div class="checkbox-title">
+    <div class="title">
+      <span>Price Range</span>
+    </div>
+    <div class="price-inputs">
+      <div class="price-input-group">
+        <input
+          type="number"
+          placeholder="Min"
+          [(ngModel)]="priceRange.min"
+          (change)="updatePriceRange()"
+          min="0"
+          [max]="priceRange.max"
+          class="form-control"
+        />
+      </div>
+      <div class="price-input-group">
+        <input
+          type="number"
+          placeholder="Max"
+          [(ngModel)]="priceRange.max"
+          (change)="updatePriceRange()"
+          [min]="priceRange.min"
+          class="form-control"
+        />
+      </div>
+    </div>
+    <div class="price-slider-container">
+      <input
+        type="range"
+        [(ngModel)]="priceRange.min"
+        (input)="updatePriceRange()"
+        [min]="minPossiblePrice"
+        [max]="maxPossiblePrice"
+        class="form-range"
+      />
+      <input
+        type="range"
+        [(ngModel)]="priceRange.max"
+        (input)="updatePriceRange()"
+        [min]="minPossiblePrice"
+        [max]="maxPossiblePrice"
+        class="form-range"
+      />
+    </div>
+  </div>
+</div>
       <div class="checkbox-title" *ngFor="let filter of filters; let i = index">
         <div
           class="title"

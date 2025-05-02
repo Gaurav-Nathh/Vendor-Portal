@@ -7,12 +7,12 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'login',
+    path: 'log',
     loadComponent: () =>
       import('./pages/login/login.component').then((c) => c.LoginComponent),
   },
   {
-    path: 'log',
+    path: 'login',
     loadComponent: () =>
       import('./pages/log/log.component').then((c) => c.LogComponent),
   },
@@ -49,7 +49,6 @@ export const routes: Routes = [
           ).then((c) => c.PoDashboardComponent),
         canActivate: [authGuard],
       },
-
       {
         path: 'update-password',
         pathMatch: 'full',
@@ -68,6 +67,15 @@ export const routes: Routes = [
           ).then((c) => c.CreateVendorFormComponent),
         canActivate: [authGuard],
       },
+      {
+        path: 'update-profile',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/update-profile/update-profile.component').then(
+            (c) => c.UpdateProfileComponent
+          ),
+        canActivate: [authGuard],
+      },
     ],
   },
   {
@@ -82,6 +90,33 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/dashboard/dashboard.component').then(
             (c) => c.DashboardComponent
+          ),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'update-profile',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/update-profile/update-profile.component').then(
+            (c) => c.UpdateProfileComponent
+          ),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'update-password',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/update-password/update-password.component').then(
+            (c) => c.UpdatePasswordComponent
+          ),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'invoice',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/invoice-dashboard/invoice-dashboard.component').then(
+            (c) => c.InvoiceDashboardComponent
           ),
         canActivate: [authGuard],
       },

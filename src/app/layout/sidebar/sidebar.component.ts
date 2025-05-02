@@ -25,6 +25,7 @@ export class SidebarComponent {
   currentMenu: MenuItem[] = [];
   sidebarShrinkStyle: boolean = true;
   sidebarVisibility: boolean = true;
+  commonMenu: { text: string; icon: string; route: string }[] = [];
   constructor(
     private router: Router,
     private sidebarService: SharedService,
@@ -33,9 +34,11 @@ export class SidebarComponent {
   ) {}
 
   isOpen = false;
-  userType: string = '';
+  userType!: string;
+
   ngOnInit() {
     this.userType = this.userService.getUserType();
+    this.buildMenu();
     this.currentMenu =
       this.userType === 'vendor' ? this.vendorMenu : this.customerMenu;
 
@@ -139,7 +142,7 @@ export class SidebarComponent {
     {
       text: 'Invoice',
       icon: 'fa-solid fa-cart-shopping',
-      route: '/customer/',
+      route: '/customer/invoice',
     },
     {
       text: 'Payment',
@@ -164,16 +167,34 @@ export class SidebarComponent {
       route: '/customer/',
     },
   ];
-  commonMenu = [
-    {
-      text: 'My Profile',
-      icon: 'fa-solid fa-circle-user',
-      route: `/${this.userType}/`,
-    },
-    {
-      text: 'Password',
-      icon: 'fa-solid fa-lock',
-      route: `/${this.userType}/update-password`,
-    },
-  ];
+
+  // get commonMenu() {
+  //   return [
+  //     {
+  //       text: 'My Profile',
+  //       icon: 'fa-solid fa-circle-user',
+  //       route: `/${this.userType}/update-profile`,
+  //     },
+  //     {
+  //       text: 'Password',
+  //       icon: 'fa-solid fa-lock',
+  //       route: `/${this.userType}/update-password`,
+  //     },
+  //   ];
+  // }
+
+  private buildMenu() {
+    this.commonMenu = [
+      {
+        text: 'My Profile',
+        icon: 'fa-solid fa-circle-user',
+        route: `/${this.userType}/update-profile`,
+      },
+      {
+        text: 'Password',
+        icon: 'fa-solid fa-lock',
+        route: `/${this.userType}/update-password`,
+      },
+    ];
+  }
 }
