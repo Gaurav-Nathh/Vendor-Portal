@@ -85,6 +85,15 @@ export const routes: Routes = [
           ),
         canActivate: [authGuard],
       },
+      {
+        path:'/update-profile',
+        pathMatch:'full',
+        loadComponent:()=>
+          import('./pages/update-profile/update-profile.component').then(
+            (c)=>c.UpdateProfileComponent
+          ),
+          canActivate:[authGuard]
+      },
 
       {
         path:'invoice',

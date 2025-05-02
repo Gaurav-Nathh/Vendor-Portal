@@ -168,7 +168,7 @@ export class SidebarComponent {
     {
       text: 'My Profile',
       icon: 'fa-solid fa-circle-user',
-      route: `/${this.userType}/`,
+      route: `/${this.userType}/update-profile`,
     },
     {
       text: 'Password',
