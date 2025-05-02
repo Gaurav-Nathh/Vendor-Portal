@@ -57,6 +57,7 @@ export class ShoppingCartComponent implements OnInit {
   private searchDebounceTimer: any;
   @ViewChild('cartModalRef') cartModalRef!: ElementRef;
   @ViewChild('priceSlider') priceSlider!: ElementRef;
+  @ViewChild('sliderContainer') sliderContainer!: ElementRef;
 
   sortByDropDownOpen = false;
   categoryDropDownOpen = false;
@@ -90,7 +91,12 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     // this.filteredProducts = this.products;
+    this.calculatePriceRange();
     this.filterProducts();
+  }
+
+  ngAfterViewInit(): void {
+    this.setupSliderThumbs();
   }
 
   onSearchInput(): void {
@@ -197,6 +203,181 @@ export class ShoppingCartComponent implements OnInit {
     this.filterProducts();
   }
 
+
+  setupSliderThumbs(): void {
+    const container = this.sliderContainer.nativeElement;
+    const minThumb = container.querySelector('.min-thumb');
+    const maxThumb = container.querySelector('.max-thumb');
+    const minSlider = container.querySelector('.min-slider');
+    const maxSlider = container.querySelector('.max-slider');
+
+    // Position thumbs initially
+    this.positionThumbs();
+
+    // Make thumbs draggable
+    this.makeDraggable(minThumb, 'min');
+    this.makeDraggable(maxThumb, 'max');
+
+    // Sync slider inputs with thumbs
+    minSlider.addEventListener('input', () => this.positionThumbs());
+    maxSlider.addEventListener('input', () => this.positionThumbs());
+  }
+
+  positionThumbs(): void {
+    const container = this.sliderContainer.nativeElement;
+    const minThumb = container.querySelector('.min-thumb');
+    const maxThumb = container.querySelector('.max-thumb');
+    const minSlider = container.querySelector('.min-slider');
+    const maxSlider = container.querySelector('.max-slider');
+
+    const range = this.maxPossiblePrice - this.minPossiblePrice;
+    const minPosition = ((this.priceRange.min - this.minPossiblePrice) / range) * 100;
+    const maxPosition = ((this.priceRange.max - this.minPossiblePrice) / range) * 100;
+
+    minThumb.style.left = `calc(${minPosition}% - 9px)`;
+    maxThumb.style.left = `calc(${maxPosition}% - 9px)`;
+
+    // Update track highlight
+    const track = container.querySelector('.slider-track');
+    track.style.setProperty('--min-pos', minPosition + '%');
+    track.style.setProperty('--max-pos', maxPosition + '%');
+  }
+
+  makeDraggable(thumb: HTMLElement, type: 'min' | 'max'): void {
+    let isDragging = false;
+
+    thumb.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      document.addEventListener('mousemove', moveHandler);
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        document.removeEventListener('mousemove', moveHandler);
+      });
+    });
+
+    thumb.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      document.addEventListener('touchmove', moveHandler);
+      document.addEventListener('touchend', () => {
+        isDragging = false;
+        document.removeEventListener('touchmove', moveHandler);
+      });
+    });
+
+    const moveHandler = (e: MouseEvent | TouchEvent) => {
+      if (!isDragging) return;
+
+      const container = this.sliderContainer.nativeElement;
+      const rect = container.getBoundingClientRect();
+      const clientX = e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
+      let percent = (clientX - rect.left) / rect.width;
+      percent = Math.max(0, Math.min(1, percent));
+
+      const value = Math.round(this.minPossiblePrice + percent * (this.maxPossiblePrice - this.minPossiblePrice));
+
+      if (type === 'min') {
+        this.priceRange.min = Math.min(value, this.priceRange.max - 1);
+        container.querySelector('.min-slider').value = this.priceRange.min;
+      } else {
+        this.priceRange.max = Math.max(value, this.priceRange.min + 1);
+        container.querySelector('.max-slider').value = this.priceRange.max;
+      }
+
+      this.positionThumbs();
+      this.filterProducts();
+    };
+  }
+
+  onMinSliderChange(event: Event): void {
+    const value = +(event.target as HTMLInputElement).value;
+    this.priceRange.min = Math.min(value, this.priceRange.max - 1);
+    this.updateSliderStyles();
+    this.filterProducts();
+  }
+
+  onMaxSliderChange(event: Event): void {
+    const value = +(event.target as HTMLInputElement).value;
+    this.priceRange.max = Math.max(value, this.priceRange.min + 1);
+    this.updateSliderStyles();
+    this.filterProducts();
+  }
+
+  updateFromMinInput(): void {
+    // Ensure min doesn't exceed max
+    if (this.priceRange.min > this.priceRange.max) {
+      this.priceRange.min = this.priceRange.max;
+    }
+    // Ensure min doesn't go below minimum possible
+    if (this.priceRange.min < this.minPossiblePrice) {
+      this.priceRange.min = this.minPossiblePrice;
+    }
+    this.updateSliderStyles();
+    this.filterProducts();
+  }
+
+  updateFromMaxInput(): void {
+    // Ensure max doesn't go below min
+    if (this.priceRange.max < this.priceRange.min) {
+      this.priceRange.max = this.priceRange.min;
+    }
+    // Ensure max doesn't exceed maximum possible
+    if (this.priceRange.max > this.maxPossiblePrice) {
+      this.priceRange.max = this.maxPossiblePrice;
+    }
+    this.updateSliderStyles();
+    this.filterProducts();
+  }
+
+  // Don't forget to clean up in ngOnDestroy
+  ngOnDestroy(): void {
+    this.clearSliderEvents();
+  }
+
+  // Add to your component
+  activeSlider: 'min' | 'max' | null = null;
+
+  onSliderMouseDown(event: Event, type: 'min' | 'max'): void {
+    this.activeSlider = type;
+    document.addEventListener('mousemove', this.handleSliderMove);
+    document.addEventListener('touchmove', this.handleSliderMove);
+    document.addEventListener('mouseup', this.clearSliderEvents);
+    document.addEventListener('touchend', this.clearSliderEvents);
+  }
+
+  handleSliderMove = (event: MouseEvent | TouchEvent) => {
+    if (!this.activeSlider) return;
+
+    const clientX = (event as MouseEvent).clientX ||
+      (event as TouchEvent).touches[0].clientX;
+    const sliderContainer = document.querySelector('.dual-slider-container');
+
+    if (sliderContainer) {
+      const rect = sliderContainer.getBoundingClientRect();
+      const percent = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+      const value = Math.round(
+        this.minPossiblePrice +
+        percent * (this.maxPossiblePrice - this.minPossiblePrice)
+      );
+
+      if (this.activeSlider === 'min') {
+        this.priceRange.min = Math.min(value, this.priceRange.max - 1);
+      } else {
+        this.priceRange.max = Math.max(value, this.priceRange.min + 1);
+      }
+
+      this.filterProducts();
+      this.updateSliderStyles();
+    }
+  };
+
+  clearSliderEvents = () => {
+    this.activeSlider = null;
+    document.removeEventListener('mousemove', this.handleSliderMove);
+    document.removeEventListener('touchmove', this.handleSliderMove);
+    document.removeEventListener('mouseup', this.clearSliderEvents);
+    document.removeEventListener('touchend', this.clearSliderEvents);
+  };
+
   resetFilters(): void {
     this.filters.forEach((filter) => {
       this.selectedFilters[filter.title] = [];
@@ -212,6 +393,16 @@ export class ShoppingCartComponent implements OnInit {
       'inStockToggle'
     ) as HTMLInputElement;
     if (inStockToggle) inStockToggle.checked = true;
+  }
+
+  updateSliderStyles(): void {
+    const sliderContainer = document.querySelector('.dual-slider-container');
+    if (sliderContainer) {
+      (sliderContainer as HTMLElement).style.setProperty('--min', this.priceRange.min.toString());
+      (sliderContainer as HTMLElement).style.setProperty('--max', this.priceRange.max.toString());
+      (sliderContainer as HTMLElement).style.setProperty('--min-possible', this.minPossiblePrice.toString());
+      (sliderContainer as HTMLElement).style.setProperty('--max-possible', this.maxPossiblePrice.toString());
+    }
   }
 
   filterProducts(): void {
@@ -244,7 +435,7 @@ export class ShoppingCartComponent implements OnInit {
         if (
           !product.filters ||
           !product.filters[
-            filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
+          filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
           ]
         ) {
           return selectedOptionIds.length === 0;
@@ -264,7 +455,7 @@ export class ShoppingCartComponent implements OnInit {
         }
         const productValue =
           product.filters[
-            filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
+          filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
           ];
         return selectedLabels.includes(productValue as string);
       });
