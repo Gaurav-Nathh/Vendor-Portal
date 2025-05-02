@@ -59,7 +59,7 @@
               <li *ngFor="let subitem of item.submenu" class="submenu-item">
                 <a
                   [routerLink]="subitem.route"
-                  routerLinkActive="active"
+                  routerLinkActive="active-link"
                   [routerLinkActiveOptions]="{ exact: true }"
                   [ngClass]="[isOpen ? 'submenu-link' : 'submenu-link-close']"
                 >
