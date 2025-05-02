@@ -50,6 +50,15 @@ export const routes: Routes = [
         canActivate: [authGuard],
       },
       {
+        path: 'invoice',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/invoice-dashboard/invoice-dashboard.component').then(
+            (c) => c.InvoiceDashboardComponent
+          ),
+        canActivate: [authGuard],
+      },
+      {
         path: 'update-password',
         pathMatch: 'full',
         loadComponent: () =>
@@ -73,6 +82,15 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/update-profile/update-profile.component').then(
             (c) => c.UpdateProfileComponent
+          ),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'page-under-construction',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/under-work/under-work.component').then(
+            (c) => c.UnderWorkComponent
           ),
         canActivate: [authGuard],
       },
@@ -188,6 +206,15 @@ export const routes: Routes = [
           import('./pages/vendor-dashboard/vendor-dashboard.component').then(
             (c) => c.VendorDashboardComponent
           ),
+      },
+      {
+        path: 'page-under-construction',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/under-work/under-work.component').then(
+            (c) => c.UnderWorkComponent
+          ),
+        canActivate: [authGuard],
       },
     ],
   },

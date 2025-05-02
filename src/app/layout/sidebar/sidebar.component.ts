@@ -87,12 +87,12 @@ export class SidebarComponent {
     {
       text: 'Invoice',
       icon: 'fa-solid fa-file-lines',
-      route: '/vendor/shopping-cart',
+      route: '/vendor/invoice',
     },
     {
       text: 'Goods Receipts',
       icon: 'fa-solid fa-receipt',
-      route: '/vendor/shopping-cart',
+      route: '/vendor/page-under-construction',
     },
     {
       text: 'Payment',
@@ -102,19 +102,19 @@ export class SidebarComponent {
         {
           text: 'Pending',
           icon: 'fa-solid fa-hourglass-half',
-          route: '/vendor/shopping-cart',
+          route: '/vendor/page-under-construction',
         },
         {
           text: 'History',
           icon: 'fa-solid fa-clock-rotate-left',
-          route: '/vendor/shopping-cart',
+          route: '/vendor/page-under-construction',
         },
       ],
     },
     {
       text: 'Statements',
       icon: 'fa-solid fa-file-invoice-dollar',
-      route: '/vendor/shopping-cart',
+      route: '/vendor/page-under-construction',
     },
   ];
 
@@ -152,36 +152,21 @@ export class SidebarComponent {
         {
           text: 'Pending',
           icon: 'fa-solid fa-hourglass-half',
-          route: '/customer/',
+          route: '/vendor/page-under-construction',
         },
         {
           text: 'History',
           icon: 'fa-solid fa-clock-rotate-left',
-          route: '/customer/',
+          route: '/vendor/page-under-construction',
         },
       ],
     },
     {
       text: 'Statements',
       icon: 'fa-solid fa-file-invoice-dollar',
-      route: '/customer/',
+      route: '/vendor/page-under-construction',
     },
   ];
-
-  // get commonMenu() {
-  //   return [
-  //     {
-  //       text: 'My Profile',
-  //       icon: 'fa-solid fa-circle-user',
-  //       route: `/${this.userType}/update-profile`,
-  //     },
-  //     {
-  //       text: 'Password',
-  //       icon: 'fa-solid fa-lock',
-  //       route: `/${this.userType}/update-password`,
-  //     },
-  //   ];
-  // }
 
   private buildMenu() {
     this.commonMenu = [
