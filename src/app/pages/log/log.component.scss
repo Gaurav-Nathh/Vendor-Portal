@@ -15,14 +15,14 @@
 .login-container {
   display: grid;
   grid-template-columns: 1fr 3px 1fr;
-  // height: 50vh;
-  width: fit-content;
+  width: 65%;
   background-color: var(--color-bg);
   border: 1px solid var(--border-color);
   border-radius: 1.2rem;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
+    width: 90%;
   }
 
   .login-left,
@@ -38,6 +38,10 @@
     flex-direction: column;
     padding: 2rem;
     align-items: flex-start;
+
+    .logo {
+      width: 7rem;
+    }
 
     .login-content {
       font-size: 0.8rem;
@@ -55,7 +59,9 @@
       font-weight: 500;
     }
     form {
-      width: 400px;
+      // width: 400px;
+      margin: 0 auto;
+      width: 100%;
       display: flex;
       flex-direction: column;
 

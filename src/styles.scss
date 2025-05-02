@@ -1,4 +1,3 @@
-@import "nouislider/dist/nouislider.min.css";
 :root {
   /* text color  */
   --color-blue: #6375f0;
@@ -13,13 +12,12 @@
   --secondry-text: #bfbcbc;
   --border-color: #ffffff00;
   --color-bg: #0d121e;
-  --color-btn:#159AFF;
- /*  --color-btn-hover:#138ae6; */
-  --color-input-bg:#F8F8F8;
-  --color-qunty-btn:#E0F2FE;
-   --color-btn: #6366f1;
-   --color-btn-hover:#4d4fd1;
- 
+  --color-btn: #159aff;
+  /*  --color-btn-hover:#138ae6; */
+  --color-input-bg: #f8f8f8;
+  --color-qunty-btn: #e0f2fe;
+  --color-btn: #6366f1;
+  --color-btn-hover: #4d4fd1;
 
   --color-sid: cyan;
   /*  background primary color */
@@ -47,12 +45,10 @@
   --secondry-text: #bfbcbc;
   --border-color: #6375f0;
   --box-shadow: rgb(59, 71, 149);
-  --color-sidnav:rgb(46, 46, 46);
-  --toggle:#A0EDA7;
-  --card-mode:rgb(61, 61, 61);
-  --color-mint:white;  // lighţ text color for light text
-  
-  
+  --color-sidnav: rgb(46, 46, 46);
+  --toggle: #a0eda7;
+  --card-mode: rgb(61, 61, 61);
+  --color-mint: white; // lighţ text color for light text
 }
 
 .light-theme {
