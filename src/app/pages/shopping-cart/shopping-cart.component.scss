@@ -720,3 +720,39 @@ td {
     background-color: transparent;
   }
 }
+
+
+.price-range-filter {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  
+  .price-inputs {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    
+    .price-input-group {
+      flex: 1;
+      
+      input {
+        width: 100%;
+      }
+    }
+  }
+  
+  .price-slider-container {
+    position: relative;
+    height: 40px;
+    margin-top: 1rem;
+    
+    input[type="range"] {
+      position: absolute;
+      width: 100%;
+      height: 5px;
+      
+      &:nth-child(2) {
+        top: 20px;
+      }
+    }
+  }
+}
