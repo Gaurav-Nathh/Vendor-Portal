@@ -139,7 +139,7 @@ export class SidebarComponent {
     {
       text: 'Invoice',
       icon: 'fa-solid fa-cart-shopping',
-      route: '/customer/',
+      route: '/customer/invoice',
     },
     {
       text: 'Payment',

@@ -87,6 +87,16 @@ export const routes: Routes = [
       },
 
       {
+        path:'invoice',
+        pathMatch:'full',
+        loadComponent:()=>
+          import('./pages/invoice-dashboard/invoice-dashboard.component').then(
+            (c)=>c.InvoiceDashboardComponent
+          ),
+          canActivate:[authGuard],
+      },
+
+      {
         path: 'shopping-cart',
         pathMatch: 'full',
         loadComponent: () =>
