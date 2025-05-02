@@ -245,11 +245,6 @@
         >
           <div>
             <span>{{ filter.title }}</span>
-            <!-- <span
-              id="appliedTag"
-              *ngIf="selectedFilters[filter.title].length > 0"
-              >Applied</span
-            > -->
           </div>
           <div class="controlBody">
             <button
@@ -370,12 +365,15 @@
           <img src="/assets/images/no-item.svg" alt="" />
           <h5>No such Item found!</h5>
         </div>
-        <div class="product-card  d-flex flex-column justify-content-between" *ngFor="let product of filteredProducts">
+        <div
+          class="product-card d-flex flex-column justify-content-between"
+          *ngFor="let product of filteredProducts"
+        >
           <div class="img-container">
             <img [src]="product.imageUrl" alt="Product Image" class="" />
           </div>
 
-          <div class="card-content ">
+          <div class="card-content">
             <h5
               class="card-title fw-bold text-uppercase text-break text-center"
             >
@@ -404,7 +402,12 @@
               >
                 Add to Cart
               </button>
-              <button (click)="buyNow(product)" class="btn btn-dark rounded-pill px-3">Buy Now</button>
+              <button
+                (click)="buyNow(product)"
+                class="btn btn-dark rounded-pill px-3"
+              >
+                Buy Now
+              </button>
             </div>
           </div>
         </div>

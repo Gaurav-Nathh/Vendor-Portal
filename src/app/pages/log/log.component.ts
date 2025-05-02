@@ -2,6 +2,10 @@ import { NgClass, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ThemeToggleComponent } from '../../components/theme-toggle/theme-toggle.component';
+import { ThemeService } from '../../services/theme.service';
+import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log',
@@ -11,8 +15,8 @@ import { ThemeToggleComponent } from '../../components/theme-toggle/theme-toggle
 })
 export class LogComponent {
   loginModel = {
-    email: 'guaravnath725@gmail.com',
-    password: 'Gaurav@123',
+    email: '',
+    password: '',
     userType: '',
   };
   hidePassword: boolean = true;
@@ -32,7 +36,12 @@ export class LogComponent {
   currentImage = 0;
   progress = 50;
 
-  constructor() {
+  constructor(
+    private themeService: ThemeService,
+    private authService: AuthService,
+    private userService: UserService,
+    private router: Router
+  ) {
     setInterval(() => {
       this.nextSlide();
     }, 3000);
@@ -45,9 +54,13 @@ export class LogComponent {
   togglePassword() {
     this.hidePassword = !this.hidePassword;
   }
+
   onSubmit() {
-    console.log('Email:', this.loginModel.email);
-    console.log('Password:', this.loginModel.password);
+    this.authService.login();
+    this.userService.setUserType(this.loginModel.userType);
+    const route =
+      this.loginModel.userType === 'customer' ? '/customer' : '/vendor';
+    this.router.navigate([route]);
   }
 
   nextSlide() {

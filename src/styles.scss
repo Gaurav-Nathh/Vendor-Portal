@@ -1,3 +1,4 @@
+@import "nouislider/dist/nouislider.min.css";
 :root {
   /* text color  */
   --color-blue: #6375f0;
@@ -26,7 +27,7 @@
   --primary-bg: #ffffff;
   --secondary-bg: #f4f4f4;
   --primary-card: #f4f4f4;
-  --color-hover:#abacf8b1;
+  --color-hover: #abacf8b1;
 }
 
 .dark-theme {
@@ -43,7 +44,8 @@
   --secondry-text: #bfbcbc;
   --border-color: #6375f0;
   --box-shadow: rgb(59, 71, 149);
-  --color-sidnav:rgb(46, 46, 46);
+  --color-sidnav: rgb(46, 46, 46);
+  --vrt-line-color: #6375f0;
 }
 
 .light-theme {
@@ -60,6 +62,7 @@
   --primary-text: #000000;
   --secondry-text: #bfbcbc;
   --box-shadow: #dad6d6;
+  --vrt-line-color: #dcdcdc;
 }
 *,
 ::after,
@@ -71,10 +74,5 @@
 }
 body {
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
-  /*  background-color: var(--color-sidnav); */
-}
-/* Global styles */
-body {
   font-family: "Inter", sans-serif;
 }

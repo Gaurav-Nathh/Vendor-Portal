@@ -11,15 +11,6 @@ export class ThemeToggleComponent {
   isDarkMode = false;
   constructor(private themeService: ThemeService) {}
 
-  // ngOngInit(): void {
-  //   this.themeService.initTheme();
-  //   this.themeService.getCurrentTheme();
-  // }
-
-  // toggleTheme(): void {
-  //   this.themeService.toggleTheme();
-  // }
-
   ngOnInit(): void {
     this.isDarkMode = this.themeService.getCurrentTheme() === 'dark-theme';
   }

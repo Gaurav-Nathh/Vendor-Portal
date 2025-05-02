@@ -1,5 +1,11 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 // import { Product } from '../../Models/product.model';
 import { FormsModule } from '@angular/forms';
 import { SharedService } from '../../services/shared/shared.service';
@@ -46,10 +52,11 @@ interface Product {
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.scss',
 })
-export class ShoppingCartComponent {
+export class ShoppingCartComponent implements OnInit {
   searchText: string = '';
   private searchDebounceTimer: any;
   @ViewChild('cartModalRef') cartModalRef!: ElementRef;
+  @ViewChild('priceSlider') priceSlider!: ElementRef;
 
   sortByDropDownOpen = false;
   categoryDropDownOpen = false;
@@ -78,16 +85,8 @@ export class ShoppingCartComponent {
   }
 
   ngOnInit(): void {
-    // this.filteredProducts = this.products;
     this.filterProducts();
   }
-
-  // filterProducts() {
-  //   const search = this.searchText.toLowerCase();
-  //   this.filteredProducts = this.products.filter((product) =>
-  //     product.name.toLowerCase().includes(search)
-  //   );
-  // }
 
   onSearchInput(): void {
     // Clear previous timer
@@ -203,6 +202,7 @@ export class ShoppingCartComponent {
       if (this.inStock && product.stock <= 0) {
         return false;
       }
+      //Priace RangeFilter
       // Category filters
       return this.filters.every((filter) => {
         const selectedOptionIds = this.selectedFilters[filter.title];
@@ -213,7 +213,7 @@ export class ShoppingCartComponent {
         if (
           !product.filters ||
           !product.filters[
-          filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
+            filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
           ]
         ) {
           return selectedOptionIds.length === 0;
@@ -233,12 +233,12 @@ export class ShoppingCartComponent {
         }
         const productValue =
           product.filters[
-          filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
+            filter.title.toLowerCase().replace(' ', '') as keyof ProductFilters
           ];
         return selectedLabels.includes(productValue as string);
       });
     });
-    
+
     // sorting based on selectedOption
     switch (this.selectedOption) {
       case 'Price: High to Low':
@@ -316,7 +316,9 @@ export class ShoppingCartComponent {
 
   addToCart(product: Product): boolean {
     try {
-      const existing = this.cart.find((item) => item.stockId === product.stockId);
+      const existing = this.cart.find(
+        (item) => item.stockId === product.stockId
+      );
 
       if (existing) {
         existing.quantity! += product.quantity || 1;
@@ -352,7 +354,9 @@ export class ShoppingCartComponent {
 
   buyNow(product: Product) {
     // Check if product is already in cart
-    const existingProduct = this.cart.find(item => item.stockId === product.stockId);
+    const existingProduct = this.cart.find(
+      (item) => item.stockId === product.stockId
+    );
 
     if (existingProduct) {
       // Product is already in cart, just open modal

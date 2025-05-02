@@ -9,14 +9,17 @@
   position: relative;
   align-items: center;
   justify-content: space-between;
+  background-color: var(--color-bg);
 }
 
 .login-container {
   display: grid;
   grid-template-columns: 1fr 3px 1fr;
-  // height: 100vh;
+  // height: 50vh;
   width: fit-content;
-  background-color: white;
+  background-color: var(--color-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 1.2rem;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
@@ -26,50 +29,69 @@
   .login-right {
     flex: 1;
     display: flex;
-    // justify-content: center;
     align-items: center;
     justify-content: center;
-    // position: relative;
-    // overflow: hidden;
-    // width: fit-content;
-    // height: fit-content;
+    border-radius: 1.2rem;
   }
 
   .login-left {
     flex-direction: column;
     padding: 2rem;
+    align-items: flex-start;
 
+    .login-content {
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+      margin-bottom: 2rem;
+      color: #696969;
+    }
+
+    .copy-right-body {
+      margin-top: 1rem;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #696969;
+      font-weight: 500;
+    }
     form {
       width: 400px;
       display: flex;
       flex-direction: column;
 
+      .userType {
+        margin-bottom: 0.8rem;
+        display: flex;
+        gap: 4rem;
+      }
+
       .form-group {
-        margin-top: 1rem;
         .input-field {
           position: relative;
           align-items: center;
-          background-color: white;
 
           input {
             flex: 1;
-            padding-left: 2rem;
+            padding-left: 3rem;
             width: 100%;
-            padding-block: 0.5rem;
-            background-color: #f4f4f4;
+            padding-block: 0.7rem;
+            border: 1.5px solid #e7e7e7;
+            border-radius: 0.6rem;
           }
 
           .icon-left {
             position: absolute;
-            left: 0.6rem;
+            left: 1.2rem;
             top: 50%;
             transform: translateY(-50%);
+            color: #696969;
           }
           .icon-right {
             position: absolute;
-            right: 0.6rem;
+            right: 1.2rem;
             top: 50%;
             transform: translateY(-50%);
+            color: #696969;
           }
         }
       }
@@ -86,24 +108,35 @@
       }
 
       button {
-        margin-top: 1rem;
-        padding: 0.5rem;
+        margin-top: 1.5rem;
+        padding: 0.7rem;
         color: white;
+        border-radius: 0.6rem;
         background-color: #6375f0;
       }
     }
   }
 
-  .vrt-line {
-    width: 3px;
-    background-color: rgb(228, 228, 228);
+  .vrt-line-body {
     height: 100%; // Make the line span the full height of the container
+    display: flex;
+    align-items: center;
+
+    .vrt-line {
+      background-color: var(--vrt-line-color);
+      width: 1px;
+      height: 95%;
+    }
+    @media (max-width: 900px) {
+      display: none;
+    }
   }
 
   .login-right {
-    background: #fff;
+    background: var(--color-bg);
     flex-direction: column;
     position: relative;
+    padding: 1rem;
 
     @media (max-width: 900px) {
       display: none;
@@ -120,18 +153,17 @@
       }
 
       .carousel-text {
-        margin-top: 10px;
-        font-size: 18px;
-        color: #333;
+        margin-block: 10px;
+        font-size: 14px;
+        color: #696969;
       }
       .progress-bar-body {
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 1rem;
         .progress-bar {
-          height: 5px;
+          height: 4px;
           width: 10%;
           background: #e0e0e0;
           border-radius: 5px;
@@ -139,7 +171,7 @@
 
           .progress-fill {
             height: 100%;
-            background: #007bff;
+            background: #6375f0;
             width: 0%;
             transition: width 0.5s ease;
           }
