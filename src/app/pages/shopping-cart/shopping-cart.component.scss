@@ -463,7 +463,10 @@
       grid-template-columns: repeat(2, 1fr); /* Two cards in a row */
       gap: 1rem; /* Add spacing between the cards */
     }
-
+    @media(max-width:1393px) and (min-width:1147px){
+      grid-template-columns: repeat(3, 1fr);
+    }
+ 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
     width: 100%;
@@ -475,27 +478,43 @@
     .product-card {
       background-color: var(--color-sidnav);
       text-wrap: wrap;
-      height: fit-content;
+     
       margin-inline: auto;
-      width: 22rem;
+      width: 100%;
       color: var(--primary-text);
       border: 1px solid #ddd;
       border-radius: 0.75rem;
       padding: 1.3rem;
       text-align: center;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      min-height: 430px;
+
+       @media(max-width:1393px) and (min-width:1147px)
+        {
+          width:98%; 
+         
+          
+          
+        } 
 
       @media (max-width: 1041px) and (min-width: 594px) {
-        max-width: 17rem;
-        min-height: 430px;
+       /*  max-width: 17rem; */
+       width: 98%;
+       
       }
       @media (max-width: 594px) {
+        
         width: 100%;
       }
       @media (max-width: 428px) {
         width: 80%;
       }
-
+      @media(min-width:768px) and (max-width:816px)
+      {
+       width: 98%;
+       min-height: 450px;
+      }
+  
       &:hover {
         box-shadow: 0 10px 20px rgba(22, 78, 127, 0.3),
           0 6px 6px rgba(22, 78, 127, 0.2);
@@ -507,6 +526,7 @@
         height: 200px; /* Set a fixed height for the container */
         border-radius: 8px; /* Optional: Adds rounded corners */
         overflow: hidden; /* Ensures the image stays within the container */
+        
 
         img {
           width: 100%; /* Ensures the image scales to the container's width */
@@ -518,6 +538,12 @@
       .card-content {
         margin-top: 1.2rem;
         text-align: left;
+        button{
+          height: auto;
+          width: 80%;
+          margin-left: 5px;
+          margin-right: 5px;
+        }
       }
     }
 
