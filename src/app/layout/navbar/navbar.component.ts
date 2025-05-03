@@ -19,7 +19,6 @@ interface NavItem {
   imports: [ThemeToggleComponent, FormsModule],
 })
 export class NavbarComponent implements OnInit {
-  sidebarStyle: 'shrink' | 'overlay' = 'shrink';
   isSidebarVisible: boolean = true;
   greeting: string = '';
   userType: string = '';
@@ -69,11 +68,4 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  onStyleChange(event: Event) {
-    const value = (event.target as HTMLSelectElement).value as
-      | 'shrink'
-      | 'overlay';
-    this.sidebarStyle = value;
-    this.sidebarService.setSidebarStyle(value);
-  }
 }

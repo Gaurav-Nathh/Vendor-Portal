@@ -1,8 +1,6 @@
 <nav id="nav">
   <section class="d-flex justify-content-between align-items-center py-2 px-3">
     <div class="d-flex align-items-center gap-2">
-      <!-- <button (click)="toggleSidebar()" class="btn-mnu">MENU</button> -->
-
       <button
         (click)="toggleSidebar()"
         class="sideMenu-toggler"
@@ -11,18 +9,6 @@
       >
         <i class="fa-solid fa-right-from-bracket"></i>
       </button>
-
-      <div class="form-group">
-        <select
-          id="sidebarMode"
-          class="form-select"
-          [(ngModel)]="sidebarStyle"
-          (change)="onStyleChange($event)"
-        >
-          <option value="shrink">Shrink</option>
-          <option value="overlay">Overlay</option>
-        </select>
-      </div>
       <span class="fw-semibold">{{ greeting }}</span>
     </div>
     <div class="nav-icons">

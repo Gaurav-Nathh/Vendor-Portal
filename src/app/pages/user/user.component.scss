@@ -15,11 +15,13 @@
   #sidebar-container {
     overflow-y: auto;
     z-index: 20;
+    background-color: var(--color-bg-secondry);
   }
   #page-container {
     flex: 1;
     overflow-y: auto;
     padding: 0.5rem 0 0 0.5rem;
-    background-color: var( --color-sidnav);
+    background-color: var(--color-bg);
+    border-radius: 1rem 0 0 0;
   }
 }

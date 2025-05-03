@@ -237,51 +237,59 @@
         <label class="form-check-label" for="inStockToggle">In Stock</label>
       </div>
       <!-- In Stock END -->
-       <!-- In Stock END -->
+      <!-- In Stock END -->
 
-       <div class="price-range-filter">
+      <div class="price-range-filter">
         <div class="checkbox-title">
           <div class="title">
             <span>Price Range</span>
             <span class="price-display">
-              ${{priceRange.min}} - ${{priceRange.max}}
+              ${{ priceRange.min }} - ${{ priceRange.max }}
             </span>
           </div>
           <div class="dual-slider-container" #sliderContainer>
             <div class="slider-track"></div>
-            <input type="range" 
-                   min="{{minPossiblePrice}}"
-                   max="{{maxPossiblePrice}}"
-                   [value]="priceRange.min"
-                   (input)="onMinSliderChange($event)"
-                   class="slider min-slider">
-            <input type="range"
-                   min="{{minPossiblePrice}}"
-                   max="{{maxPossiblePrice}}"
-                   [value]="priceRange.max"
-                   (input)="onMaxSliderChange($event)"
-                   class="slider max-slider">
+            <input
+              type="range"
+              min="{{ minPossiblePrice }}"
+              max="{{ maxPossiblePrice }}"
+              [value]="priceRange.min"
+              (input)="onMinSliderChange($event)"
+              class="slider min-slider"
+            />
+            <input
+              type="range"
+              min="{{ minPossiblePrice }}"
+              max="{{ maxPossiblePrice }}"
+              [value]="priceRange.max"
+              (input)="onMaxSliderChange($event)"
+              class="slider max-slider"
+            />
             <div class="slider-thumb min-thumb"></div>
             <div class="slider-thumb max-thumb"></div>
           </div>
           <div class="price-inputs">
             <div class="price-input-group">
               <label>Min</label>
-              <input type="number"
-                     [(ngModel)]="priceRange.min"
-                     (change)="updateFromMinInput()"
-                     min="{{minPossiblePrice}}"
-                     max="{{priceRange.max}}"
-                     class="form-control">
+              <input
+                type="number"
+                [(ngModel)]="priceRange.min"
+                (change)="updateFromMinInput()"
+                min="{{ minPossiblePrice }}"
+                max="{{ priceRange.max }}"
+                class="form-control"
+              />
             </div>
             <div class="price-input-group">
               <label>Max</label>
-              <input type="number"
-                     [(ngModel)]="priceRange.max"
-                     (change)="updateFromMaxInput()"
-                     min="{{priceRange.min}}"
-                     max="{{maxPossiblePrice}}"
-                     class="form-control">
+              <input
+                type="number"
+                [(ngModel)]="priceRange.max"
+                (change)="updateFromMaxInput()"
+                min="{{ priceRange.min }}"
+                max="{{ maxPossiblePrice }}"
+                class="form-control"
+              />
             </div>
           </div>
         </div>
