@@ -1,7 +1,17 @@
 <nav id="nav">
   <section class="d-flex justify-content-between align-items-center py-2 px-3">
     <div class="d-flex align-items-center gap-2">
-      <button (click)="toggleSidebar() " class="btn-mnu">MENU</button>
+      <!-- <button (click)="toggleSidebar()" class="btn-mnu">MENU</button> -->
+
+      <button
+        (click)="toggleSidebar()"
+        class="sideMenu-toggler"
+        type="button"
+        [attr.aria-expanded]="isSidebarVisible"
+      >
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
+
       <div class="form-group">
         <select
           id="sidebarMode"
@@ -16,20 +26,20 @@
       <span class="fw-semibold">{{ greeting }}</span>
     </div>
     <div class="nav-icons">
-      <div class="icons d-flex gap-4 align-items-center">
+      <div class="d-flex gap-4 align-items-center">
         <app-theme-toggle> </app-theme-toggle>
         <i
-          class="fa-solid fa-calendar-days fs-6 text-secondary navbar-icon"
+          class="fa-solid fa-calendar-days fs-6 navbar-icon"
           role="button"
           title="Calendar"
         ></i>
         <i
-          class="fa-solid fa-bell fs-6 text-secondary navbar-icon"
+          class="fa-solid fa-bell fs-6 navbar-icon"
           role="button"
           title="Notifications"
         ></i>
         <i
-          class="bi-gear-fill fs-6 text-secondary navbar-icon"
+          class="bi-gear-fill fs-6 navbar-icon"
           role="button"
           title="Settings"
         ></i>

@@ -38,9 +38,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userType = this.userService.getUserType();
-    this.sidebarService.sidebarVisible$.subscribe(visible => {
+    this.sidebarService.sidebarVisible$.subscribe((visible) => {
       this.isSidebarVisible = visible;
-    })
+    });
     const hour = new Date().getHours();
 
     if (hour < 12) {

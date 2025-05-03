@@ -8,16 +8,25 @@
   .nav-icons {
     display: flex;
 
+    .navbar-icon {
+      transition: transform 0.3s ease-in-out;
+      transform-origin: center center;
+
+      &:hover {
+        transform: scale(1.1);
+        color: var(--color-blue);
+      }
+    }
     @media (max-width: 768px) {
       display: none;
     }
   }
-  #sidebarMode{
+  #sidebarMode {
     background-color: var(--toggle);
   }
-  .btn-mnu{
+  .btn-mnu {
     background-color: transparent;
-    color: var( --primary-text);
+    color: var(--primary-text);
   }
 }
 .menu-toggler {
@@ -68,6 +77,16 @@
       transform: rotate(-45deg);
       top: 7.5px;
     }
+  }
+}
+
+.sideMenu-toggler {
+  background-color: transparent;
+  transition: rotate 0.3s ease-in-out;
+  rotate: -180deg;
+
+  &[aria-expanded="false"] {
+    rotate: 0deg;
   }
 }
 

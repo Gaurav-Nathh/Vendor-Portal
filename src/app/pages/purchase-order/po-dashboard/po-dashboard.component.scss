@@ -1,13 +1,31 @@
+:root {
+  --h1: 2.5rem;
+  --h2: 2rem; // 32px
+  --h3: 1.5rem; // 24px
+  --p: 0.6rem; // 16px
+  --span: 0.5rem;
+}
+
 .dashboard-container {
-  padding: 2rem;
+  padding: 1rem;
+  margin-right: 0.5rem;
   background: var(--color-sidnav);
   border-radius: 1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  text-wrap-mode: nowrap;
+}
+
+.page-breadcrum {
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  color: var(--primary-text);
 }
 
 .dashboard-header {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
   align-items: center;
   margin-bottom: 1.5rem;
 }
@@ -19,7 +37,7 @@
   }
 
   .view-option {
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 0.8rem;
     border: none;
     background: #f8f9fc;
     color: #64748b;
@@ -42,13 +60,14 @@
 .create-btn {
   background: #6366f1;
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 0.8rem;
   border: none;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   transition: all 0.2s ease;
+  font-size: var(--p);
 
   &:hover {
     background: #4f46e5;
@@ -71,15 +90,16 @@
       background: #f8fafc;
       color: #64748b;
       font-weight: 600;
-      font-size: 0.875rem;
-      padding: 1rem 1.5rem;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.5rem;
       border-bottom: 2px solid #e2e8f0;
     }
 
     td {
-      padding: 1rem 1.5rem;
+      padding: 0.5rem 1.5rem;
       border-bottom: 1px solid #f1f5f9;
       vertical-align: middle;
+      font-size: 0.86rem;
     }
 
     tr:hover {
@@ -93,13 +113,13 @@
 
       .bi-file-text {
         color: #6366f1;
-        font-size: 1.25rem;
+        font-size: 1.2rem;
       }
     }
 
     .ref-number-value {
       font-family: "Roboto Mono", monospace;
-      color: var( --color-mint);
+      color: var(--color-mint);
       font-size: 0.875rem;
     }
 
@@ -141,4 +161,7 @@
       }
     }
   }
+}
+.bord {
+  border: 1px solid red !important;
 }
