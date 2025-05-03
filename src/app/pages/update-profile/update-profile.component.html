@@ -1,1 +1,96 @@
-<p>update-profile works!</p>
+<!-- portal-settings.component.html -->
+<div class="container portal-settings">
+    <div class="settings-card card border-0 shadow">
+      <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">Portal Configuration</h3>
+        <p class="mb-0 text-light opacity-75">Manage portal settings and features</p>
+      </div>
+  
+      <div class="card-body">
+        <form>
+          <!-- Portal Activation Section -->
+          <div class="setting-section mb-4">
+            <div class="form-check form-switch form-switch-lg mb-3">
+              <input type="checkbox" class="form-check-input" id="enablePortal" 
+                     [(ngModel)]="enablePortal" name="enablePortal" (change)="onPortalToggle()">
+              <label class="form-check-label h5" for="enablePortal">
+                <i class="fas fa-door-open me-2"></i>Enable Portal
+              </label>
+            </div>
+  
+            <div class="portal-url-group ms-4" [class.disabled]="!enablePortal">
+              <label for="portalUrl" class="form-label small text-muted">Portal URL</label>
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="fas fa-link"></i>
+                </span>
+                <input type="url" class="form-control form-control-lg" id="portalUrl" 
+                       [(ngModel)]="portalUrl" name="portalUrl" 
+                       [disabled]="!enablePortal" placeholder="https://example.com">
+              </div>
+            </div>
+          </div>
+  
+          <!-- Feature Toggles Section -->
+          <div class="setting-section">
+            <h5 class="section-title text-muted mb-4"><i class="fas fa-cogs me-2"></i>Feature Management</h5>
+            
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="feature-card card h-100">
+                  <div class="card-body">
+                    <div class="form-check form-switch">
+                      <input type="checkbox" class="form-check-input" id="enableProfile" 
+                             [(ngModel)]="enableProfileEditing" name="enableProfile">
+                      <label class="form-check-label" for="enableProfile">
+                        <i class="fas fa-user-edit me-2"></i>Profile Editing
+                      </label>
+                    </div>
+                    <p class="text-muted small mt-2 mb-0">Allow users to modify their profile information</p>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <div class="feature-card card h-100">
+                  <div class="card-body">
+                    <div class="form-check form-switch">
+                      <input type="checkbox" class="form-check-input" id="enablePurchaseOrder" 
+                             [(ngModel)]="enablePurchaseOrderCreation" name="enablePurchaseOrder">
+                      <label class="form-check-label" for="enablePurchaseOrder">
+                        <i class="fas fa-file-purchase me-2"></i>Purchase Orders
+                      </label>
+                    </div>
+                    <p class="text-muted small mt-2 mb-0">Enable creation of new purchase orders</p>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <div class="feature-card card h-100">
+                  <div class="card-body">
+                    <div class="form-check form-switch">
+                      <input type="checkbox" class="form-check-input" id="enableInvoice" 
+                             [(ngModel)]="enableManualInvoiceGeneration" name="enableInvoice">
+                      <label class="form-check-label" for="enableInvoice">
+                        <i class="fas fa-receipt me-2"></i>Manual Invoices
+                      </label>
+                    </div>
+                    <p class="text-muted small mt-2 mb-0">Allow manual generation of invoices</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Submit Section -->
+          <div class="settings-footer mt-5 pt-4 border-top">
+            <button type="submit" class="btn btn-primary btn-lg px-5">
+              <i class="fas fa-save me-2"></i>Save Configuration
+            </button>
+            <small class="d-block mt-2 text-muted">Changes may take up to 5 minutes to propagate</small>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
