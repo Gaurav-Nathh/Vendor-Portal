@@ -239,55 +239,53 @@
       <!-- In Stock END -->
        <!-- In Stock END -->
 
-<!-- Price Range Filter -->
-<div class="price-range-filter">
-  <div class="checkbox-title">
-    <div class="title">
-      <span>Price Range</span>
-    </div>
-    <div class="price-inputs">
-      <div class="price-input-group">
-        <input
-          type="number"
-          placeholder="Min"
-          [(ngModel)]="priceRange.min"
-          (change)="updatePriceRange()"
-          min="0"
-          [max]="priceRange.max"
-          class="form-control"
-        />
+       <div class="price-range-filter">
+        <div class="checkbox-title">
+          <div class="title">
+            <span>Price Range</span>
+            <span class="price-display">
+              ${{priceRange.min}} - ${{priceRange.max}}
+            </span>
+          </div>
+          <div class="dual-slider-container" #sliderContainer>
+            <div class="slider-track"></div>
+            <input type="range" 
+                   min="{{minPossiblePrice}}"
+                   max="{{maxPossiblePrice}}"
+                   [value]="priceRange.min"
+                   (input)="onMinSliderChange($event)"
+                   class="slider min-slider">
+            <input type="range"
+                   min="{{minPossiblePrice}}"
+                   max="{{maxPossiblePrice}}"
+                   [value]="priceRange.max"
+                   (input)="onMaxSliderChange($event)"
+                   class="slider max-slider">
+            <div class="slider-thumb min-thumb"></div>
+            <div class="slider-thumb max-thumb"></div>
+          </div>
+          <div class="price-inputs">
+            <div class="price-input-group">
+              <label>Min</label>
+              <input type="number"
+                     [(ngModel)]="priceRange.min"
+                     (change)="updateFromMinInput()"
+                     min="{{minPossiblePrice}}"
+                     max="{{priceRange.max}}"
+                     class="form-control">
+            </div>
+            <div class="price-input-group">
+              <label>Max</label>
+              <input type="number"
+                     [(ngModel)]="priceRange.max"
+                     (change)="updateFromMaxInput()"
+                     min="{{priceRange.min}}"
+                     max="{{maxPossiblePrice}}"
+                     class="form-control">
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="price-input-group">
-        <input
-          type="number"
-          placeholder="Max"
-          [(ngModel)]="priceRange.max"
-          (change)="updatePriceRange()"
-          [min]="priceRange.min"
-          class="form-control"
-        />
-      </div>
-    </div>
-    <div class="price-slider-container">
-      <input
-        type="range"
-        [(ngModel)]="priceRange.min"
-        (input)="updatePriceRange()"
-        [min]="minPossiblePrice"
-        [max]="maxPossiblePrice"
-        class="form-range"
-      />
-      <input
-        type="range"
-        [(ngModel)]="priceRange.max"
-        (input)="updatePriceRange()"
-        [min]="minPossiblePrice"
-        [max]="maxPossiblePrice"
-        class="form-range"
-      />
-    </div>
-  </div>
-</div>
       <div class="checkbox-title" *ngFor="let filter of filters; let i = index">
         <div
           class="title"
