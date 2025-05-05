@@ -228,8 +228,8 @@ export const routes: Routes = [
         path: '',
         pathMatch: 'full',
         loadComponent: () =>
-          import('./pages/master/dashboard/dashboard.component').then(
-            (c) => c.DashboardComponent
+          import('./pages/master/dashboard-master/dashboard-master.component').then(
+            (c) => c.DashboardMasterComponent
           ),
         canActivate: [authGuard],
       },

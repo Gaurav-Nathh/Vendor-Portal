@@ -23,6 +23,8 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.5",
     "bootstrap-icons": "^1.11.3",
+    "chart.js": "^4.4.9",
+    "ng2-charts": "^6.0.1",
     "nouislider": "^15.8.1",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.19.1",

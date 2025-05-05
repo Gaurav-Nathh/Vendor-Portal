@@ -52,6 +52,7 @@ export class ItemMappingComponent {
   }
 
   toggleMappingForm() {
+    console.log("true")
     this.mappingFormsSerivce.toggleForm();
   }
 
