@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
@@ -15,8 +15,7 @@ export class UpdateProfileComponent {
   enablePurchaseOrderCreation: boolean = false;
   enableManualInvoiceGeneration: boolean = false;
   portalUrl: string = '';
-
-  sidebarStyle: 'shrink' | 'overlay' = 'shrink';
+  sideNavStyle: string = 'shrink';
 
   constructor(private sidebarService: SharedService) {}
 
@@ -25,11 +24,8 @@ export class UpdateProfileComponent {
       this.portalUrl = '';
     }
   }
-  onStyleChange(event: Event) {
-    const value = (event.target as HTMLSelectElement).value as
-      | 'shrink'
-      | 'overlay';
-    this.sidebarStyle = value;
-    this.sidebarService.setSidebarStyle(value);
+  onSubmit(form: NgForm) {
+    console.log(this.sideNavStyle);
+    this.sidebarService.setSidebarStyle(this.sideNavStyle);
   }
 }

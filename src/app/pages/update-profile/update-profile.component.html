@@ -1,31 +1,28 @@
-<!-- portal-settings.component.html -->
-<div class="settings-card card border-0 shadow">
-  <div class="card-header text-white">
-    <h4 class="mb-0">Portal Configuration</h4>
-    <p class="mb-0 text-light opacity-75">
-      Manage portal settings and features
-    </p>
+<section id="profile-section">
+  <div class="pb-3">
+    <h3 class="mb-0">Portal Configuration</h3>
+    <p class="mb-0">Manage portal settings and features</p>
   </div>
 
-  <div class="card-body">
-    <form>
-      <!-- Portal Activation Section -->
-      <div class="setting-section mb-4">
-        <div class="form-check form-switch form-switch-lg mb-3">
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="enablePortal"
-            [(ngModel)]="enablePortal"
-            name="enablePortal"
-            (change)="onPortalToggle()"
-          />
+  <form class="row" (ngSubmit)="onSubmit(portalSettingForm)" #portalSettingForm="ngForm">
+    <div class="col-12 mb-4">
+      <div class="p-3 border bg-light cards">
+        <div class="d-flex gap-3">
           <label class="form-check-label h5" for="enablePortal">
             <i class="fas fa-door-open me-2"></i>Enable Portal
           </label>
+          <div class="form-check form-switch form-switch-lg">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="enablePortal"
+              [(ngModel)]="enablePortal"
+              name="enablePortal"
+              (change)="onPortalToggle()"
+            />
+          </div>
         </div>
-
-        <div class="portal-url-group ms-4" [class.disabled]="!enablePortal">
+        <div class="" [class.disabled]="!enablePortal">
           <label for="portalUrl" class="form-label small text-muted"
             >Portal URL</label
           >
@@ -45,12 +42,57 @@
           </div>
         </div>
       </div>
-
-      <!-- Feature Toggles Section -->
-      <div class="setting-section">
-        <h5 class="section-title text-muted mb-4">
-          <i class="fas fa-cogs me-2"></i>Feature Management
-        </h5>
+    </div>
+    <div class="col-12 col-md-6 mb-4">
+      <div class="p-3 border bg-light cards">
+        <!-- Appearence -->
+        <h5 class="mb-4"><i class="fas fa-cogs me-2"></i>Appearence</h5>
+        <div class="col-12 card">
+          <div class="appearence-section">
+            <div class="card-body">
+              <label class="form-label fw-bold mb-3">
+                <i class="fas fa-columns me-2"></i>Side Menu Style
+              </label>
+              <div class="d-flex gap-3">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="sideMenuStyle"
+                    id="shrinkOption"
+                    [(ngModel)]="sideNavStyle"
+                    [value]="'shrink'"
+                  />
+                  <label class="form-check-label" for="shrinkOption">
+                    Shrink
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="sideMenuStyle"
+                    id="overlayOption"
+                    [(ngModel)]="sideNavStyle"
+                    [value]="'overlay'"
+                  />
+                  <label class="form-check-label" for="overlayOption">
+                    Overlay
+                  </label>
+                </div>
+              </div>
+              <p class="small mt-3 mb-0">
+                Choose how the side menu behaves on desktop view
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 mb-4">
+      <div class="p-3 border bg-light cards">
+        <!-- Feature -->
+        <h5 class="mb-4"><i class="fas fa-cogs me-2"></i>Feature Management</h5>
 
         <div class="row g-4">
           <div class="col-md-6">
@@ -68,7 +110,7 @@
                     <i class="fas fa-user-edit me-2"></i>Profile Editing
                   </label>
                 </div>
-                <p class="text-muted small mt-2 mb-0">
+                <p class="small mt-2 mb-0">
                   Allow users to modify their profile information
                 </p>
               </div>
@@ -90,7 +132,7 @@
                     <i class="fas fa-file-purchase me-2"></i>Purchase Orders
                   </label>
                 </div>
-                <p class="text-muted small mt-2 mb-0">
+                <p class="small mt-2 mb-0">
                   Enable creation of new purchase orders
                 </p>
               </div>
@@ -112,7 +154,7 @@
                     <i class="fas fa-receipt me-2"></i>Manual Invoices
                   </label>
                 </div>
-                <p class="text-muted small mt-2 mb-0">
+                <p class="small mt-2 mb-0">
                   Allow manual generation of invoices
                 </p>
               </div>
@@ -120,62 +162,18 @@
           </div>
         </div>
       </div>
-      <!-- Apperance -->
-
-      <div class="setting-section">
-        <h5 class="section-title text-muted mb-4">
-          <i class="fas fa-cogs me-2"></i>Feature Management
-        </h5>
-        <div class="col-md-6">
-          <div class="feature-card card h-100">
-            <div class="card-body">
-              <label class="form-label fw-bold mb-3">
-                <i class="fas fa-columns me-2"></i>Side Menu Style
-              </label>
-              <div class="d-flex gap-3">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="sideMenuStyle"
-                    id="shrinkOption"
-                    [(ngModel)]="sidebarStyle"
-                    [value]="'shrink'"
-                  />
-                  <label class="form-check-label" for="shrinkOption">
-                    Shrink
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="sideMenuStyle"
-                    id="overlayOption"
-                    [(ngModel)]="sidebarStyle"
-                    [value]="'overlay'"
-                  />
-                  <label class="form-check-label" for="overlayOption">
-                    Overlay
-                  </label>
-                </div>
-              </div>
-              <p class="text-muted small mt-3 mb-0">
-                Choose how the side menu behaves on desktop view
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Submit Section -->
-      <div class="settings-footer mt-5 pt-4 border-top">
-        <button type="submit" class="btn btn-primary btn-lg px-5">
+    </div>
+    <div class="col-12">
+      <div
+        class="p-3 cards d-flex flex-column justify-content-center align-items-center"
+      >
+        <button type="submit" class="btn btn-primary">
           <i class="fas fa-save me-2"></i>Save Configuration
         </button>
-        <small class="d-block mt-2 text-muted"
+        <small class="d-block mt-2"
           >Changes may take up to 5 minutes to propagate</small
         >
       </div>
-    </form>
-  </div>
-</div>
+    </div>
+  </form>
+</section>

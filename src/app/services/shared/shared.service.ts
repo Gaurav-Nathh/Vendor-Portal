@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class SharedService {
-  private sidebarStyle = new BehaviorSubject<'shrink' | 'overlay'>('shrink');
+  private sidebarStyle = new BehaviorSubject<string>('shrink');
   private sidebarVisible = new BehaviorSubject<boolean>(true);
   private shoppingCartVisible = new BehaviorSubject<boolean>(false);
 
@@ -13,18 +13,18 @@ export class SharedService {
   sidebarVisible$ = this.sidebarVisible.asObservable();
   shoppingCartVisible$ = this.shoppingCartVisible.asObservable();
 
-  getCurrentSidebarStyle(): 'shrink' | 'overlay' {
+  getCurrentSidebarStyle() {
     return this.sidebarStyle.value;
   }
 
-  setSidebarStyle(style: 'shrink' | 'overlay') {
+  setSidebarStyle(style: string) {
     this.sidebarStyle.next(style);
   }
 
   toggleSidebarStyle() {
-    const newStyle =
-      this.sidebarStyle.value === 'shrink' ? 'overlay' : 'shrink';
-    this.sidebarStyle.next(newStyle);
+    // const newStyle =
+    //   this.sidebarStyle.value === 'shrink' ? 'overlay' : 'shrink';
+    // this.sidebarStyle.next(newStyle);
   }
 
   toggleSidebarVisibility() {
