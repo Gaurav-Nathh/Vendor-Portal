@@ -58,9 +58,20 @@ export class LogComponent {
   onSubmit() {
     this.authService.login();
     this.userService.setUserType(this.loginModel.userType);
-    const route =
-      this.loginModel.userType === 'customer' ? '/customer' : '/vendor';
-    this.router.navigate([route]);
+    switch (this.loginModel.userType) {
+      case 'customer':
+        this.router.navigate(['/customer']);
+        break;
+      case 'vendor':
+        this.router.navigate(['/vendor']);
+        break;
+      case 'master':
+        this.router.navigate(['/master']);
+        break;
+      default:
+        this.router.navigate(['/']);
+        break;
+    }
   }
 
   nextSlide() {

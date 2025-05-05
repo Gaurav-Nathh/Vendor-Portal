@@ -84,7 +84,7 @@
   background-color: transparent;
   transition: rotate 0.3s ease-in-out;
   rotate: -180deg;
-  columns: var(--primary-text);
+  color: var(--primary-text);
 
   &[aria-expanded="false"] {
     rotate: 0deg;

@@ -41,6 +41,17 @@ export class SidebarComponent {
     this.buildMenu();
     this.currentMenu =
       this.userType === 'vendor' ? this.vendorMenu : this.customerMenu;
+    switch (this.userType) {
+      case 'customer':
+        this.currentMenu = this.customerMenu;
+        break;
+      case 'vendor':
+        this.currentMenu = this.vendorMenu;
+        break;
+      case 'master':
+        this.currentMenu = this.masterMenu;
+        break;
+    }
 
     this.sidebarService.sidebarStyle$.subscribe((style) => {
       this.sidebarShrinkStyle = style === 'overlay' ? true : false;
@@ -165,6 +176,14 @@ export class SidebarComponent {
       text: 'Statements',
       icon: 'fa-solid fa-file-invoice-dollar',
       route: '/vendor/page-under-construction',
+    },
+  ];
+
+  masterMenu: MenuItem[] = [
+    {
+      text: 'Dashboard',
+      icon: 'bi bi-grid-1x2-fill',
+      route: '/master/',
     },
   ];
 

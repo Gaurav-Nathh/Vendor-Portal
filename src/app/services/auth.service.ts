@@ -5,11 +5,6 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  // isAuthenticated = false;
-  // constructor() {
-  //   const storedAuth = localStorage.getItem('isAuthenticated');
-  //   this.isAuthenticated = storedAuth === 'true';
-  // }
   constructor(private router: Router) {}
 
   login() {

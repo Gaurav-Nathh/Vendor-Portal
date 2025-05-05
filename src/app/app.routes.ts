@@ -219,6 +219,23 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'master',
+    loadComponent: () =>
+      import('./pages/user/user.component').then((c) => c.UserComponent),
+    canActivate: [authGuard],
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/master/dashboard/dashboard.component').then(
+            (c) => c.DashboardComponent
+          ),
+        canActivate: [authGuard],
+      },
+    ],
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./pages/no-page-exist/no-page-exist.component').then(
