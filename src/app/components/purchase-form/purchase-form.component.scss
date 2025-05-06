@@ -1,4 +1,10 @@
-.card-body {
+.card {
+  color: var(--pirmary-text) !important;
+  border-radius: 0.8rem !important;
+  background-color: var(--color-card);
+  border-color: var(--border-color);
+}
+.cardBody {
   padding: 1rem;
 }
 
