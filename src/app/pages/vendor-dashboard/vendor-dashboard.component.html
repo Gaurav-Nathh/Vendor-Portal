@@ -1,56 +1,60 @@
 <!-- purchase-dashboard.component.html -->
 <div class="dashboard-container">
-    <!-- Header Section -->
-    <div class="dashboard-header">
-      <div class="view-selector">
-        <div class="view-options">
-         <h2>All Vendors </h2> 
-        </div>
+  <!-- Header Section -->
+  <div class="dashboard-header">
+    <div class="view-selector">
+      <div class="view-options">
+        <h2>All Vendors</h2>
       </div>
-      <button class="btn create-btn" [routerLink]="'/customer/vendors'">
-        <i class="bi bi-plus-lg"></i> Create New Vendor
-      </button>
     </div>
-  
-    <!-- Orders Table -->
-    <div class="orders-table-container">
-      <table class="orders-table">
-        <thead>
-          <tr>
-            <th class="order-number">Name</th>
-            <th class="ref-number">Vendor Number</th>
-            <th class="date">Company Name</th>
-            <th class="value">Email</th>
-            <th class="status">Work Phone</th>
-            <th class="actions">PayAbles</th>
-           
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let vendor of vendors">
-            <td class="order-number">
-              <div class="order-number-wrapper">
-                <i class="bi bi-person"></i>
-                <span class="vendor-name">{{ vendor.name }}</span>
-              </div>
-            </td>
-            <td class="ref-number">
-              <span class="vendor-number">{{ vendor.vendorNumber }}</span>
-            </td>
-            <td class="date">
-              <span class="company-name">{{ vendor.companyName }}</span>
-            </td>
-            <td class="value">
-              <span class="email">{{ vendor.email }}</span>
-            </td>
-            <td class="status">
-              <span class="work-phone">{{ vendor.workPhone }}</span>
-            </td>
-            <td class="actions">
-              <span class="payables">{{ vendor.payables | currency: 'INR' }}</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <button
+      class="btn create-btn"
+      [routerLink]="'/master/users/vendors/create'"
+    >
+      <i class="bi bi-plus-lg"></i> Create New Vendor
+    </button>
   </div>
+
+  <!-- Orders Table -->
+  <div class="orders-table-container">
+    <table class="orders-table">
+      <thead>
+        <tr>
+          <th class="order-number">Name</th>
+          <th class="ref-number">Vendor Number</th>
+          <th class="date">Company Name</th>
+          <th class="value">Email</th>
+          <th class="status">Work Phone</th>
+          <th class="actions">PayAbles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vendor of vendors">
+          <td class="order-number">
+            <div class="order-number-wrapper">
+              <i class="bi bi-person"></i>
+              <span class="vendor-name">{{ vendor.name }}</span>
+            </div>
+          </td>
+          <td class="ref-number">
+            <span class="vendor-number">{{ vendor.vendorNumber }}</span>
+          </td>
+          <td class="date">
+            <span class="company-name">{{ vendor.companyName }}</span>
+          </td>
+          <td class="value">
+            <span class="email">{{ vendor.email }}</span>
+          </td>
+          <td class="status">
+            <span class="work-phone">{{ vendor.workPhone }}</span>
+          </td>
+          <td class="actions">
+            <span class="payables">{{
+              vendor.payables | currency : "INR"
+            }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

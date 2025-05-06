@@ -238,12 +238,26 @@ export const routes: Routes = [
           },
           {
             path: 'vendors',
-            pathMatch: 'full',
-            loadComponent: () =>
-              import(
-                './components/create-vendor-form/create-vendor-form.component'
-              ).then((c) => c.CreateVendorFormComponent),
-            canActivate: [authGuard],
+            children: [
+              {
+                path: '',
+                pathMatch: 'full',
+                loadComponent: () =>
+                  import(
+                    './pages/vendor-dashboard/vendor-dashboard.component'
+                  ).then((c) => c.VendorDashboardComponent),
+                canActivate: [authGuard],
+              },
+              {
+                path: 'create',
+                pathMatch: 'full',
+                loadComponent: () =>
+                  import(
+                    './components/create-vendor-form/create-vendor-form.component'
+                  ).then((c) => c.CreateVendorFormComponent),
+                canActivate: [authGuard],
+              },
+            ],
           },
         ],
       },
