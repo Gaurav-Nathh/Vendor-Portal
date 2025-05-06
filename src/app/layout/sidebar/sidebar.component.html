@@ -22,12 +22,15 @@
   <div id="sidenav-container" class="scroll">
     <nav class="sidenav-menu">
       <ul>
-        <li *ngFor="let item of currentMenu" class="menu-item">
+        <li
+          *ngFor="let item of currentMenu"
+          [routerLink]="item.route"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="menu-item"
+        >
           <a
             (click)="toggleSubmenu(item, $event)"
-            [routerLink]="item.route"
-            routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{ exact: true }"
             class="menu-link"
             [attr.data-bs-toggle]="item.submenu ? 'collapse' : null"
             [attr.data-bs-target]="
@@ -56,13 +59,14 @@
             [ngClass]="{ show: item.isSubmenuOpen }"
           >
             <ul class="submenu">
-              <li *ngFor="let subitem of item.submenu" class="submenu-item">
-                <a
-                  [routerLink]="subitem.route"
-                  routerLinkActive="active-link"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  [ngClass]="[isOpen ? 'submenu-link' : 'submenu-link-close']"
-                >
+              <li
+                *ngFor="let subitem of item.submenu"
+                class="submenu-item"
+                [routerLink]="subitem.route"
+                routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <a [ngClass]="[isOpen ? 'submenu-link' : 'submenu-link-close']">
                   <div class="sub-icon">
                     <i class="{{ subitem.icon }}"></i>
                   </div>

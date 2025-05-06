@@ -191,15 +191,6 @@ export const routes: Routes = [
         canActivate: [authGuard],
       },
       {
-        path: 'vendors',
-        pathMatch: 'full',
-        loadComponent: () =>
-          import(
-            './components/create-vendor-form/create-vendor-form.component'
-          ).then((c) => c.CreateVendorFormComponent),
-        canActivate: [authGuard],
-      },
-      {
         path: 'vendor-dashboard',
         pathMatch: 'full',
         loadComponent: () =>
@@ -228,10 +219,33 @@ export const routes: Routes = [
         path: '',
         pathMatch: 'full',
         loadComponent: () =>
-          import('./pages/master/dashboard-master/dashboard-master.component').then(
-            (c) => c.DashboardMasterComponent
-          ),
+          import(
+            './pages/master/dashboard-master/dashboard-master.component'
+          ).then((c) => c.DashboardMasterComponent),
         canActivate: [authGuard],
+      },
+      {
+        path: 'users',
+        children: [
+          {
+            path: 'customers',
+            pathMatch: 'full',
+            loadComponent: () =>
+              import('./pages/master/customers/customers.component').then(
+                (c) => c.CustomersComponent
+              ),
+            canActivate: [authGuard],
+          },
+          {
+            path: 'vendors',
+            pathMatch: 'full',
+            loadComponent: () =>
+              import(
+                './components/create-vendor-form/create-vendor-form.component'
+              ).then((c) => c.CreateVendorFormComponent),
+            canActivate: [authGuard],
+          },
+        ],
       },
     ],
   },

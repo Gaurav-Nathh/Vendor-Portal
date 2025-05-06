@@ -141,11 +141,6 @@ export class SidebarComponent {
       route: '/customer/purchase-order',
     },
     {
-      text: 'Vendors',
-      icon: 'bi bi-person-plus-fill',
-      route: '/customer/vendor-dashboard',
-    },
-    {
       text: 'Shoping Cart',
       icon: 'fa-solid fa-money-bill-trend-up',
       route: '/customer/shopping-cart',
@@ -184,6 +179,23 @@ export class SidebarComponent {
       text: 'Dashboard',
       icon: 'bi bi-grid-1x2-fill',
       route: '/master/',
+    },
+    {
+      text: 'Users',
+      icon: 'fa-solid fa-users',
+      isSubmenuOpen: false,
+      submenu: [
+        {
+          text: 'Customers',
+          icon: 'fa-solid fa-user',
+          route: '/master/users/customers',
+        },
+        {
+          text: 'Vendors',
+          icon: 'fa-solid fa-user',
+          route: '/master/users/vendors',
+        },
+      ],
     },
   ];
 
