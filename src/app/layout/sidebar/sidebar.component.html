@@ -27,7 +27,7 @@
             (click)="toggleSubmenu(item, $event)"
             [routerLink]="item.route"
             routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{ exact: false }"
+            [routerLinkActiveOptions]="{ exact: true }"
             class="menu-link"
             [attr.data-bs-toggle]="item.submenu ? 'collapse' : null"
             [attr.data-bs-target]="
@@ -60,7 +60,7 @@
                 <a
                   [routerLink]="subitem.route"
                   routerLinkActive="active-link"
-                  [routerLinkActiveOptions]="{ exact: true }"
+                  [routerLinkActiveOptions]="{ exact: false }"
                   [ngClass]="[isOpen ? 'submenu-link' : 'submenu-link-close']"
                 >
                   <div class="sub-icon">
