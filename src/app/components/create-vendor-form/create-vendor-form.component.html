@@ -1,345 +1,143 @@
-<button bo></button>
-<div class="bord vendor-form-container">
-  <h2 class="mb-4">New Vendor</h2>
+<div class="form-container ">
+  <h2>Create Vendor</h2>
+  
+  <form class="d-flex  w-100 row g-4">
+    <!-- left side filed -->
+     <div class="col-md-6 ">
 
-  <form (ngSubmit)="onSubmit()">
-    <!-- Section 1: Basic Information -->
-    <div class="card mb-4">
-      <div class="card-header bg-primary text-white">
-        <h5>Fetch Vendor Details From GSTN</h5>
+     
+    <div class="row w-100">
+      <!-- Searchable Vendor Input -->
+     
+    
+      <!-- Vendor Name Input -->
+      <div class="col-md-6 mb-3">
+        <label>Code</label>
+        <input type="text" class="form-control" placeholder="Code" />
       </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>Vendor Number</label>
-              <input
-                type="text"
-                class="form-control"
-                formControlName="vendorNumber"
-                value="VEN-00002"
-                readonly
-              />
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>PAN</label>
-              <input
-                type="text"
-                class="form-control"
-                formControlName="pan"
-                maxlength="10"
-              />
-              <div
-                *ngIf="vendorForm.get('pan')?.errors?.['pattern']"
-                class="text-danger"
-              >
-                Please enter a valid PAN number
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>Currency</label>
-              <select class="form-control" formControlName="currency">
-                <option value="INR">INR</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label>Opening Balance</label>
-              <input
-                type="number"
-                class="form-control"
-                formControlName="openingBalance"
-              />
-            </div>
-          </div>
-        </div>
+      <div class="col-md-6 mb-3">
+        <label>Name</label>
+        <input type="text" class="form-control" placeholder="Name" />
       </div>
-    </div>
 
-    <!-- Section 2: Primary Contact -->
-    <div class="card mb-4">
-      <div class="card-header bg-primary text-white">
-        <h5>Primary Contact</h5>
+      <div class="col-md-6 mb-3">
+        <label>Balancing Method</label>
+        <input type="text" class="form-control" placeholder="Balancing Method" />
       </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-2">
-            <div class="form-group">
-              <label>Salutation</label>
-              <select class="form-control" formControlName="salutation">
-                <option value="Mr.">Mr.</option>
-                <option value="Ms.">Ms.</option>
-                <option value="Mrs.">Mrs.</option>
-                <option value="Dr.">Dr.</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label>First Name</label>
-              <input
-                type="text"
-                class="form-control"
-                formControlName="firstName"
-                required
-              />
-              <div
-                *ngIf="vendorForm.get('firstName')?.errors?.['required']"
-                class="text-danger"
-              >
-                First Name is required
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label>Last Name</label>
-              <input
-                type="text"
-                class="form-control"
-                formControlName="lastName"
-                required
-              />
-              <div
-                *ngIf="vendorForm.get('lastName')?.errors?.['required']"
-                class="text-danger"
-              >
-                Last Name is required
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="form-group">
-              <label>Display Name</label>
-              <input
-                type="text"
-                class="form-control"
-                formControlName="displayName"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Company Name</label>
-              <input
-                type="text"
-                class="form-control"
-                formControlName="companyName"
-                required
-              />
-              <div
-                *ngIf="vendorForm.get('companyName')?.errors?.['required']"
-                class="text-danger"
-              >
-                Company Name is required
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Email Address</label>
-              <input
-                type="email"
-                class="form-control"
-                formControlName="email"
-                required
-              />
-              <div
-                *ngIf="vendorForm.get('email')?.errors?.['required']"
-                class="text-danger"
-              >
-                Email is required
-              </div>
-              <div
-                *ngIf="vendorForm.get('email')?.errors?.['email']"
-                class="text-danger"
-              >
-                Please enter a valid email address
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Section 3: Contact Information -->
-    <div class="card mb-4">
-      <div class="card-header bg-primary text-white">
-        <h5>Phone</h5>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="form-group">
-              <label>Work Phone</label>
-              <input
-                type="tel"
-                class="form-control"
-                formControlName="workPhone"
-                aria-label="Work phone number"
-              />
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label>Mobile</label>
-              <input
-                type="tel"
-                class="form-control"
-                formControlName="mobile"
-                required
-                aria-label="Mobile number"
-              />
-              <div
-                *ngIf="vendorForm.get('mobile')?.errors?.['required']"
-                class="text-danger"
-              >
-                Mobile number is required
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label>Opening Balance</label>
-              <input
-                type="number"
-                class="form-control"
-                formControlName="paymentTerms"
-                aria-label="Payment terms"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section 4: Additional Information -->
-    <div class="card mb-4">
-      <div class="card-header bg-primary text-white">
-        <h5>Other Details</h5>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>MSME Registered?</label>
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  formControlName="msmeRegistered"
-                  id="msmeCheck"
-                />
-                <label class="form-check-label" for="msmeCheck"
-                  >This vendor is MSME registered</label
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Enable Portal?</label>
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  formControlName="enablePortal"
-                  id="portalCheck"
-                />
-                <label class="form-check-label" for="portalCheck"
-                  >Allow portal access for this vendor</label
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row" *ngIf="vendorForm.get('enablePortal')?.value">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Portal Language</label>
-              <select
-                class="form-control"
-                formControlName="portalLanguage"
-                aria-label="Select portal language"
-              >
-                <option value="en">English</option>
-                <option value="hi">Hindi</option>
-                <option value="mr">Marathi</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section 5: Documents -->
-    <div class="card mb-4">
-      <div class="card-header bg-primary text-white">
-        <h5>Documents</h5>
-      </div>
-      <div class="card-body">
-        <div class="form-group">
-          <label>Upload Documents</label>
+      <div class="col-md-6 mb-3">
+        <div class="form-group position-relative vendor-search" tabindex="0" (focusout)="onFocusOut($event)">
+          <label>Group</label>
           <input
-            type="file"
-            class="form-control"
-            (change)="onFileChange($event)"
-            multiple
-            areia-label="Upload documents"
+            type="text"
+            class="form-control search-input"
+            placeholder="Group"
+            [(ngModel)]="searchTerm"
+            name="vendorInput"
+            (input)="filterVendors()"
+            (focus)="onFocus()"
+            autocomplete="off"
           />
-          <small class="text-muted"
-            >You can upload a maximum of 10 files, 10MB each</small
-          >
-        </div>
-        <div class="uploaded-files mt-3" *ngIf="uploadedFiles.length > 0">
-          <h6>Uploaded Files:</h6>
-          <ul class="list-group">
+    
+         <!--  <i class="fa-solid fa-caret-down search-icon"></i> -->
+    
+          <ul *ngIf="showDropdown && filteredVendors.length > 0" class="dropdown-menu w-100 show">
             <li
-              class="list-group-item d-flex justify-content-between align-items-center"
-              *ngFor="let file of uploadedFiles"
+              *ngFor="let vendor of filteredVendors"
+              class="dropdown-item"
+              (mousedown)="selectVendor(vendor)"
+              [class.active]="searchTerm === vendor"
             >
-              {{ file.name }}
-              <span class="badge bg-primary rounded-pill">{{ file.size }}</span>
-              <button
-                type="button"
-                class="btn btn-sm btn-danger"
-                (click)="removeFile(file)"
-              >
-                Remove
-              </button>
+              {{ vendor }}
             </li>
           </ul>
+    
+          <div *ngIf="showDropdown && filteredVendors.length === 0" class="dropdown-menu w-100 show no-results p-1">
+            No Group found
+          </div>
         </div>
       </div>
-    </div>
+      <div class="col-mid-6 mb-3">
+        <label>Parent Account</label>
+        <input type="text" placeholder="Parent Account" class="form-control"/>
+      </div>
 
-    <!-- Form Actions -->
-    <div class="form-actions text-end">
-      <button
-        type="button"
-        class="btn btn-secondary me-2"
-        (click)="onCancel()"
-        [routerLink]="'/customer/vendor-dashboard'"
-      >
-        Cancel
-      </button>
-      <button
-        type="submit"
-        class="btn btn-primary"
-        [disabled]="!vendorForm.valid"
-        [routerLink]="'/customer/vendor-dashboard'"
-      >
-        Save Vendor
-      </button>
     </div>
-  </form>
+  </div>
+    <!-- right side filed -->
+     <div class="col-md-6">
+
+   
+    <div class="row w-100">
+      <div class="form-check form-switch mt-4 col-md-6 mb-4 ms-3">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="gstToggle"
+         
+          name="gstToggle"
+        />
+        <label class="form-check-label" for="gstToggle">
+          GST Applicable
+        </label>
+      </div>
+    
+      <div class="form-check form-switch mt-4 col-md-5 mb-4 ms-3 ms-lg-0">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="reverseChargeToggle"
+          
+          name="reverseChargeToggle"
+        />
+        <label class="form-check-label" for="reverseChargeToggle">
+          Attracts Reverse Charges
+        </label>
+      </div>
+
+<div class="col-md-6 mb-4">
+  <label>GST Type</label>
+  <input type="text" placeholder="GST Type" class="form-control"/>
 </div>
+ <div class="col-md-6 mb-4">
+  <label>HSN/SAC</label>
+  <input type="text" placeholder="HSN/SAC" class="form-control"/>
+ </div>
+ <div class="col-md-6 mb-4">
+<label>Service Type</label>
+<input type="text" placeholder="Service Type" class="form-control"/>
+ </div>
+ <div class="col-md-6 mb-4">
+  <label>Default GST</label>
+  <input type="text" placeholder="Service Type" class="form-control"/>
+   </div>
+
+   <div class="form-check form-switch mt-4 col-md-5 ms-3 me-4">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      id="reverseChargeToggle"
+      
+      name="reverseChargeToggle"
+    />
+    <label class="form-check-label" for="reverseChargeToggle">
+      TDS Applicable
+    </label>
+  </div>
+  <div class="col-md-6 ms-lg-2">
+ <label>TDS Code</label>
+ <input type="text" placeholder="TDS Code" class="form-control"/>
+  </div>
+
+    </div>
+  </div>
+  <div class="col-12 mt-4">
+    <div class="d-flex justify-content-end gap-3">
+      <button type="button" class="btn btn-secondary px-4">Cancel</button>
+      <button type="submit" class="btn btn-primary px-4">Submit</button>
+    </div>
+  </div>
+  
+  </form>
+
+  </div>
