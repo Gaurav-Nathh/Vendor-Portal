@@ -16,7 +16,6 @@ export class ThemeService {
     if (savedTheme) {
       this.setTheme(savedTheme);
     } else {
-      // Getting the theme from browser
       const prefersDark = window.matchMedia('(prefers-color: dark)').matches;
       const defaultTheme = prefersDark
         ? this.darkThemeClass
