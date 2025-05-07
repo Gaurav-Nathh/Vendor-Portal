@@ -15,9 +15,8 @@ export class UpdateProfileComponent {
   enableProfileEditing: boolean = false;
   enablePurchaseOrderCreation: boolean = false;
   enableManualInvoiceGeneration: boolean = false;
-  portalUrl: string = '';
   sideNavStyle: string = '';
-  theme: string = '';
+  selectedTheme: string = '';
 
   constructor(
     private sidebarService: SharedService,
@@ -25,18 +24,16 @@ export class UpdateProfileComponent {
   ) {}
 
   ngOnInit() {
-    // this.theme = this.themeService.getCurrentTheme();
-    // console.log(this.theme);
-    // this.sideNavStyle = this.sidebarService.getCurrentSidebarStyle();
+    this.sidebarService.sidebarStyle$.subscribe((style) => {
+      this.sideNavStyle = style;
+    });
+    this.themeService.theme$.subscribe((theme) => {
+      this.selectedTheme = theme;
+    });
   }
 
-  onPortalToggle() {
-    if (!this.enablePortal) {
-      this.portalUrl = '';
-    }
-  }
   onSubmit(form: NgForm) {
-    console.log(this.sideNavStyle);
     this.sidebarService.setSidebarStyle(this.sideNavStyle);
+    this.themeService.setTheme(this.selectedTheme);
   }
 }

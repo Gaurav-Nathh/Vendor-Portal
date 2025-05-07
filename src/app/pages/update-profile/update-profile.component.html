@@ -24,7 +24,8 @@
                   type="radio"
                   name="theme"
                   id="lightThemeOption"
-                  [value]="'light'"
+                  [(ngModel)]="selectedTheme"
+                  [value]="'light-theme'"
                 />
                 <label class="form-check-label" for="themeOption">
                   Light
@@ -36,7 +37,8 @@
                   type="radio"
                   name="theme"
                   id="darkThemeOption"
-                  [value]="'dark'"
+                  [(ngModel)]="selectedTheme"
+                  [value]="'dark-theme'"
                 />
                 <label class="form-check-label" for="themeOption"> Dark </label>
               </div>
@@ -57,7 +59,7 @@
                   class="form-check-input"
                   type="radio"
                   name="sideMenuStyle"
-                  id="shrinkOption"
+                  id="shrink"
                   [(ngModel)]="sideNavStyle"
                   [value]="'shrink'"
                 />
@@ -70,7 +72,7 @@
                   class="form-check-input"
                   type="radio"
                   name="sideMenuStyle"
-                  id="overlayOption"
+                  id="overlay"
                   [(ngModel)]="sideNavStyle"
                   [value]="'overlay'"
                 />
