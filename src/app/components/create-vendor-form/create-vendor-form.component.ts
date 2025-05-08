@@ -2,6 +2,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Vendor } from '../../Models/interface/Vendor.interface';
+import { VendorFormData } from '../../Models/data-structure/vendor.model';
+import Swal from 'sweetalert2';
 
 
 
@@ -18,6 +21,7 @@ export class CreateVendorFormComponent {
   searchTerm: string = '';
   showDropdown: boolean = false;
   private closeTimeout: any;
+  vendor:Vendor=new VendorFormData();
   
   filterVendors() {
     const term = this.searchTerm.toLowerCase();
@@ -56,4 +60,60 @@ toggleState() {
   this.isToggled = !this.isToggled;
 }
 
+ 
+
+  onSubmit() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Please confirm to submit the form.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Submit Form',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(this.vendor); // ✅ Log the vendor object
+        
+        Swal.fire({
+          icon: 'success',
+          title: 'Form Submitted!',
+          text: 'Vendor details have been successfully submitted.',
+          timer: 2000,
+          showConfirmButton: false
+        });
+  
+        // Optionally reset the form or do additional logic
+        this.vendor = new VendorFormData();
+        this.searchTerm = '';
+      }
+    });
+  }
+  
+  
+  onCancel(){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Please confirm to cancel the form.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, cancel it',
+      cancelButtonText: 'No, keep editing'
+
+    }).then((result)=>{
+      if(result.isConfirmed){
+         this.vendor = new VendorFormData();
+      }
+    })
+   
+  }
+
+
+
+
 }
+
+
