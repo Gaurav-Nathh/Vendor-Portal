@@ -181,8 +181,8 @@ export class SidebarComponent {
       route: '/master/',
     },
     {
-      text: 'Users',
-      icon: 'fa-solid fa-users',
+      text: 'Sales',
+      icon: 'fa-solid fa-cart-shopping',
       isSubmenuOpen: false,
       submenu: [
         {
@@ -191,7 +191,29 @@ export class SidebarComponent {
           route: '/master/users/customers',
         },
         {
+          text: 'Sales Orders',
+          icon: 'fa-solid fa-user',
+          route: '/master/users/vendors',
+        },
+        {
+          text: 'Invoices',
+          icon: 'fa-solid fa-user',
+          route: '/master/users/vendors',
+        },
+      ],
+    },
+    {
+      text: 'Purchases',
+      icon: 'fa-solid fa-bag-shopping',
+      isSubmenuOpen: false,
+      submenu: [
+        {
           text: 'Vendors',
+          icon: 'fa-solid fa-user',
+          route: '/master/users/vendors',
+        },
+        {
+          text: 'Purchase Orders',
           icon: 'fa-solid fa-user',
           route: '/master/users/vendors',
         },

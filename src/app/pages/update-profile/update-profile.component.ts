@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { SharedService } from '../../services/shared/shared.service';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-update-profile',
@@ -14,18 +15,25 @@ export class UpdateProfileComponent {
   enableProfileEditing: boolean = false;
   enablePurchaseOrderCreation: boolean = false;
   enableManualInvoiceGeneration: boolean = false;
-  portalUrl: string = '';
-  sideNavStyle: string = 'shrink';
+  sideNavStyle: string = '';
+  selectedTheme: string = '';
 
-  constructor(private sidebarService: SharedService) {}
+  constructor(
+    private sidebarService: SharedService,
+    private themeService: ThemeService
+  ) {}
 
-  onPortalToggle() {
-    if (!this.enablePortal) {
-      this.portalUrl = '';
-    }
+  ngOnInit() {
+    this.sidebarService.sidebarStyle$.subscribe((style) => {
+      this.sideNavStyle = style;
+    });
+    this.themeService.theme$.subscribe((theme) => {
+      this.selectedTheme = theme;
+    });
   }
+
   onSubmit(form: NgForm) {
-    console.log(this.sideNavStyle);
     this.sidebarService.setSidebarStyle(this.sideNavStyle);
+    this.themeService.setTheme(this.selectedTheme);
   }
 }
