@@ -1,10 +1,11 @@
 
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Vendor } from '../../Models/interface/Vendor.interface';
 import { VendorFormData } from '../../Models/data-structure/vendor.model';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 
@@ -22,6 +23,11 @@ export class CreateVendorFormComponent {
   showDropdown: boolean = false;
   private closeTimeout: any;
   vendor:Vendor=new VendorFormData();
+  formstatus:boolean=false;
+  
+
+
+  constructor(private router: Router) {}
   
   filterVendors() {
     const term = this.searchTerm.toLowerCase();
@@ -62,34 +68,65 @@ toggleState() {
 
  
 
-  onSubmit() {
+onSubmit(vendorForm: NgForm) {
+  if (!vendorForm.valid) {
+    // Find first invalid input
+    const firstInvalidControl: HTMLElement | null = document.querySelector(
+      'form .ng-invalid[required]'
+    );
+
+    if (firstInvalidControl) {
+      firstInvalidControl.focus(); 
+    }
+
+    // Show Swal error
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'Please confirm to submit the form.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Submit Form',
-      cancelButtonText: 'Cancel'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log(this.vendor); // ✅ Log the vendor object
-        
-        Swal.fire({
-          icon: 'success',
-          title: 'Form Submitted!',
-          text: 'Vendor details have been successfully submitted.',
-          timer: 2000,
-          showConfirmButton: false
-        });
-  
-        // Optionally reset the form or do additional logic
-        this.vendor = new VendorFormData();
-        this.searchTerm = '';
-      }
+      toast: true,
+      icon: 'error',
+      position: 'top-end',
+      title: 'Please fill all required fields',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      customClass: {
+        popup: 'swal-toast',
+        icon: 'no-border',
+        title: 'swal-title',
+      },
     });
+
+    return;
   }
+
+  // Confirmation popup
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'Please confirm to submit the form.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Submit Form',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      console.log(this.vendor);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Form Submitted!',
+        text: 'Vendor details have been successfully submitted.',
+        timer: 2000,
+        showConfirmButton: false
+      });
+
+      this.vendor = new VendorFormData();
+      this.searchTerm = '';
+      this.formstatus=true;
+    }
+  });
+}
+
   
   
   onCancel(){
@@ -106,6 +143,7 @@ toggleState() {
     }).then((result)=>{
       if(result.isConfirmed){
          this.vendor = new VendorFormData();
+         this.router.navigate(['/master/users/vendors']);
       }
     })
    

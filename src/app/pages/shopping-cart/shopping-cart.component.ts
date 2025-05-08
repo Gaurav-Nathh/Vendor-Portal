@@ -508,33 +508,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   cart: Product[] = [];
-  // addToCart(product: Product) {
-  //   Swal.fire({
-  //     toast: true,
-  //     position: 'top-end',
-  //     title: 'Product added successfully',
-  //     iconHtml: '<div style="font-size: 1.5rem">🛒</div>',
-  //     background: '#f8f9fa',
-  //     showConfirmButton: false,
-  //     timer: 3000,
-  //     timerProgressBar: true,
-  //     customClass: {
-  //       popup: 'swal-toast',
-  //       icon: 'no-border', // This removes the icon container border
-  //       title: 'swal-title',
-  //     },
-  //   });
-
-  //   const existing = this.cart.find((item) => item.stockId === product.stockId);
-  //   if (existing) {
-  //     existing.quantity! += product.quantity || 1;
-  //   } else {
-  //     const newItem = { ...product, quantity: product.quantity || 1 };
-  //     this.cart.push(newItem);
-  //   }
-
-  //   product.quantity = 1;
-  // }
+ 
 
   addToCart(product: Product): boolean {
     try {

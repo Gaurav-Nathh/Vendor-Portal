@@ -234,6 +234,12 @@ body {
   position: relative;
   overflow: hidden;
   margin: 20px auto;
+
+  input:focus, select:focus, textarea:focus {
+    background-color: #9899f3; /* Light Yellow */
+    outline: none; /* optional: removes blue outline */
+    box-shadow: 0 0 10px #0178ff; /* optional: soft yellow glow */
+  }
  
 }
 
@@ -247,6 +253,8 @@ body {
 .form-container:hover:before {
   left: 150%;
 }
+
+
 
 .btn {
   min-width: 120px;
