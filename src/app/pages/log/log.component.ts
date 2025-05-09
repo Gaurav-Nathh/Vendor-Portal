@@ -5,11 +5,11 @@ import { ThemeToggleComponent } from '../../components/theme-toggle/theme-toggle
 import { ThemeService } from '../../services/theme.service';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-log',
-  imports: [FormsModule, NgIf, NgClass, ThemeToggleComponent],
+  imports: [FormsModule, NgIf, NgClass, ThemeToggleComponent, RouterLink],
   templateUrl: './log.component.html',
   styleUrl: './log.component.scss',
 })
