@@ -28,7 +28,7 @@
 
     <div class="filter-container">
         <div class="select-wrapper">
-            <select class="filter-select">
+            <select class="filter-select" aria-label="select">
                 <option value="">All Statuses</option>
                 <option value="Paid">Paid</option>
                 <option value="Pending">Pending</option>
@@ -54,15 +54,15 @@
       <thead>
         <tr>
           <th class="order-number">Name</th>
-          <th class="ref-number">Vendor Number</th>
+          <th class="ref-number">Code</th>
           <th class="date">Company Name</th>
           <th class="value">Email</th>
-          <th class="status">Work Phone</th>
-          <th class="actions">PayAbles</th>
+          <th class="status">GST Type</th>
+          <th class="actions">Status</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let vendor of vendors">
+        <tr *ngFor="let vendor of getFilteredVendors()">
           <td class="order-number">
             <div class="order-number-wrapper">
               <i class="bi bi-person"></i>
@@ -70,7 +70,7 @@
             </div>
           </td>
           <td class="ref-number">
-            <span class="vendor-number">{{ vendor.vendorNumber }}</span>
+            <span class="vendor-number">{{ vendor.code }}</span>
           </td>
           <td class="date">
             <span class="company-name">{{ vendor.companyName }}</span>
@@ -79,11 +79,11 @@
             <span class="email">{{ vendor.email }}</span>
           </td>
           <td class="status">
-            <span class="work-phone">{{ vendor.workPhone }}</span>
+            <span class="work-phone">{{ vendor.gstType }}</span>
           </td>
           <td class="actions">
             <span class="payables">{{
-              vendor.payables | currency : "INR"
+              vendor.status
             }}</span>
           </td>
         </tr>

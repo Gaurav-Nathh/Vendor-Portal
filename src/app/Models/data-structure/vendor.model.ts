@@ -1,6 +1,8 @@
 export class VendorFormData {
     code: string = '';
     name: string = '';
+    email:string='';
+    companyName='';
     balancingMethod: string = '';
     group: string = '';
     parentAccount: string = '';

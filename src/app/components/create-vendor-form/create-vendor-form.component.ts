@@ -6,6 +6,7 @@ import { Vendor } from '../../Models/interface/Vendor.interface';
 import { VendorFormData } from '../../Models/data-structure/vendor.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { VendorServiceFileService } from '../../services/vendor-service/vendor-service-file.service';
 
 
 
@@ -22,12 +23,12 @@ export class CreateVendorFormComponent {
   searchTerm: string = '';
   showDropdown: boolean = false;
   private closeTimeout: any;
-  vendor:Vendor=new VendorFormData();
+ 
   formstatus:boolean=false;
   
 
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,public VendorService:VendorServiceFileService) {}
   
   filterVendors() {
     const term = this.searchTerm.toLowerCase();
@@ -110,7 +111,7 @@ onSubmit(vendorForm: NgForm) {
     cancelButtonText: 'Cancel'
   }).then((result) => {
     if (result.isConfirmed) {
-      console.log(this.vendor);
+      console.log(this.VendorService.vendor);
 
       Swal.fire({
         icon: 'success',
@@ -120,7 +121,7 @@ onSubmit(vendorForm: NgForm) {
         showConfirmButton: false
       });
 
-      this.vendor = new VendorFormData();
+      this.VendorService.vendor = new VendorFormData();
       this.searchTerm = '';
       this.formstatus=true;
     }
@@ -142,7 +143,7 @@ onSubmit(vendorForm: NgForm) {
 
     }).then((result)=>{
       if(result.isConfirmed){
-         this.vendor = new VendorFormData();
+         this.VendorService.vendor = new VendorFormData();
          this.router.navigate(['/master/users/vendors']);
       }
     })

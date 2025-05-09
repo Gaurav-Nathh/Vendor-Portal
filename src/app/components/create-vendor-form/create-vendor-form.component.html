@@ -16,16 +16,24 @@
       <!-- Vendor Name Input -->
       <div class="col-md-6 mb-3">
         <label>Code</label>
-        <input type="text" class="form-control" placeholder="Code"  [(ngModel)]="vendor.code"  name="code" required #codeInput/>
+        <input type="text" class="form-control" placeholder="Code"  [(ngModel)]="VendorService.vendor.code"  name="code" required #codeInput/>
       </div>
       <div class="col-md-6 mb-3">
         <label>Name</label>
-        <input type="text" class="form-control" placeholder="Name" [(ngModel)]="vendor.name"  name="name" required  [readOnly]="formstatus" [disabled]="formstatus"/>
+        <input type="text" class="form-control" placeholder="Name" [(ngModel)]="VendorService.vendor.name"  name="name" required  [readOnly]="formstatus" [disabled]="formstatus"/>
       </div>
+<div class="col-md-6 mb-3">
+  <label>Email</label>
+  <input type="text" class="form-control" placeholder="Email" [(ngModel)]="VendorService.vendor.email" name="email" required  [readOnly]="formstatus" [disabled]="formstatus"/>
+</div>
 
+<div class="col-md-6 mb-3">
+  <label>Company Name</label>
+  <input type="text" class="form-control" placeholder="compnay Name" [(ngModel)]="VendorService.vendor.companyName" name="companyName" required  [readOnly]="formstatus" [disabled]="formstatus"/>
+</div>
       <div class="col-md-6 mb-3">
         <label>Balancing Method</label>
-        <input type="text" class="form-control" placeholder="Balancing Method" [(ngModel)]="vendor.balancingMethod"  name="balancingMethod" [readOnly]="formstatus" [disabled]="formstatus" />
+        <input type="text" class="form-control" placeholder="Balancing Method" [(ngModel)]="VendorService.vendor.balancingMethod"  name="balancingMethod" [readOnly]="formstatus" [disabled]="formstatus" />
       </div>
 
       <div class="col-md-6 mb-3">
@@ -64,7 +72,7 @@
       </div>
       <div class="col-mid-6 mb-3">
         <label>Parent Account</label>
-        <input type="text" placeholder="Parent Account" class="form-control" [(ngModel)]="vendor.parentAccount" name="parentAccount" [readOnly]="formstatus" [disabled]="formstatus"/>
+        <input type="text" placeholder="Parent Account" class="form-control" [(ngModel)]="VendorService.vendor.parentAccount" name="parentAccount" [readOnly]="formstatus" [disabled]="formstatus"/>
       </div>
 
     </div>
@@ -92,7 +100,7 @@
           class="form-check-input"
           type="checkbox"
           id="reverseChargeToggle"
-          [(ngModel)]="vendor.reverseChargeApplicable"
+          [(ngModel)]="VendorService.vendor.reverseChargeApplicable"
           name="reverseChargeApplicable"
           [readOnly]="formstatus" [disabled]="formstatus"
         />
@@ -103,34 +111,34 @@
 
 <div class="col-md-6 mb-4">
   <label>GST Type</label>
-  <input type="text" placeholder="GST Type" class="form-control" [(ngModel)]="vendor.gstType" name="gstType" required
+  <input type="text" placeholder="GST Type" class="form-control" [(ngModel)]="VendorService.vendor.gstType" name="gstType" required
   [readOnly]="formstatus" [disabled]="formstatus"/>
 </div>
  <div class="col-md-6 mb-4">
   <label>HSN/SAC</label>
-  <input type="text" placeholder="HSN/SAC" class="form-control" [(ngModel)]="vendor.hsnSac" name="hsnSac"
+  <input type="text" placeholder="HSN/SAC" class="form-control" [(ngModel)]="VendorService.vendor.hsnSac" name="hsnSac"
   [readOnly]="formstatus" [disabled]="formstatus"/>
  </div>
  <div class="col-md-6 mb-4">
 <label>Service Type</label>
-<input type="text" placeholder="Service Type" class="form-control" [(ngModel)]="vendor.serviceType" name="serviceType"
+<input type="text" placeholder="Service Type" class="form-control" [(ngModel)]="VendorService.vendor.serviceType" name="serviceType"
 [readOnly]="formstatus" [disabled]="formstatus"/>
  </div>
  <div class="col-md-6 mb-4">
   <label>Default GST</label>
-  <input type="text" placeholder="Service Type" class="form-control" [(ngModel)]="vendor.defaultGst" name="defaultGst"
+  <input type="text" placeholder="Service Type" class="form-control" [(ngModel)]="VendorService.vendor.defaultGst" name="defaultGst"
   [readOnly]="formstatus" [disabled]="formstatus"/>
    </div>
 
    <div class="form-check form-switch mt-4 col-md-5 ms-3 me-4">
     <input type="checkbox" class="form-check-input" id="tdsToggle"
-           [(ngModel)]="vendor.tdsApplicable" name="tdsApplicable" [readOnly]="formstatus" [disabled]="formstatus"/>
+           [(ngModel)]="VendorService.vendor.tdsApplicable" name="tdsApplicable" [readOnly]="formstatus" [disabled]="formstatus"/>
     <label class="form-check-label" for="tdsToggle">TDS Applicable</label>
   </div>
 
   <div class="col-md-6 ms-lg-2">
     <label>TDS Code</label>
-    <input type="text" class="form-control" placeholder="TDS Code" [(ngModel)]="vendor.tdsCode" name="tdsCode" [readOnly]="formstatus" [disabled]="formstatus" />
+    <input type="text" class="form-control" placeholder="TDS Code" [(ngModel)]="VendorService.vendor.tdsCode" name="tdsCode" [readOnly]="formstatus" [disabled]="formstatus" />
   </div>
 
     </div>
@@ -138,7 +146,7 @@
   <div class="col-12 mt-4">
     <div class="d-flex justify-content-end gap-3"*ngIf="!formstatus; else elseBlock">
       
-      <select class="btn btn-form text-center" [(ngModel)]="vendor.status" name="status" aria-label="status">
+      <select class="btn btn-form text-center" [(ngModel)]="VendorService.vendor.status" name="status" aria-label="status">
         <option value="draft">Draft</option>
         <option value="confirm">Confirm</option>
       </select>
