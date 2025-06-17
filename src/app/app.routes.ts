@@ -145,6 +145,15 @@ export const routes: Routes = [
           ),
         canActivate: [authGuard],
       },
+      {
+           path:'invoice-form',
+           pathMatch: 'full',
+           loadComponent: () =>
+            import('./components/invoice-form/invoice-form.component').then(
+              (c)=>c.InvoiceFormComponent
+            ),
+            canActivate:[authGuard]
+      },
 
       {
         path: 'shopping-cart',

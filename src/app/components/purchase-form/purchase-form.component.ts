@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { PoServiceFileService } from '../../services/po-service/po-service-file.service';
 
 interface AttachedFile {
   name: string;
@@ -34,6 +35,12 @@ export class PurchaseFormComponent {
   items = [
     { itemName: '', account: '', quantity: 0, rate: 0, amount: 0 }
   ];
+
+
+ constructor(private poSerive:PoServiceFileService){
+
+ }
+
 
   addItem(): void {
     this.items.push({ itemName: '', account: '', quantity: 0, rate: 0, amount: 0 });
@@ -97,5 +104,18 @@ export class PurchaseFormComponent {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
 
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  }
+
+  PoaddForm(){
+    console.log(this.poSerive.poForm);
+   this.poSerive.postPoForm(this.poSerive.poForm).subscribe({
+    next:(res:any)=>{
+      console.log(res,"data")
+    }
+   })
+  }
+
+  getItemclick(){
+    console.log("hii")
   }
 }

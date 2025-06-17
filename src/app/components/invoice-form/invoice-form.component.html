@@ -1,0 +1,85 @@
+<!-- form-layout.component.html -->
+<form>
+  <div class="row">
+    <!-- Left Column -->
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5>Document Information</h5>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label class="form-label">Voucher Type</label>
+            <input type="text" class="form-control" placeholder="Estimate Invoice" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Type</label>
+            <input type="text" class="form-control" placeholder="Regular B2B" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Number</label>
+            <input type="text" class="form-control" placeholder="DD25SIE" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" [value]="currentDate" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5>Party Information</h5>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label class="form-label">Consignee</label>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Use F2 to Create New" />
+              <button class="btn btn-outline-secondary" type="button">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label class="form-label">Ship To</label>
+            <div class="input-group">
+              <input type="text" class="form-control" />
+              <button class="btn btn-outline-secondary" type="button">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h5>Reference Information</h5>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label class="form-label">Against Doc.</label>
+            <input type="text" class="form-control" placeholder="Direct" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Number</label>
+            <input type="text" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Ref. No.</label>
+            <input type="text" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" [value]="currentDate" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

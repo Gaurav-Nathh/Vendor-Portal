@@ -4,24 +4,132 @@
   </div>
   <!-- Header Section -->
   <div class="dashboard-header">
-    <div class="view-selector">
-      <div class="view-options">
-        <button
-          *ngFor="let option of viewOptions"
-          class="view-option"
-          [class.active]="currentView === option.value"
-          (click)="updateView(option.value)"
-        >
-          {{ option.label }}
-        </button>
+
+    <div class="nav-item ">
+ <div class="dropdown-container">
+  <button (click)="toggleDropdown()" class="dropdown-toggles">
+    {{ dropdownLabel }}
+    <span class="dropdown-icon">{{ isDropdownOpen ? '▲' : '▼' }}</span>
+  </button>
+
+  <div *ngIf="isDropdownOpen" class="dropdown-content">
+    <div class="dropdown-header">Period</div>
+    
+    <div class="dropdown-body">
+      <select [(ngModel)]="selecteddrp" (change)="onDateOptionChange()" class="dropdown-select" aria-label="searchbox">
+        <option *ngFor="let option of datedrp" [value]="option">{{ option }}</option>
+      </select>
+
+      <div class="period-options">
+        <button class="period-btn" (click)="selectPeriod('Today')">Today</button>
+        <button class="period-btn" (click)="selectPeriod('Yesterday')">Yesterday</button>
+        <button class="period-btn" (click)="selectPeriod('This Month')">This Month</button>
+        <button class="period-btn" (click)="selectPeriod('This Year')">This Year</button>
+        <button class="period-btn" (click)="selectPeriod('Last Month')">Last Month</button>
+      </div>
+
+      <div class="custom-date-range">
+        <div class="date-input-group">
+          <label>From Date</label>
+          <input type="date" [(ngModel)]="customFromDate" class="date-input" aria-label="custome-date" />
+        </div>
+        <div class="date-input-group">
+          <label>To Date</label>
+          <input type="date" [(ngModel)]="customToDate" class="date-input" aria-label="custome-date"  />
+        </div>
       </div>
     </div>
-    <button
+   <div class="dropdown-footer">
+      <button class="action-btn apply-btn" (click)="applyDateRange()">
+        Apply
+      </button>
+      <button class="action-btn close-btn" (click)="closeDropdown()">
+        Close
+      </button>
+    </div>
+  </div>
+  
+</div>
+ <div class="dropdown-container">
+<select [(ngModel)]="selectedtypdrp" (change)="onTypeChange()" aria-label="type" class="dropdown-select">
+  <option *ngFor="let option of typdrp" [value]="option.value">{{ option.label }}</option>
+</select>
+</div>
+
+
+ <div class="search-filter-container d-flex w-100 " >
+  <!-- Search Input -->
+  <div class="search-box w-100">
+    <input type="text" placeholder="Search..." [(ngModel)]="searchQuery">
+    <svg class="search-icon" viewBox="0 0 24 24">
+      <path fill="#999" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    </svg>
+  </div>
+
+  <!-- Filter Buttons -->
+ <div class="filter-options">
+  <i class="fa-solid fa-filter" style="color: #2d35a4; font-size:30px" (click)="toggleFilterbtn()"></i>
+  <div *ngIf="isFilterOpen" class="filter-content">
+    <div class="fltr-head">
+        <h3>Advance Filter</h3>
+        <span>Close</span>
+    </div>
+   <div class="d-flex flex-column p-3">
+  <label>Status</label>
+  <select [(ngModel)]="selectedStatus" (change)="onStatusChange()">
+    <option *ngFor="let status of statusOptions" [value]="status.value">
+      {{ status.label }}
+    </option>
+  </select>
+  <label>Voucher Type</label>
+  <select>
+    <option value="POV">Voucher Type</option>
+  </select>
+<div class="">
+  <div class="row g-2">
+    <div class="col-auto">
+      <select >
+        <option>d</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <select >
+        <option>b</option>
+      </select>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" aria-label="Search" placeholder="Search">
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+  </div>
+</div>
+</div>
+
+    </div>
+   
+
+
+<!-- type based filter -->
+
+
+ <!-- search and filter -->
+
+ <!-- end here serach and filter -->
+<div>
+  <button
       class="btn create-btn"
       [routerLink]="'/customer/purchase-order/create'"
     >
       <i class="bi bi-plus-lg"></i> Create New PO
     </button>
+</div>
+    
   </div>
 
   <!-- Orders Table -->
@@ -37,37 +145,36 @@
           <th class="actions"></th>
         </tr>
       </thead>
-      <tbody>
-        <tr *ngFor="let po of filteredOrders">
-          <td class="order-number">
-            <div class="order-number-wrapper">
-              <i class="bi bi-file-text"></i>
-              <span class="po-number">{{ po.orderNumber }}</span>
-            </div>
-          </td>
-          <td class="ref-number">
-            <span class="ref-number-value">{{ po.referenceNumber }}</span>
-          </td>
-          <td class="date">
-            <span class="date-value">{{ po.date | date : "dd MMM yyyy" }}</span>
-          </td>
-          <td class="value">
-            <span class="value-amount">{{
-              po.value | currency : "INR" : "symbol" : "1.2-2"
-            }}</span>
-          </td>
-          <td class="status">
-            <span class="status-pill" [ngClass]="getStatusClass(po.status)">
-              {{ po.status }}
-            </span>
-          </td>
-          <td class="actions">
-            <button class="btn action-btn" aria-label="More options">
-              <i class="bi bi-three-dots"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
+   <tbody>
+  <tr *ngFor="let po of filteredOrders">
+    <td class="order-number">
+      <div class="order-number-wrapper">
+        <i class="bi bi-file-text"></i>
+        <span class="po-number">{{ po.Vno }}</span>
+      </div>
+    </td>
+    <td class="ref-number">
+      <span class="ref-number-value">{{ po.RefDoc?.RfdNo || 'N/A' }}</span>
+    </td>
+    <td class="date">
+      <span class="date-value">{{ po.Vdate | date: 'dd MMM yyyy' }}</span>
+    </td>
+    <td class="value">
+      <span class="value-amount">{{ po.Amt | currency: 'INR':'symbol':'1.2-2' }}</span>
+    </td>
+    <td class="status">
+      <span class="status-pill" [ngClass]="getStatusClass(po.status || 'open')">
+        {{ po.status || 'Open' }}
+      </span>
+    </td>
+    <td class="actions">
+      <button class="btn action-btn" aria-label="More options">
+        <i class="bi bi-three-dots"></i>
+      </button>
+    </td>
+  </tr>
+</tbody>
+
     </table>
   </div>
 </div>

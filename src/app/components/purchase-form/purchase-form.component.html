@@ -23,18 +23,18 @@
 
                 <div class="col-md-6 mb-3">
                   <label class="form-label">Number</label>
-                  <input type="text" class="form-control" name="referenceNumber" [(ngModel)]="form.referenceNumber" />
+                  <input type="text" class="form-control" name="referenceNumber" [(ngModel)]="form.referenceNumber" aria-label="number" />
                 </div>
 
                 <div class="col-md-6 mb-3">
                   <label class="form-label">Date</label>
-                  <input type="date" class="form-control" />
+                  <input type="date" class="form-control" aria-label="date" />
                 </div>
 
 
                 <div class=" col-lg-12 col-xl-12 mb-3">
                   <label for="" class="form-label">Vendor <span>*</span></label>
-                  <input type="text" class="form-control" name="vendor" />
+                  <input type="text" class="form-control" name="vendor" aria-label="Vendor"/>
                 </div>
               </div>
             </div>
@@ -48,22 +48,22 @@
               <div class="row">
                 <div class="col-sm-6 col-lg-12 mb-3">
                   <label for="" class="form-label">Purchase Representative</label>
-                  <input type="text" class="form-control" name="vendor" />
+                  <input type="text" class="form-control" name="vendor" aria-label="Purchase Representative"/>
                 </div>
 
                 <div class="col-sm-12 col-md-6 mb-3">
                   <label for="">Mobile No.</label>
-                  <input type="text" class="form-control" name="" />
+                  <input type="text" class="form-control" name="" aria-label="mobile No." />
                 </div>
 
                 <div class="col-sm-12 col-md-6 mb-3">
                   <label for="">Email Id</label>
-                  <input type="text" class="form-control" name="" />
+                  <input type="text" class="form-control" name="" aria-label="Email Id" />
                 </div>
 
                 <div class="col-sm-12 col-md-6 mb-3">
                   <label for="">Against</label>
-                  <select class="form-select" name="" required>
+                  <select class="form-select" name="" required aria-label="against">
                     <option value="" selected>Direct</option>
                   </select>
                 </div>
@@ -85,11 +85,11 @@
               <div class="row">
                 <div class="col-sm-12 col-md-6 mb-3">
                   <label class="form-label">Reference #</label>
-                  <input type="text" class="form-control" name="referenceNumber" [(ngModel)]="form.referenceNumber" />
+                  <input type="text" class="form-control" name="referenceNumber" [(ngModel)]="form.referenceNumber" aria-label="Reference #" />
                 </div>
                 <div class="col-sm-12 col-md-6 mb-3">
                   <label class="form-label">Date</label>
-                  <input type="date" class="form-control" name="date" [(ngModel)]="form.date" required />
+                  <input type="date" class="form-control" name="date" [(ngModel)]="form.date" required  aria-label="date"/>
                 </div>
               </div>
 
@@ -136,7 +136,10 @@
         <table class="table table-bordered text-center">
           <thead class="bg-light">
             <tr>
-              <th>Item Details</th>
+              <th>Code</th>
+              <th>Description</th>
+              <th>MRP</th>
+              <th>Qty.</th>
               <th>Account</th>
               <th>Quantity</th>
               <th>Rate</th>
@@ -155,14 +158,14 @@
               </td>
               <td>
                 <input type="number" class="form-control form-control-sm" name="quantity{{ i }}"
-                  [(ngModel)]="item.quantity" (input)="updateAmount(item)" required />
+                  [(ngModel)]="item.quantity" (input)="updateAmount(item)" required  aria-label="update amount"/>
               </td>
               <td>
                 <input type="number" class="form-control form-control-sm" name="rate{{ i }}" [(ngModel)]="item.rate"
-                  (input)="updateAmount(item)" required />
+                  (input)="updateAmount(item)" required aria-label="update amount" />
               </td>
               <td>
-                <input type="number" class="form-control form-control-sm" [value]="item.amount" readonly />
+                <input type="number" class="form-control form-control-sm" [value]="item.amount" readonly aria-label="number" />
               </td>
               <td>
                 <button class="btn btn-sm btn-danger" type="button" (click)="removeItem(i)">
@@ -188,7 +191,7 @@
         <div class="card shadow-sm h-100">
           <div class="card-body">
             <h5 class="card-title fw-semibold">Customer Notes</h5>
-            <textarea class="form-control" rows="5" name="customerNotes" [(ngModel)]="form.customerNotes"></textarea>
+            <textarea class="form-control" rows="5" name="customerNotes" [(ngModel)]="form.customerNotes" aria-label="customer notes"></textarea>
           </div>
         </div>
       </div>
@@ -288,7 +291,7 @@
       Cancel
     </button>
     <button class="btn btn-primary px-4" type="submit">Save Draft</button>
-    <button class="btn btn-success px-4" type="submit">
+    <button class="btn btn-success px-4" type="submit" (click)="PoaddForm()">
       Create Purchase Order
     </button>
   </div>

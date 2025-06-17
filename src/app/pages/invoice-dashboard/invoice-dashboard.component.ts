@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { Invoice } from '../../Models/invoice.model';
 import { InvoiceService } from '../../services/shared/invoice.service';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-invoice-dashboard',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './invoice-dashboard.component.html',
   styleUrl: './invoice-dashboard.component.scss'
 })
