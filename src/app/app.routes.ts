@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './auth/auth.guard';
+import { ViewInvoiceComponent } from './pages/view-invoice/view-invoice.component';
 export const routes: Routes = [
   {
     path: '',
@@ -56,12 +57,30 @@ export const routes: Routes = [
           ).then((c) => c.PoDashboardComponent),
         canActivate: [authGuard],
       },
+      // {
+      //   path: 'invoice',
+      //   pathMatch: 'full',
+      //   loadComponent: () =>
+      //     import('./pages/invoice-dashboard/invoice-dashboard.component').then(
+      //       (c) => c.InvoiceDashboardComponent
+      //     ),
+      //   canActivate: [authGuard],
+      // },
       {
         path: 'invoice',
         pathMatch: 'full',
         loadComponent: () =>
-          import('./pages/invoice-dashboard/invoice-dashboard.component').then(
-            (c) => c.InvoiceDashboardComponent
+          import('./pages/view-invoice/view-invoice.component').then(
+            (c) => c.ViewInvoiceComponent
+          ),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'invoice-form',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/invoice-form/invoice-form.component').then(
+            (c) => c.InvoiceFormComponent
           ),
         canActivate: [authGuard],
       },
@@ -146,13 +165,13 @@ export const routes: Routes = [
         canActivate: [authGuard],
       },
       {
-           path:'invoice-form',
-           pathMatch: 'full',
-           loadComponent: () =>
-            import('./components/invoice-form/invoice-form.component').then(
-              (c)=>c.InvoiceFormComponent
-            ),
-            canActivate:[authGuard]
+        path: 'invoice-form',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./components/invoice-form/invoice-form.component').then(
+            (c) => c.InvoiceFormComponent
+          ),
+        canActivate: [authGuard]
       },
 
       {
